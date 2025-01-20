@@ -172,8 +172,8 @@ if (!$exam_types) {
         };
 
         const validatePassword = () => {
-            if (!/^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+]).{16,}$/.test(passwordInput.value)) {
-                passwordFeedback.textContent = 'Password must contain at least one capital letter, one digit, one special character, and be at least 16 characters long.';
+            if (!/^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+]).{8,}$/.test(passwordInput.value)) {
+                passwordFeedback.textContent = 'Password must contain at least one capital letter, one digit, one special character, and be at least 8 characters long.';
             } else {
                 passwordFeedback.textContent = '';
             }

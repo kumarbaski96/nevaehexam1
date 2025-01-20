@@ -51,7 +51,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
             $_SESSION['id'] = $candidate['id'];
             $_SESSION['name'] = $candidate['name'];
             $_SESSION['exam_type'] = $candidate['exam_type'];
-            header("Location: quiz.php");
+            //header("Location: quiz.php");
+            header("Location: insert_code.php");
         } else {
             echo "<script>alert('Invalid Password');</script>";
         }

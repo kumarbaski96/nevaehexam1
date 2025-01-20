@@ -1,16 +1,40 @@
 <?php
-include 'conn.php';
 session_start();
+include 'conn.php'; // Ensure your DB connection file is included
 
-// Check if the user is logged in
-if (!isset($_SESSION['id'])) {
-    header("Location: index.php");
+// Ensure the user is logged in
+if (!isset($_SESSION['id']) || !isset($_SESSION['name']) || !isset($_SESSION['exam_type'])) {
+    echo "<script>alert('Session Expired. Please log in again.'); window.location='index.php';</script>";
     exit;
 }
 
+// Assign session variables
 $candidate_id = $_SESSION['id'];
-$exam_type = $_SESSION['exam_type'];
 $name = $_SESSION['name'];
+$exam_type = $_SESSION['exam_type'];
+
+// Get the exam code from the POST request or session
+if (isset($_POST['exam_code']) && !empty($_POST['exam_code'])) {
+    $exam_code = $_POST['exam_code'];
+} else {
+    if (isset($_SESSION['exam_code'])) {
+        $exam_code = $_SESSION['exam_code'];
+    } else {
+        echo "<script>alert('Invalid Exam Code!'); window.location='index.php';</script>";
+        exit;
+    }
+}
+
+// Fetch questions for this exam code
+$exam_query = $conn->prepare("SELECT * FROM question_bank WHERE code = ?");
+$exam_query->bind_param("s", $exam_code);
+$exam_query->execute();
+$questions_result = $exam_query->get_result();
+
+if ($questions_result->num_rows === 0) {
+    echo "<script>alert('No questions found for this exam code!'); window.location='index.php';</script>";
+    exit;
+}
 
 // Handle logout request
 if (isset($_GET['logout'])) {
@@ -25,40 +49,74 @@ if (isset($_GET['logout'])) {
     exit;
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+// Handle the form submission when the exam is completed
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_exam'])) {
     $score = 0;
 
+    // Loop through the posted answers
     foreach ($_POST as $question_id => $user_answer) {
+        // Skip the submit button and exam_code
+        if ($question_id === 'submit_exam' || $question_id === 'exam_code') continue;
+
         // Fetch the question details and correct answer
-        $sql = "SELECT question, correct_option FROM questions WHERE id=$question_id";
-        $result = $conn->query($sql);
+        $stmt = $conn->prepare("SELECT question, correct_option FROM question_bank WHERE id = ?");
+        $stmt->bind_param("i", $question_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
         $question_data = $result->fetch_assoc();
 
-        $question_text = $conn->real_escape_string($question_data['question']);
-        $correct_option = $question_data['correct_option'];
+        // Ensure correct_option is available
+        if ($question_data && isset($question_data['correct_option'])) {
+            $correct_option = $question_data['correct_option'];
+            $question_text = $conn->real_escape_string($question_data['question']);
+        } else {
+            // Log an error if correct_option is missing or invalid
+            error_log("No valid correct_option found for question ID: $question_id");
+            continue; // Skip this question and don't insert the result
+        }
+
+        // Check if the user’s answer is correct
         $status = ($user_answer == $correct_option) ? 'Correct' : 'Incorrect';
 
+        // Increase score if answer is correct
         if ($status === 'Correct') $score++;
 
         // Insert the detailed result for this question
-        $conn->query("INSERT INTO question_results (candidate_id, exam_type, question_id, question, user_answer, correct_option, status)
-                      VALUES ($candidate_id, '$exam_type', $question_id, '$question_text', $user_answer, $correct_option, '$status')");
+        $insert_stmt = $conn->prepare("INSERT INTO question_results (candidate_id, exam_type, question_id, question, user_answer, correct_option, status) 
+                                      VALUES (?, ?, ?, ?, ?, ?, ?)");
+        $insert_stmt->bind_param("isissss", $candidate_id, $exam_type, $question_id, $question_text, $user_answer, $correct_option, $status);
+
+        if ($insert_stmt->execute()) {
+            // Log the successful insertion
+            error_log("Inserted result for question ID: $question_id");
+        } else {
+            // Log the error if insert failed
+            error_log("Failed to insert result for question ID: $question_id, Error: " . $insert_stmt->error);
+        }
     }
 
     // Insert the overall result
-    $conn->query("INSERT INTO results (candidate_id, exam_type, marks_obtained) VALUES ($candidate_id, '$exam_type', $score)");
-    $conn->query("UPDATE candidates SET total_marks=$score, status='Completed', is_exam_completed=1 WHERE id=$candidate_id");
+    $insert_result_stmt = $conn->prepare("INSERT INTO results (candidate_id, exam_type, marks_obtained) VALUES (?, ?, ?)");
+    $insert_result_stmt->bind_param("isi", $candidate_id, $exam_type, $score);
+    $insert_result_stmt->execute();
 
+    // Update candidate status and total marks
+    $update_stmt = $conn->prepare("UPDATE candidates SET total_marks = ?, status = 'Completed', is_exam_completed = 1 WHERE id = ?");
+    $update_stmt->bind_param("ii", $score, $candidate_id);
+    $update_stmt->execute();
+
+    // Notify the user and redirect
     echo "<script>alert('Exam Completed. Your Score: $score'); window.location='index.php';</script>";
     exit;
 }
 
-$questions = $conn->query("SELECT * FROM questions WHERE exam_type='$exam_type'");
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Exam</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examination</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
     <style>
         #timer {
@@ -67,59 +125,35 @@ $questions = $conn->query("SELECT * FROM questions WHERE exam_type='$exam_type'"
             text-align: center;
             margin-top: 20px;
         }
-        .logout-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-        }
     </style>
-    <script>
-        // Prevent back navigation after logout
-        history.pushState(null, null, location.href);
-        window.onpopstate = function () {
-            history.go(1);
-        };
-    </script>
 </head>
 <body>
-    <!-- Header with Logout Button -->
-    <nav class="navbar navbar-light bg-light">
-        <div class="container-fluid">
-            <span class="navbar-brand mb-0 h1">Exam Portal</span>
-            <a href="?logout=true" class="btn btn-danger logout-btn">Logout</a>
-        </div>
-    </nav>
-
     <div class="container mt-5">
-        <!-- Timer Display -->
-        <div id="timer" class="alert alert-primary">
-            Time Remaining: 01:00:00
-        </div>
+        <h2 class="text-center">Hello, <?php echo htmlspecialchars($name); ?>!</h2>
+        <h3 class="text-center">Exam Code: <?php echo htmlspecialchars($exam_code); ?></h3>
 
-        <!-- Candidate Details -->
-        <h2 class="text-center">Hello: <?php echo $name; ?></h2>
-        <h2 class="text-center">Exam: <?php echo $exam_type; ?></h2>
-
-        <!-- Exam Form -->
         <form method="POST">
-            <?php while ($row = $questions->fetch_assoc()) { ?>
+            <input type="hidden" name="exam_code" value="<?php echo htmlspecialchars($exam_code); ?>">
+
+            <h4>Answer the following questions:</h4>
+
+            <?php while ($question = $questions_result->fetch_assoc()) { ?>
                 <div class="mb-3">
-                    <p><?php echo $row['question']; ?></p>
-                    <input type="radio" name="<?php echo $row['id']; ?>" value="1"> <?php echo htmlspecialchars($row['option1']); ?><br>
-                    <input type="radio" name="<?php echo $row['id']; ?>" value="2"> <?php echo htmlspecialchars($row['option2']); ?><br>
-                    <input type="radio" name="<?php echo $row['id']; ?>" value="3"> <?php echo htmlspecialchars($row['option3']); ?><br>
-                    <input type="radio" name="<?php echo $row['id']; ?>" value="4"> <?php echo htmlspecialchars($row['option4']); ?><br>
+                    <p><?php echo htmlspecialchars($question['question']); ?></p>
+                    <input type="radio" name="<?php echo $question['id']; ?>" value="1" required> <?php echo htmlspecialchars($question['option1']); ?><br>
+                    <input type="radio" name="<?php echo $question['id']; ?>" value="2"> <?php echo htmlspecialchars($question['option2']); ?><br>
+                    <input type="radio" name="<?php echo $question['id']; ?>" value="3"> <?php echo htmlspecialchars($question['option3']); ?><br>
+                    <input type="radio" name="<?php echo $question['id']; ?>" value="4"> <?php echo htmlspecialchars($question['option4']); ?><br>
                 </div>
             <?php } ?>
-            <button class="btn btn-primary">Submit</button>
+
+            <button type="submit" name="submit_exam" class="btn btn-primary">Submit</button>
         </form>
     </div>
 
     <script>
-        // Set the initial time (1 hour in seconds)
-        let timeRemaining = 60 * 60;
+        let timeRemaining = 60 * 60; // 1 hour
 
-        // Function to format time as HH:MM:SS
         function formatTime(seconds) {
             const hours = Math.floor(seconds / 3600);
             const minutes = Math.floor((seconds % 3600) / 60);
@@ -127,21 +161,18 @@ $questions = $conn->query("SELECT * FROM questions WHERE exam_type='$exam_type'"
             return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
         }
 
-        // Function to update the timer
         function updateTimer() {
             const timerElement = document.getElementById('timer');
             timerElement.textContent = `Time Remaining: ${formatTime(timeRemaining)}`;
             if (timeRemaining > 0) {
-                timeRemaining--; // Decrease time by 1 second
+                timeRemaining--;
             } else {
-                // Timer reaches 0, submit the form automatically
                 clearInterval(timerInterval);
                 alert('Time is up! Your answers will be submitted automatically.');
                 document.querySelector('form').submit();
             }
         }
 
-        // Start the timer and update every second
         const timerInterval = setInterval(updateTimer, 1000);
     </script>
 </body>
