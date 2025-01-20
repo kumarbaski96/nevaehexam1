@@ -22,6 +22,9 @@ $candidates = $conn->query("SELECT * FROM candidates");
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                        <a class="nav-link" style="color: blue;" href="question_bank.php">Create Question</a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" style="color: blue;" href="show_question.php">Show Qustions</a>
                     </li>
@@ -31,6 +34,7 @@ $candidates = $conn->query("SELECT * FROM candidates");
                     <li class="nav-item">
                         <a class="nav-link" style="color: blue;" href="show_exam_type.php">Show exam type</a>
                     </li>
+                    
                 </ul>
             </div>
         </div>

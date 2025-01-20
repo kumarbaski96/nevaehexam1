@@ -25,6 +25,21 @@ if (isset($_POST['exam_code']) && !empty($_POST['exam_code'])) {
     }
 }
 
+// Fetch the remaining time in seconds from the database
+$exam_duration_query = $conn->prepare("SELECT exam_duration FROM candidates WHERE sec_code = ?");
+$exam_duration_query->bind_param("s", $exam_code);
+$exam_duration_query->execute();
+$exam_duration_result = $exam_duration_query->get_result();
+$exam_duration = 0;
+
+if ($exam_duration_result->num_rows > 0) {
+    $exam_data = $exam_duration_result->fetch_assoc();
+    $exam_duration = $exam_data['exam_duration']; // Duration in seconds
+} else {
+    echo "<script>alert('Exam not found!'); window.location='index.php';</script>";
+    exit;
+}
+
 // Fetch questions for this exam code
 $exam_query = $conn->prepare("SELECT * FROM question_bank WHERE code = ?");
 $exam_query->bind_param("s", $exam_code);
@@ -109,7 +124,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_exam'])) {
     echo "<script>alert('Exam Completed. Your Score: $score'); window.location='index.php';</script>";
     exit;
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -129,6 +143,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_exam'])) {
 </head>
 <body>
     <div class="container mt-5">
+        <!-- Timer Display -->
+        <div id="timer" class="alert alert-primary">
+            Time Remaining: <?php echo gmdate("H:i:s", $exam_duration); ?>
+        </div>
         <h2 class="text-center">Hello, <?php echo htmlspecialchars($name); ?>!</h2>
         <h3 class="text-center">Exam Code: <?php echo htmlspecialchars($exam_code); ?></h3>
 
@@ -152,7 +170,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_exam'])) {
     </div>
 
     <script>
-        let timeRemaining = 60 * 60; // 1 hour
+        let timeRemaining = <?php echo $exam_duration; ?>; // Timer starting from the exam duration in seconds
 
         function formatTime(seconds) {
             const hours = Math.floor(seconds / 3600);
@@ -166,6 +184,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_exam'])) {
             timerElement.textContent = `Time Remaining: ${formatTime(timeRemaining)}`;
             if (timeRemaining > 0) {
                 timeRemaining--;
+                // Update every 60 seconds on the server
+                if (timeRemaining % 60 === 0) {
+                    fetch('update_time.php?exam_code=<?php echo $exam_code; ?>&time_remaining=' + timeRemaining);
+                }
             } else {
                 clearInterval(timerInterval);
                 alert('Time is up! Your answers will be submitted automatically.');
