@@ -155,9 +155,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_exam'])) {
 
             <h4>Answer the following questions:</h4>
 
-            <?php while ($question = $questions_result->fetch_assoc()) { ?>
+            <?php 
+            $question_number = 1; // Initialize question number
+            while ($question = $questions_result->fetch_assoc()) { ?>
                 <div class="mb-3">
-                    <p><?php echo htmlspecialchars($question['question']); ?></p>
+                    <p><strong>Q<?php echo $question_number++; ?>.</strong><?php echo htmlspecialchars($question['question']); ?></p>
                     <input type="radio" name="<?php echo $question['id']; ?>" value="1" required> <?php echo htmlspecialchars($question['option1']); ?><br>
                     <input type="radio" name="<?php echo $question['id']; ?>" value="2"> <?php echo htmlspecialchars($question['option2']); ?><br>
                     <input type="radio" name="<?php echo $question['id']; ?>" value="3"> <?php echo htmlspecialchars($question['option3']); ?><br>
