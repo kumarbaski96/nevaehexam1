@@ -36,7 +36,9 @@ $candidates = $searchResults ?: $conn->query("SELECT * FROM candidates");
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link" href="question_bank.php">Create Question</a></li>
+            <li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="question_bank.php">Create Single Question</a></li>
+                <li class="nav-item"><a class="nav-link" href="question_bank.php">Create Multiple Question</a></li>
                 <li class="nav-item"><a class="nav-link" href="show_question.php">Show Questions</a></li>
                 <li class="nav-item"><a class="nav-link" href="add_question.php">Add Questions</a></li>
                 <li class="nav-item"><a class="nav-link" href="show_exam_type.php">Show Exam Type</a></li>

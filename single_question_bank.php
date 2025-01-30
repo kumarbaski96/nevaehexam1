@@ -42,42 +42,43 @@ function getRandomQuestions($conn, $examType, $level, $quantity) {
 
 // Handle form submission for fetching questions
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['exam_type'])) {
-    $questions = [];
+    $examType = $_POST['exam_type']; // Use the selected exam type
 
-    foreach ($_POST['exam_type'] as $index => $examType) {
-        $quantity1 = $_POST['quantity1'][$index];
-        $quantity2 = $_POST['quantity2'][$index];
-        $quantity3 = $_POST['quantity3'][$index];
+    $quantity1 = $_POST['quantity1'];
+    $quantity2 = $_POST['quantity2'];
+    $quantity3 = $_POST['quantity3'];
 
-        $questions = array_merge(
-            $questions,
-            getRandomQuestions($conn, $examType, 1, $quantity1),
-            getRandomQuestions($conn, $examType, 2, $quantity2),
-            getRandomQuestions($conn, $examType, 3, $quantity3)
-        );
-    }
+    $questions = array_merge(
+        $questions,
+        getRandomQuestions($conn, $examType, 1, $quantity1),
+        getRandomQuestions($conn, $examType, 2, $quantity2),
+        getRandomQuestions($conn, $examType, 3, $quantity3)
+    );
 }
 
-// Handle form submission for inserting questions into question_bank
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['selected_questions'])) {
-    $examType = 'Aptitude'; // Set the exam type to "Aptitude"
     $uniqueCode = generateUniqueCode($conn); // Generate a single unique code for the question set
 
     foreach ($_POST['selected_questions'] as $questionId) {
-        // Retrieve question details to insert full data into question_bank
-        $query = "SELECT question, option1, option2, option3, option4, correct_option FROM questions WHERE id = ?";
+        // Retrieve question details including exam_type
+        $query = "SELECT question, option1, option2, option3, option4, correct_option, exam_type FROM questions WHERE id = ?";
         $stmt = $conn->prepare($query);
         $stmt->bind_param("i", $questionId);
         $stmt->execute();
         $questionData = $stmt->get_result()->fetch_assoc();
 
-        $insertQuery = "INSERT INTO question_bank (code, question_id, exam_type, question, option1, option2, option3, option4, correct_option) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        // Use the actual exam_type from the database
+        $examType = $questionData['exam_type'];
+
+        // Insert into question_bank
+        $insertQuery = "INSERT INTO question_bank (code, question_id, exam_type, question, option1, option2, option3, option4, correct_option) 
+                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($insertQuery);
-        $stmt->bind_param("sisssssss", $uniqueCode, $questionId, $examType, $questionData['question'], $questionData['option1'], $questionData['option2'], $questionData['option3'], $questionData['option4'], $questionData['correct_option']);
+        $stmt->bind_param("sisssssss", $uniqueCode, $questionId, $examType, $questionData['question'], $questionData['option1'], 
+                          $questionData['option2'], $questionData['option3'], $questionData['option4'], $questionData['correct_option']);
         $stmt->execute();
     }
 
-    // Show alert with generated unique code
     echo "<script>alert('Unique code generated: $uniqueCode');</script>";
 }
 
@@ -89,7 +90,7 @@ $conn->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Manage Question Bank</title>
+    <title>Manage Single Question Bank</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <script>
         function addExamType() {
@@ -100,7 +101,7 @@ $conn->close();
             div.innerHTML = `
                 <div class="col-md-3">
                     <label>Exam Type:</label>
-                    <select name="exam_type[]" class="form-select">
+                    <select name="exam_type" class="form-select">
                         <?php foreach ($examTypes as $examType): ?>
                             <option value="<?= htmlspecialchars($examType); ?>"><?= htmlspecialchars($examType); ?></option>
                         <?php endforeach; ?>
@@ -108,18 +109,15 @@ $conn->close();
                 </div>
                 <div class="col-md-2">
                     <label>Level 1 Quantity:</label>
-                    <input type="number" name="quantity1[]" class="form-control" min="1" max="50" value="1">
+                    <input type="number" name="quantity1" class="form-control" min="1" max="50" value="1">
                 </div>
                 <div class="col-md-2">
                     <label>Level 2 Quantity:</label>
-                    <input type="number" name="quantity2[]" class="form-control" min="1" max="50" value="1">
+                    <input type="number" name="quantity2" class="form-control" min="1" max="50" value="1">
                 </div>
                 <div class="col-md-2">
                     <label>Level 3 Quantity:</label>
-                    <input type="number" name="quantity3[]" class="form-control" min="1" max="50" value="1">
-                </div>
-                <div class="col-md-2 d-flex align-items-end">
-                    <button type="button" class="btn btn-danger" onclick="this.parentElement.parentElement.remove();">Remove</button>
+                    <input type="number" name="quantity3" class="form-control" min="1" max="50" value="1">
                 </div>
             `;
             container.appendChild(div);
@@ -128,7 +126,7 @@ $conn->close();
 </head>
 <body>
     <div class="container mt-5">
-        <h2 class="text-center">Manage Question Bank</h2>
+        <h2 class="text-center">Manage Single Question Bank</h2>
 
         <!-- Filter Form -->
         <form method="POST">
@@ -136,7 +134,7 @@ $conn->close();
                 <div class="row mt-3">
                     <div class="col-md-3">
                         <label>Exam Type:</label>
-                        <select name="exam_type[]" class="form-select">
+                        <select name="exam_type" class="form-select">
                             <?php foreach ($examTypes as $examType): ?>
                                 <option value="<?= htmlspecialchars($examType); ?>"><?= htmlspecialchars($examType); ?></option>
                             <?php endforeach; ?>
@@ -144,20 +142,19 @@ $conn->close();
                     </div>
                     <div class="col-md-2">
                         <label>Level 1 Quantity:</label>
-                        <input type="number" name="quantity1[]" class="form-control" min="1" max="50" value="1">
+                        <input type="number" name="quantity1" class="form-control" min="1" max="50" value="1">
                     </div>
                     <div class="col-md-2">
                         <label>Level 2 Quantity:</label>
-                        <input type="number" name="quantity2[]" class="form-control" min="1" max="50" value="1">
+                        <input type="number" name="quantity2" class="form-control" min="1" max="50" value="1">
                     </div>
                     <div class="col-md-2">
                         <label>Level 3 Quantity:</label>
-                        <input type="number" name="quantity3[]" class="form-control" min="1" max="50" value="1">
+                        <input type="number" name="quantity3" class="form-control" min="1" max="50" value="1">
                     </div>
                 </div>
             </div>
 
-            <button type="button" class="btn btn-primary mt-3" id="addExamBtn" onclick="addExamType();">Add Exam Type</button>
             <button type="submit" class="btn btn-primary mt-3">Fetch Questions</button>
         </form>
 
@@ -166,7 +163,7 @@ $conn->close();
         <!-- Questions Table -->
         <h3>Available Questions</h3>
         <form method="POST">
-            <input type="hidden" name="mode" value="multiple">
+            <input type="hidden" name="mode" value="single">
             <table class="table table-bordered">
                 <thead>
                     <tr>
