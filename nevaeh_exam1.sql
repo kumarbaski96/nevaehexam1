@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 31, 2025 at 09:13 AM
+-- Generation Time: Jan 31, 2025 at 03:48 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -66,8 +66,8 @@ CREATE TABLE `candidates` (
 --
 
 INSERT INTO `candidates` (`id`, `name`, `mobile`, `email`, `password`, `exam_type`, `designation`, `total_marks`, `sec_code`, `exam_duration`, `status`, `is_exam_completed`) VALUES
-(9, 'Baski Kumar Saw', '7488162756', 'baski12.kumar@gmail.com', '$2y$10$ky2GiDxS6vFvb9StyK00S.CEXnjXwxii0cXGm024Smi0934mUXLU.', 'Python', 'Software engineer', 5, '1T6VA4', '3600', 'Completed', 1),
-(14, 'Deepak', '6393424013', 'deepak.kedia@nevaehtech.com', '$2y$10$EKbQNf0b5jkFpem00Q.2EO4OeE4IVkLmGtSyyZzDcL7g6///nPYzC', 'Analytical', 'President', 7, '8EGTZ7', '', 'Completed', 1),
+(9, 'Baski Kumar Saw', '7488162756', 'baski12.kumar@gmail.com', '$2y$10$ky2GiDxS6vFvb9StyK00S.CEXnjXwxii0cXGm024Smi0934mUXLU.', 'Python', 'Software engineer', 6, '1T6VA4', '3600', 'Completed', 1),
+(14, 'Deepak', '6393424013', 'deepak.kedia@nevaehtech.com', '$2y$10$EKbQNf0b5jkFpem00Q.2EO4OeE4IVkLmGtSyyZzDcL7g6///nPYzC', 'Analytical', 'President', 7, '8EGTZ7', '3600', 'Completed', 1),
 (15, 'Manoj', '8765432345', 'manoj@gmail.com', '$2y$10$C3qMfYeT185qakruEBrLH.H5g8UxymCRAJL0GAY8MvQgJXPpuG8Mm', 'Analytical', 'Data Analysis', 3, '8EGTZ7', '', 'Completed', 1);
 
 -- --------------------------------------------------------
@@ -116,7 +116,8 @@ INSERT INTO `exam_type_menu` (`id`, `exam_type`, `status`) VALUES
 (1, 'Analytical', 1),
 (3, 'Python', 1),
 (5, 'C++', 0),
-(6, 'Aptitude', 1);
+(6, 'Aptitude', 1),
+(7, 'Java', 1);
 
 -- --------------------------------------------------------
 
@@ -250,7 +251,65 @@ INSERT INTO `questions` (`id`, `exam_type`, `question`, `option1`, `option2`, `o
 (31, 'Python', 'What will be the output of the following code?<br>\\r\\nx = 5.0<br>\\r\\nprint(x == 5)<br>\\r\\n', 'a) True', 'b) False', 'c) 5', '4) Error', 1, 3, 1),
 (32, 'Python', 'Which of the following is not a valid data type in Python?', 'a)	int', 'b)	float', 'c)	real', 'd)	str', 3, 1, 1),
 (33, 'Python', 'What is the output of the following code?<br>\\r\\na = [1, 2, 3, 4, 5]<br>\\r\\nprint(a[2:4])<br>\\r\\n', 'a) [2, 3]', 'b) [3, 4]', 'c) [1, 2, 3]', 'd) [2, 3, 4]', 4, 2, 1),
-(34, 'Python', 'How do you add an element to the end of a list in Python?', 'a) list.add()', 'b) list.append()', 'c) list.push()', 'd) list.insert()', 2, 3, 1);
+(34, 'Python', 'How do you add an element to the end of a list in Python?', 'a) list.add()', 'b) list.append()', 'c) list.push()', 'd) list.insert()', 2, 3, 1),
+(35, 'Java', 'Which of the following is not a Java keyword?', 'static', 'void', 'main', 'final', 3, 1, 1),
+(36, 'Java', 'Which of the following is used to compile a Java program?', 'java', 'javac', 'jvm', 'jre', 2, 2, 1),
+(37, 'Java', 'What will be the output of System.out.println(10/3); in Java?', '3', '3.33', '3.0', '10/3', 1, 3, 1),
+(38, 'Java', 'What is the size of the char data type in Java?', '1 byte', '2 bytes', '4 bytes', '8 bytes', 2, 1, 1),
+(39, 'Java', 'Which of these is not a wrapper class in Java?', 'Integer', 'Float', 'Character', 'String', 4, 2, 1),
+(40, 'Java', 'What is the base class for all Java classes?', 'Object', 'Class', 'Super', 'Base', 1, 3, 1),
+(41, 'Java', 'Which of the following is not a valid access modifier?', 'public', 'private', 'protected', 'internal', 4, 1, 1),
+(42, 'Java', 'What is the default value of a boolean variable in Java?', 'true', 'false', '0', 'null', 2, 2, 1),
+(43, 'Java', 'Which of the following is not a valid loop in Java?', 'for', 'foreach', 'while', 'do-while', 2, 3, 1),
+(44, 'Java', 'What will be the output of System.out.println(5 + 2 + \'Test\');?', '7Test', 'Test7', '5 + 2Test', 'Error', 1, 1, 1),
+(45, 'Java', 'What is the correct way to create an object in Java?', 'Class obj = new Class();', 'new Class();', 'Class obj;', 'obj = new Class();', 1, 2, 1),
+(46, 'Java', 'Which collection class allows elements to be retrieved in FIFO order?', 'ArrayList', 'Stack', 'Queue', 'HashSet', 3, 3, 1),
+(47, 'Java', 'What does the final keyword do when applied to a method?', 'Prevents method overriding', 'Prevents method overloading', 'Makes method static', 'Makes method private', 1, 1, 1),
+(48, 'Java', 'Which class is used for file handling in Java?', 'File', 'Files', 'FileHandler', 'FileStream', 1, 2, 1),
+(49, 'Java', 'What will 10 % 3 return in Java?', '3', '1', '0', '10', 2, 3, 1),
+(50, 'Java', 'Which of these is a valid way to start a thread in Java?', 'new Thread().run();', 'new Thread().start();', 'Thread.run();', 'Thread.start();', 2, 1, 1),
+(51, 'Java', 'What does the static keyword mean in Java?', 'Creates multiple instances', 'Belongs to the class', ' not objects', 'Makes variables mutable', 0, 2, 1),
+(52, 'Java', 'Which keyword is used to inherit a class in Java?', 'implements', 'extends', 'super', 'this', 2, 3, 1),
+(53, 'Java', 'What is the default return type of a constructor?', 'void', 'Object', 'class type', 'null', 3, 1, 1),
+(54, 'Java', 'Which of these interfaces provide sorting capability in Java?', 'Comparable', 'Comparator', 'SortUtil', 'Both a and b', 4, 2, 1),
+(55, 'Java', 'What is the parent class of Exception and Error in Java?', 'Object', 'Throwable', 'RuntimeException', 'Event', 2, 3, 1),
+(56, 'Java', 'Which of these can be used to achieve multiple inheritance in Java?', 'Abstract Class', 'Interfaces', 'Multiple Classes', 'Both a and b', 2, 1, 1),
+(57, 'Java', 'Which Java feature allows executing different code blocks based on conditions?', 'Encapsulation', 'Polymorphism', 'Inheritance', 'Conditional Statements', 4, 2, 1),
+(58, 'Java', 'Which of these methods is called automatically when an object is created?', 'run()', 'finalize()', 'constructor', 'init()', 3, 3, 1),
+(59, 'Java', 'Which keyword is used to prevent a class from being subclassed?', 'private', 'protected', 'static', 'final', 4, 1, 1),
+(60, 'Java', 'Which Java keyword is used to refer to the current instance?', 'super', 'this', 'self', 'instance', 2, 2, 1),
+(61, 'Java', 'What will be the result of 5 << 2 in Java?', '10', '15', '20', '25', 3, 3, 1),
+(62, 'Java', 'Which of these is true for String objects in Java?', 'Mutable', 'Immutable', 'Cannot be created using new', 'None of the above', 2, 1, 1),
+(63, 'Java', 'What is the default value of a reference variable in Java?', '0', 'null', 'Garbage Value', 'Undefined', 2, 2, 1),
+(64, 'Java', 'Which keyword is used to define a constant in Java?', 'final', 'static', 'const', 'constant', 1, 1, 1),
+(65, 'Java', 'What is the superclass of all Java classes?', 'Object', 'Class', 'Base', 'Super', 1, 2, 1),
+(66, 'Java', 'Which of these is not a valid Java identifier?', '_valid', '2invalid', '$valid', 'validName', 2, 3, 1),
+(67, 'Java', 'Which package is automatically imported in every Java program?', 'java.util', 'java.io', 'java.lang', 'javax.swing', 3, 1, 1),
+(68, 'Java', 'Which of these data types can store fractional values?', 'int', 'boolean', 'float', 'byte', 3, 2, 1),
+(69, 'Java', 'Which keyword is used for exception handling in Java?', 'try', 'catch', 'throw', 'All of the above', 4, 3, 1),
+(70, 'Java', 'What will be the output of System.out.println(3 + 5 * 2)?', '16', '13', '10', '11', 2, 1, 1),
+(71, 'Java', 'Which of these is used to take user input in Java?', 'Scanner', 'BufferedReader', 'InputStream', 'All of the above', 4, 2, 1),
+(72, 'Java', 'Which operator is used to allocate memory for an object?', 'new', 'alloc', 'malloc', 'create', 1, 3, 1),
+(73, 'Java', 'What will be the output of System.out.println(10 == 10)?', 'true', 'false', 'Error', '10', 1, 1, 1),
+(74, 'Java', 'Which of these is not a primitive data type?', 'char', 'byte', 'enum', 'double', 3, 2, 1),
+(75, 'Java', 'Which method must be implemented by a Java class that implements Runnable?', 'run()', 'start()', 'execute()', 'process()', 1, 3, 1),
+(76, 'Java', 'Which keyword is used to inherit a class in Java?', 'extends', 'implements', 'super', 'this', 1, 1, 1),
+(77, 'Java', 'Which of the following is not an access modifier?', 'private', 'protected', 'internal', 'public', 3, 2, 1),
+(78, 'Java', 'Which method is called when an object is destroyed?', 'finalize()', 'destroy()', 'exit()', 'terminate()', 1, 1, 1),
+(79, 'Java', 'Which loop executes at least once in Java?', 'for', 'while', 'do-while', 'foreach', 3, 2, 1),
+(80, 'Java', 'Which exception is thrown when an array index is out of bounds?', 'IOException', 'NullPointerException', 'ArrayIndexOutOfBoundsException', 'NumberFormatException', 3, 3, 1),
+(81, 'Java', 'Which keyword is used to stop a loop immediately?', 'break', 'continue', 'exit', 'return', 1, 1, 1),
+(82, 'Java', 'What is the default size of an int in Java?', '2 bytes', '4 bytes', '8 bytes', '16 bytes', 2, 2, 1),
+(83, 'Java', 'Which operator is used for bitwise AND in Java?', '&', '|', '^', '&&', 1, 3, 1),
+(84, 'Java', 'Which of these is not a type of constructor in Java?', 'Default', 'Parameterized', 'Static', 'Copy', 3, 1, 1),
+(85, 'Java', 'What will be the output of System.out.println(5 | 3)?', '2', '8', '7', '5', 3, 2, 1),
+(86, 'Java', 'Which of these is a marker interface in Java?', 'Cloneable', 'Serializable', 'Runnable', 'Both 1 and 2', 4, 3, 1),
+(87, 'Java', 'Which collection does not allow duplicate values?', 'List', 'Set', 'Map', 'Queue', 2, 1, 1),
+(88, 'Java', 'Which method is used to get the length of an array in Java?', 'length()', 'size()', 'length', 'capacity()', 3, 2, 1),
+(89, 'Java', 'Which of these allows method overloading?', 'Different return types', 'Same parameter types', 'Same method names but different parameters', 'None of the above', 3, 3, 1),
+(90, 'Java', 'Which class is used to generate random numbers in Java?', 'Random', 'Math', 'SecureRandom', 'NumberGenerator', 1, 1, 1),
+(91, 'Java', 'What is the default value of an uninitialized String in Java?', 'null', '', 'Undefined', '0', 1, 2, 1),
+(92, 'Java', 'Which method is used to compare two strings in Java?', 'equals()', '==', 'compareTo()', 'Both 1 and 3', 4, 3, 1);
 
 -- --------------------------------------------------------
 
@@ -321,18 +380,18 @@ CREATE TABLE `question_results` (
 --
 
 INSERT INTO `question_results` (`id`, `candidate_id`, `exam_type`, `question_id`, `question`, `user_answer`, `correct_option`, `status`, `created_at`) VALUES
-(58, 9, 'Python', 94, 'In a linear regression model, what does the coefficient of an independent variable represent?', 2, 2, 'Correct', '2025-01-31 07:38:06'),
-(59, 9, 'Python', 95, 'Which machine learning algorithm is best suited for predicting stock prices?', 2, 2, 'Correct', '2025-01-31 07:38:06'),
-(60, 9, 'Python', 96, 'What is the purpose of the R-squared value in regression analysis?', 2, 3, 'Incorrect', '2025-01-31 07:38:06'),
-(61, 9, 'Python', 97, 'Which type of data visualization is used to show the distribution of a dataset?', 2, 3, 'Incorrect', '2025-01-31 07:38:06'),
-(62, 9, 'Python', 98, 'What does the term \\\"Big Data\\\" refer to in the context of financial analysis?', 2, 1, 'Incorrect', '2025-01-31 07:38:06'),
-(63, 9, 'Python', 99, 'Which type of neural network is best suited for sequential data, such as financial time series?', 3, 2, 'Incorrect', '2025-01-31 07:38:06'),
-(64, 9, 'Python', 100, 'What is the correct syntax to create a function in Python?', 3, 2, 'Incorrect', '2025-01-31 07:38:06'),
-(65, 9, 'Python', 101, 'Which of the following is the correct extension of Python files?', 2, 2, 'Correct', '2025-01-31 07:38:06'),
-(66, 9, 'Python', 102, 'How do you insert a comment in Python code?', 3, 3, 'Correct', '2025-01-31 07:38:06'),
-(67, 9, 'Python', 103, 'Which keyword is used to define a variable in Python?', 2, 4, 'Incorrect', '2025-01-31 07:38:06'),
-(68, 9, 'Python', 104, 'Which of the following will create a list in Python?', 1, 1, 'Correct', '2025-01-31 07:38:06'),
-(69, 9, 'Python', 105, 'How do you add an element to the end of a list in Python?', 1, 2, 'Incorrect', '2025-01-31 07:38:06');
+(70, 9, 'Python', 94, 'In a linear regression model, what does the coefficient of an independent variable represent?', 2, 2, 'Correct', '2025-01-31 13:44:14'),
+(71, 9, 'Python', 95, 'Which machine learning algorithm is best suited for predicting stock prices?', 2, 2, 'Correct', '2025-01-31 13:44:14'),
+(72, 9, 'Python', 96, 'What is the purpose of the R-squared value in regression analysis?', 2, 3, 'Incorrect', '2025-01-31 13:44:14'),
+(73, 9, 'Python', 97, 'Which type of data visualization is used to show the distribution of a dataset?', 2, 3, 'Incorrect', '2025-01-31 13:44:14'),
+(74, 9, 'Python', 98, 'What does the term \\\"Big Data\\\" refer to in the context of financial analysis?', 3, 1, 'Incorrect', '2025-01-31 13:44:14'),
+(75, 9, 'Python', 99, 'Which type of neural network is best suited for sequential data, such as financial time series?', 3, 2, 'Incorrect', '2025-01-31 13:44:14'),
+(76, 9, 'Python', 100, 'What is the correct syntax to create a function in Python?', 3, 2, 'Incorrect', '2025-01-31 13:44:14'),
+(77, 9, 'Python', 101, 'Which of the following is the correct extension of Python files?', 2, 2, 'Correct', '2025-01-31 13:44:14'),
+(78, 9, 'Python', 102, 'How do you insert a comment in Python code?', 3, 3, 'Correct', '2025-01-31 13:44:14'),
+(79, 9, 'Python', 103, 'Which keyword is used to define a variable in Python?', 2, 4, 'Incorrect', '2025-01-31 13:44:14'),
+(80, 9, 'Python', 104, 'Which of the following will create a list in Python?', 1, 1, 'Correct', '2025-01-31 13:44:14'),
+(81, 9, 'Python', 105, 'How do you add an element to the end of a list in Python?', 2, 2, 'Correct', '2025-01-31 13:44:14');
 
 -- --------------------------------------------------------
 
@@ -352,7 +411,7 @@ CREATE TABLE `results` (
 --
 
 INSERT INTO `results` (`id`, `candidate_id`, `exam_type`, `marks_obtained`) VALUES
-(16, 9, 'Python', 5);
+(17, 9, 'Python', 6);
 
 -- --------------------------------------------------------
 
@@ -482,7 +541,7 @@ ALTER TABLE `candidate_personal_details`
 -- AUTO_INCREMENT for table `exam_type_menu`
 --
 ALTER TABLE `exam_type_menu`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `header`
@@ -506,7 +565,7 @@ ALTER TABLE `menus`
 -- AUTO_INCREMENT for table `questions`
 --
 ALTER TABLE `questions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
 
 --
 -- AUTO_INCREMENT for table `question_bank`
@@ -518,13 +577,13 @@ ALTER TABLE `question_bank`
 -- AUTO_INCREMENT for table `question_results`
 --
 ALTER TABLE `question_results`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
 
 --
 -- AUTO_INCREMENT for table `results`
 --
 ALTER TABLE `results`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `submenus`

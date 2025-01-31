@@ -1,0 +1,30 @@
+exam_type,question,option1,option2,option3,option4,correct_option,level
+Java,Which keyword is used to define a constant in Java?,final,static,const,constant,1,1
+Java,What is the superclass of all Java classes?,Object,Class,Base,Super,1,1
+Java,Which of these is not a valid Java identifier?,_valid,2invalid,$valid,validName,2,1
+Java,Which package is automatically imported in every Java program?,java.util,java.io,java.lang,javax.swing,3,1
+Java,Which of these data types can store fractional values?,int,boolean,float,byte,3,1
+Java,Which keyword is used for exception handling in Java?,try,catch,throw,All of the above,4,1
+Java,What will be the output of System.out.println(3 + 5 * 2)?,16,13,10,11,2,1
+Java,Which of these is used to take user input in Java?,Scanner,BufferedReader,InputStream,All of the above,4,1
+Java,Which operator is used to allocate memory for an object?,new,alloc,malloc,create,1,1
+Java,What will be the output of System.out.println(10 == 10)?,true,false,Error,10,1,1
+Java,Which of these is not a primitive data type?,char,byte,enum,double,3,2
+Java,Which method must be implemented by a Java class that implements Runnable?,run(),start(),execute(),process(),1,2
+Java,Which keyword is used to inherit a class in Java?,extends,implements,super,this,1,2
+Java,Which of the following is not an access modifier?,private,protected,internal,public,3,2
+Java,Which method is called when an object is destroyed?,finalize(),destroy(),exit(),terminate(),1,2
+Java,Which loop executes at least once in Java?,for,while,do-while,foreach,3,2
+Java,Which exception is thrown when an array index is out of bounds?,IOException,NullPointerException,ArrayIndexOutOfBoundsException,NumberFormatException,3,2
+Java,Which keyword is used to stop a loop immediately?,break,continue,exit,return,1,2
+Java,What is the default size of an int in Java?,2 bytes,4 bytes,8 bytes,16 bytes,2,2
+Java,Which operator is used for bitwise AND in Java?,&,|,^,&&,1,2
+Java,Which of these is not a type of constructor in Java?,Default,Parameterized,Static,Copy,3,2
+Java,What will be the output of System.out.println(5 | 3)?,2,8,7,5,3,2
+Java,Which of these is a marker interface in Java?,Cloneable,Serializable,Runnable,Both 1 and 2,4,3
+Java,Which collection does not allow duplicate values?,List,Set,Map,Queue,2,3
+Java,Which method is used to get the length of an array in Java?,length(),size(),length,capacity(),3,3
+Java,Which of these allows method overloading?,Different return types,Same parameter types,Same method names but different parameters,None of the above,3,3
+Java,Which class is used to generate random numbers in Java?,Random,Math,SecureRandom,NumberGenerator,1,3
+Java,What is the default value of an uninitialized String in Java?,null,"",Undefined,0,1,3
+Java,Which method is used to compare two strings in Java?,equals(),==,compareTo(),Both 1 and 3,4,3

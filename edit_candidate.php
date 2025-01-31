@@ -31,11 +31,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $status = $_POST['status'];
     $is_exam_completed = $_POST['is_exam_completed'];
     $question_code = $_POST['question_code'];  // New question code field
+    $exam_duration = $_POST['exam_duration'];  // New exam duration field
 
     // Update query
     $updateQuery = "UPDATE candidates SET name='$name', mobile='$mobile', email='$email', exam_type='$exam_type', 
                     designation='$designation', total_marks='$total_marks', status='$status', is_exam_completed='$is_exam_completed', 
-                    sec_code='$question_code' WHERE id=$id";
+                    sec_code='$question_code', exam_duration='$exam_duration' WHERE id=$id";
 
     if ($conn->query($updateQuery) === TRUE) {
         echo "<script>alert('Candidate details updated successfully!'); window.location='show_candidate.php';</script>";
@@ -96,6 +97,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <div class="mb-3">
             <label for="question_code" class="form-label">Question Code</label>
             <input type="text" class="form-control" id="question_code" name="question_code" value="<?php echo $candidate['sec_code']; ?>" required>
+        </div>
+        <div class="mb-3">
+            <label for="exam_duration" class="form-label">Exam Duration (in minutes)</label>
+            <input type="number" class="form-control" id="exam_duration" name="exam_duration" value="<?php echo $candidate['exam_duration']; ?>" required>
         </div>
         <button type="submit" class="btn btn-primary">Update</button>
     </form>
