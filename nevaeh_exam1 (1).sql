@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 31, 2025 at 07:30 AM
+-- Generation Time: Jan 31, 2025 at 09:13 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -66,7 +66,7 @@ CREATE TABLE `candidates` (
 --
 
 INSERT INTO `candidates` (`id`, `name`, `mobile`, `email`, `password`, `exam_type`, `designation`, `total_marks`, `sec_code`, `exam_duration`, `status`, `is_exam_completed`) VALUES
-(9, 'Baski Kumar Saw', '7488162756', 'baski12.kumar@gmail.com', '$2y$10$ky2GiDxS6vFvb9StyK00S.CEXnjXwxii0cXGm024Smi0934mUXLU.', 'Python', 'Software engineer', 1, 'MUQX10', '3600', 'Completed', 1),
+(9, 'Baski Kumar Saw', '7488162756', 'baski12.kumar@gmail.com', '$2y$10$ky2GiDxS6vFvb9StyK00S.CEXnjXwxii0cXGm024Smi0934mUXLU.', 'Python', 'Software engineer', 5, '1T6VA4', '3600', 'Completed', 1),
 (14, 'Deepak', '6393424013', 'deepak.kedia@nevaehtech.com', '$2y$10$EKbQNf0b5jkFpem00Q.2EO4OeE4IVkLmGtSyyZzDcL7g6///nPYzC', 'Analytical', 'President', 7, '8EGTZ7', '', 'Completed', 1),
 (15, 'Manoj', '8765432345', 'manoj@gmail.com', '$2y$10$C3qMfYeT185qakruEBrLH.H5g8UxymCRAJL0GAY8MvQgJXPpuG8Mm', 'Analytical', 'Data Analysis', 3, '8EGTZ7', '', 'Completed', 1);
 
@@ -94,7 +94,7 @@ CREATE TABLE `candidate_personal_details` (
 --
 
 INSERT INTO `candidate_personal_details` (`id`, `candidate_id`, `dob`, `gender`, `nationality`, `address`, `city`, `state`, `zip_code`, `created_at`) VALUES
-(1, 9, '2025-01-07', 'Male', 'Indian1', 'Dhaiya ,Dhanbad1', 'Dhanbad1', 'Jharkhand1', '826004', '2025-01-31 05:48:25');
+(1, 9, '2025-01-07', 'Male', 'Indian', 'Dhaiya ,Dhanbad', 'Dhanbad', 'Jharkhand', '826004', '2025-01-31 05:48:25');
 
 -- --------------------------------------------------------
 
@@ -115,7 +115,7 @@ CREATE TABLE `exam_type_menu` (
 INSERT INTO `exam_type_menu` (`id`, `exam_type`, `status`) VALUES
 (1, 'Analytical', 1),
 (3, 'Python', 1),
-(5, 'C++', 1),
+(5, 'C++', 0),
 (6, 'Aptitude', 1);
 
 -- --------------------------------------------------------
@@ -162,6 +162,38 @@ CREATE TABLE `mcq_questions` (
   `exam_type` varchar(100) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `menus`
+--
+
+CREATE TABLE `menus` (
+  `id` int(11) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `parent_id` int(11) DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `menus`
+--
+
+INSERT INTO `menus` (`id`, `title`, `parent_id`) VALUES
+(1, 'Dashboard', 0),
+(2, 'Manage Users', 0),
+(3, 'Reports', 0),
+(4, 'Settings', 0),
+(5, 'Add User', 2),
+(6, 'View Users', 2),
+(7, 'Daily Reports', 3),
+(8, 'Monthly Reports', 3),
+(9, 'Profile', 0),
+(10, 'Preferences', 4),
+(26, 'Notification Settings', 4),
+(27, 'Overview', 1),
+(28, 'Statistics', 1),
+(29, 'Recent Activity', 1);
 
 -- --------------------------------------------------------
 
@@ -252,7 +284,19 @@ INSERT INTO `question_bank` (`id`, `question_id`, `exam_type`, `code`, `question
 (90, 23, 'Aptitude', 'H2KB5R', 'What will be the output of the following code?<br>print(type(2))', 'a) <class \'float\'>', 'b) <class \'int\'>', 'c) <class \'bool\'>', 'd) <class \'NoneType\'>', 2),
 (91, 16, 'Aptitude', 'H2KB5R', 'How do you handle missing values in a DataFrame?', 'A) df.dropna()', 'B) df.fillna()', 'C) df.replace_na()', 'D) Both A and B', 4),
 (92, 5, 'Aptitude', 'H2KB5R', 'What is the purpose of the R-squared value in regression analysis?', 'A) To measure the strength and direction of the linear relationship between two variables', 'B) To determine the significance of regression coefficients', 'C) To quantify the proportion of variation in the dependent variable explained by the independent variables', 'D) To test for the presence of multicollinearity', 3),
-(93, 6, 'Aptitude', 'H2KB5R', 'What is the primary purpose of a confusion matrix in evaluating a classification model?', 'A) To summarize the performance of a regression model', 'B) To display the true positives, true negatives, false positives, and false negatives', 'C) To visualize the distribution of data', 'D) To calculate the mean absolute error', 2);
+(93, 6, 'Aptitude', 'H2KB5R', 'What is the primary purpose of a confusion matrix in evaluating a classification model?', 'A) To summarize the performance of a regression model', 'B) To display the true positives, true negatives, false positives, and false negatives', 'C) To visualize the distribution of data', 'D) To calculate the mean absolute error', 2),
+(94, 4, 'Aptitude', '1T6VA4', 'In a linear regression model, what does the coefficient of an independent variable represent?', 'A) The average value of the dependent variable', 'B) The change in the dependent variable for a one-unit change in the independent variable', 'C) The total sum of squares of the dependent variable', 'D) The intercept of the regression line', 2),
+(95, 7, 'Aptitude', '1T6VA4', 'Which machine learning algorithm is best suited for predicting stock prices?', 'A) K-means clustering', 'B) Linear regression', 'C) Decision trees', 'D) Apriori algorithm', 2),
+(96, 5, 'Aptitude', '1T6VA4', 'What is the purpose of the R-squared value in regression analysis?', 'A) To measure the strength and direction of the linear relationship between two variables', 'B) To determine the significance of regression coefficients', 'C) To quantify the proportion of variation in the dependent variable explained by the independent variables', 'D) To test for the presence of multicollinearity', 3),
+(97, 20, 'Aptitude', '1T6VA4', 'Which type of data visualization is used to show the distribution of a dataset?', 'A) Line chart', 'B) Scatter plot', 'C) Histogram', 'D) Pie chart', 3),
+(98, 12, 'Aptitude', '1T6VA4', 'What does the term \"Big Data\" refer to in the context of financial analysis?', 'A) Large volumes of structured and unstructured data that can be analyzed for insights', 'B) Small, manageable sets of data used for daily operations', 'C) Data stored in traditional databases', 'D) Data primarily used for marketing purposes', 1),
+(99, 9, 'Aptitude', '1T6VA4', 'Which type of neural network is best suited for sequential data, such as financial time series?', 'A) Convolutional Neural Network (CNN)', 'B) Recurrent Neural Network (RNN)', 'C) Feedforward Neural Network', 'D) Generative Adversarial Network (GAN)', 2),
+(100, 24, 'Aptitude', '1T6VA4', 'What is the correct syntax to create a function in Python?', 'a) function myFunction():', 'b) def myFunction():', 'c) create myFunction():', 'd) function: myFunction()', 2),
+(101, 21, 'Aptitude', '1T6VA4', 'Which of the following is the correct extension of Python files?', 'a) .python', 'b) .py', 'c) .pyt', 'd) .pyc', 2),
+(102, 25, 'Aptitude', '1T6VA4', 'How do you insert a comment in Python code?', 'a)// This is a comment', 'b) /* This is a comment */', 'c) # This is a comment', 'd) -- This is a comment', 3),
+(103, 29, 'Aptitude', '1T6VA4', 'Which keyword is used to define a variable in Python?', 'a) var', 'b) def', 'c) int', 'd) No keyword is required', 4),
+(104, 26, 'Aptitude', '1T6VA4', 'Which of the following will create a list in Python?', 'a)	[1, 2, 3]', 'b)	(1, 2, 3)', 'c)	{1, 2, 3}', 'd)	1, 2, 3', 1),
+(105, 34, 'Aptitude', '1T6VA4', 'How do you add an element to the end of a list in Python?', 'a) list.add()', 'b) list.append()', 'c) list.push()', 'd) list.insert()', 2);
 
 -- --------------------------------------------------------
 
@@ -277,9 +321,18 @@ CREATE TABLE `question_results` (
 --
 
 INSERT INTO `question_results` (`id`, `candidate_id`, `exam_type`, `question_id`, `question`, `user_answer`, `correct_option`, `status`, `created_at`) VALUES
-(55, 9, 'Python', 85, 'How do you handle missing values in a DataFrame?', 2, 4, 'Incorrect', '2025-01-30 15:20:30'),
-(56, 9, 'Python', 86, 'In logistic regression, what type of dependent variable is used?', 2, 3, 'Incorrect', '2025-01-30 15:20:30'),
-(57, 9, 'Python', 87, 'Which of these describes the Debt-to-Equity Ratio?', 2, 2, 'Correct', '2025-01-30 15:20:30');
+(58, 9, 'Python', 94, 'In a linear regression model, what does the coefficient of an independent variable represent?', 2, 2, 'Correct', '2025-01-31 07:38:06'),
+(59, 9, 'Python', 95, 'Which machine learning algorithm is best suited for predicting stock prices?', 2, 2, 'Correct', '2025-01-31 07:38:06'),
+(60, 9, 'Python', 96, 'What is the purpose of the R-squared value in regression analysis?', 2, 3, 'Incorrect', '2025-01-31 07:38:06'),
+(61, 9, 'Python', 97, 'Which type of data visualization is used to show the distribution of a dataset?', 2, 3, 'Incorrect', '2025-01-31 07:38:06'),
+(62, 9, 'Python', 98, 'What does the term \\\"Big Data\\\" refer to in the context of financial analysis?', 2, 1, 'Incorrect', '2025-01-31 07:38:06'),
+(63, 9, 'Python', 99, 'Which type of neural network is best suited for sequential data, such as financial time series?', 3, 2, 'Incorrect', '2025-01-31 07:38:06'),
+(64, 9, 'Python', 100, 'What is the correct syntax to create a function in Python?', 3, 2, 'Incorrect', '2025-01-31 07:38:06'),
+(65, 9, 'Python', 101, 'Which of the following is the correct extension of Python files?', 2, 2, 'Correct', '2025-01-31 07:38:06'),
+(66, 9, 'Python', 102, 'How do you insert a comment in Python code?', 3, 3, 'Correct', '2025-01-31 07:38:06'),
+(67, 9, 'Python', 103, 'Which keyword is used to define a variable in Python?', 2, 4, 'Incorrect', '2025-01-31 07:38:06'),
+(68, 9, 'Python', 104, 'Which of the following will create a list in Python?', 1, 1, 'Correct', '2025-01-31 07:38:06'),
+(69, 9, 'Python', 105, 'How do you add an element to the end of a list in Python?', 1, 2, 'Incorrect', '2025-01-31 07:38:06');
 
 -- --------------------------------------------------------
 
@@ -299,7 +352,28 @@ CREATE TABLE `results` (
 --
 
 INSERT INTO `results` (`id`, `candidate_id`, `exam_type`, `marks_obtained`) VALUES
-(15, 9, 'Python', 1);
+(16, 9, 'Python', 5);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `submenus`
+--
+
+CREATE TABLE `submenus` (
+  `id` int(11) NOT NULL,
+  `menu_id` int(11) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `link` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `submenus`
+--
+
+INSERT INTO `submenus` (`id`, `menu_id`, `title`, `link`) VALUES
+(1, 1, 'Show candidate', 'show_candidate.php'),
+(2, 2, 'Show candidate', 'show_candidate.php');
 
 --
 -- Indexes for dumped tables
@@ -345,6 +419,12 @@ ALTER TABLE `mcq_questions`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `menus`
+--
+ALTER TABLE `menus`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `questions`
 --
 ALTER TABLE `questions`
@@ -368,6 +448,13 @@ ALTER TABLE `question_results`
 ALTER TABLE `results`
   ADD PRIMARY KEY (`id`),
   ADD KEY `candidate_id` (`candidate_id`);
+
+--
+-- Indexes for table `submenus`
+--
+ALTER TABLE `submenus`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `menu_id` (`menu_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -410,6 +497,12 @@ ALTER TABLE `mcq_questions`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `menus`
+--
+ALTER TABLE `menus`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+
+--
 -- AUTO_INCREMENT for table `questions`
 --
 ALTER TABLE `questions`
@@ -419,19 +512,25 @@ ALTER TABLE `questions`
 -- AUTO_INCREMENT for table `question_bank`
 --
 ALTER TABLE `question_bank`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
 
 --
 -- AUTO_INCREMENT for table `question_results`
 --
 ALTER TABLE `question_results`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 
 --
 -- AUTO_INCREMENT for table `results`
 --
 ALTER TABLE `results`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
+-- AUTO_INCREMENT for table `submenus`
+--
+ALTER TABLE `submenus`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
@@ -454,6 +553,12 @@ ALTER TABLE `header`
 --
 ALTER TABLE `results`
   ADD CONSTRAINT `results_ibfk_1` FOREIGN KEY (`candidate_id`) REFERENCES `candidates` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `submenus`
+--
+ALTER TABLE `submenus`
+  ADD CONSTRAINT `submenus_ibfk_1` FOREIGN KEY (`menu_id`) REFERENCES `menus` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
