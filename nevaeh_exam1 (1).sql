@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 21, 2025 at 10:40 AM
+-- Generation Time: Jan 31, 2025 at 07:30 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -66,11 +66,35 @@ CREATE TABLE `candidates` (
 --
 
 INSERT INTO `candidates` (`id`, `name`, `mobile`, `email`, `password`, `exam_type`, `designation`, `total_marks`, `sec_code`, `exam_duration`, `status`, `is_exam_completed`) VALUES
-(9, 'Baski Kumar Saw', '7488162756', 'baski12.kumar@gmail.com', '$2y$10$ky2GiDxS6vFvb9StyK00S.CEXnjXwxii0cXGm024Smi0934mUXLU.', 'Python', 'Software engineer', 2, '59EFBN', '3600', 'Completed', 1),
+(9, 'Baski Kumar Saw', '7488162756', 'baski12.kumar@gmail.com', '$2y$10$ky2GiDxS6vFvb9StyK00S.CEXnjXwxii0cXGm024Smi0934mUXLU.', 'Python', 'Software engineer', 1, 'MUQX10', '3600', 'Completed', 1),
 (14, 'Deepak', '6393424013', 'deepak.kedia@nevaehtech.com', '$2y$10$EKbQNf0b5jkFpem00Q.2EO4OeE4IVkLmGtSyyZzDcL7g6///nPYzC', 'Analytical', 'President', 7, '8EGTZ7', '', 'Completed', 1),
-(15, 'Manoj', '8765432345', 'manoj@gmail.com', '$2y$10$C3qMfYeT185qakruEBrLH.H5g8UxymCRAJL0GAY8MvQgJXPpuG8Mm', 'Analytical', 'Data Analysis', 3, '8EGTZ7', '', 'Completed', 1),
-(16, 'suman', '8250001668', 'suman@gmai.com', '$2y$10$TlVaC/krJWUfVcb0yPbw5eIkh1DvrKlRcsUJBsn7JBXK46kiftYyC', 'Python', 'se', 0, '5E618I', '', '', 0),
-(17, 'suman X', '8250001668', 'suman@gmail.cpm', '$2y$10$iQCeU5p8wWzph8ybgukiv..ghhyBdOO8ZSoEvhQN7mx5n9W4Wxd1q', 'Python', 'Software engineer', 4, '3AZYF1', '3600', 'Completed', 1);
+(15, 'Manoj', '8765432345', 'manoj@gmail.com', '$2y$10$C3qMfYeT185qakruEBrLH.H5g8UxymCRAJL0GAY8MvQgJXPpuG8Mm', 'Analytical', 'Data Analysis', 3, '8EGTZ7', '', 'Completed', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `candidate_personal_details`
+--
+
+CREATE TABLE `candidate_personal_details` (
+  `id` int(8) NOT NULL,
+  `candidate_id` int(8) NOT NULL,
+  `dob` date NOT NULL,
+  `gender` varchar(10) NOT NULL,
+  `nationality` varchar(50) NOT NULL,
+  `address` text NOT NULL,
+  `city` varchar(100) NOT NULL,
+  `state` varchar(100) NOT NULL,
+  `zip_code` varchar(10) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `candidate_personal_details`
+--
+
+INSERT INTO `candidate_personal_details` (`id`, `candidate_id`, `dob`, `gender`, `nationality`, `address`, `city`, `state`, `zip_code`, `created_at`) VALUES
+(1, 9, '2025-01-07', 'Male', 'Indian1', 'Dhaiya ,Dhanbad1', 'Dhanbad1', 'Jharkhand1', '826004', '2025-01-31 05:48:25');
 
 -- --------------------------------------------------------
 
@@ -92,8 +116,7 @@ INSERT INTO `exam_type_menu` (`id`, `exam_type`, `status`) VALUES
 (1, 'Analytical', 1),
 (3, 'Python', 1),
 (5, 'C++', 1),
-(6, 'Aptitude', 1),
-(7, 'Maths', 1);
+(6, 'Aptitude', 1);
 
 -- --------------------------------------------------------
 
@@ -114,14 +137,12 @@ CREATE TABLE `header` (
 --
 
 INSERT INTO `header` (`id`, `name`, `url`, `parent_id`, `sort_order`) VALUES
-(1, 'Create Question', 'question_bank.php', NULL, 1),
-(2, 'Show Questions', 'show_question.php', NULL, 2),
-(3, 'Add Questions', 'add_question.php', NULL, 3),
-(4, 'Show Exam Type', 'show_exam_type.php', NULL, 4),
-(5, 'All Questions', 'all_questions.php', 2, 1),
-(6, 'Pending Questions', 'pending_questions.php', 2, 2),
-(7, 'Active Exams', 'active_exams.php', 4, 1),
-(8, 'Archived Exams', 'archived_exams.php', 4, 2);
+(1, 'Home', 'index.php', NULL, 1),
+(2, 'About', 'about.php', NULL, 2),
+(3, 'Services', '#', NULL, 3),
+(4, 'Web Development', 'web-dev.php', 3, 1),
+(5, 'SEO Optimization', 'seo.php', 3, 2),
+(6, 'Contact', 'contact.php', NULL, 4);
 
 -- --------------------------------------------------------
 
@@ -166,8 +187,8 @@ CREATE TABLE `questions` (
 --
 
 INSERT INTO `questions` (`id`, `exam_type`, `question`, `option1`, `option2`, `option3`, `option4`, `correct_option`, `level`, `status`) VALUES
-(1, 'Analytical', 'Which financial ratio measures a company\'s ability to meet its short-term obligations?', 'A) Return on Equity (ROE)', 'B) Current Ratio', 'C) Debt-to-Equity Ratio', 'D) Gross Profit Margin', 2, 1, 0),
-(2, 'Analytical', 'In Python, which library is commonly used for data manipulation and analysis?', 'A) NumPy', 'B) Matplotlib', 'C) Pandas', 'D) Scikit-learn', 3, 2, 0),
+(1, 'Analytical', 'Which financial ratio measures a company\'s ability to meet its short-term obligations?', 'A) Return on Equity (ROE)', 'B) Current Ratio', 'C) Debt-to-Equity Ratio', 'D) Gross Profit Margin', 2, 1, 1),
+(2, 'Analytical', 'In Python, which library is commonly used for data manipulation and analysis?', 'A) NumPy', 'B) Matplotlib', 'C) Pandas', 'D) Scikit-learn', 3, 2, 1),
 (3, 'Analytical', 'Which of these describes the Debt-to-Equity Ratio?', 'A) A measure of a company\'s profitability', 'B) A ratio comparing the company\'s total liabilities to its shareholder equity', 'C) A ratio assessing the efficiency of a company\'s operations', 'D) A measure of the company\'s market value', 2, 3, 1),
 (4, 'Analytical', 'In a linear regression model, what does the coefficient of an independent variable represent?', 'A) The average value of the dependent variable', 'B) The change in the dependent variable for a one-unit change in the independent variable', 'C) The total sum of squares of the dependent variable', 'D) The intercept of the regression line', 2, 1, 1),
 (5, 'Analytical', 'What is the purpose of the R-squared value in regression analysis?', 'A) To measure the strength and direction of the linear relationship between two variables', 'B) To determine the significance of regression coefficients', 'C) To quantify the proportion of variation in the dependent variable explained by the independent variables', 'D) To test for the presence of multicollinearity', 3, 2, 1),
@@ -186,7 +207,7 @@ INSERT INTO `questions` (`id`, `exam_type`, `question`, `option1`, `option2`, `o
 (18, 'Analytical', 'What does the mean() function compute in statistics?', 'A) The median of a dataset', 'B) The mode of a dataset', 'C) The average value of a dataset', 'D) The range of a dataset', 3, 3, 1),
 (19, 'Analytical', 'In the context of data science, what does the term \"feature\" refer to?', 'A) The target variable to be predicted', 'B) The output of the model', 'C) An individual measurable property or characteristic of a phenomenon being observed', 'D) The algorithm used for modeling', 3, 1, 1),
 (20, 'Analytical', 'Which type of data visualization is used to show the distribution of a dataset?', 'A) Line chart', 'B) Scatter plot', 'C) Histogram', 'D) Pie chart', 3, 2, 1),
-(21, 'Python', 'Which of the following is the correct extension of Python files?', 'a) .python', 'b) .py', 'c) .pyt', 'd) .pyc', 2, 1, 0),
+(21, 'Python', 'Which of the following is the correct extension of Python files?', 'a) .python', 'b) .py', 'c) .pyt', 'd) .pyc', 2, 1, 1),
 (22, 'Python', 'Which of the following is used to define a block of code in Python?', 'a) Curly braces {}', 'b) Parentheses ()', 'c) Indentation', 'd) Semi-colon ;', 3, 2, 1),
 (23, 'Python', 'What will be the output of the following code?<br>print(type(2))', 'a) <class \'float\'>', 'b) <class \'int\'>', 'c) <class \'bool\'>', 'd) <class \'NoneType\'>', 2, 3, 1),
 (24, 'Python', 'What is the correct syntax to create a function in Python?', 'a) function myFunction():', 'b) def myFunction():', 'c) create myFunction():', 'd) function: myFunction()', 2, 1, 1),
@@ -207,6 +228,7 @@ INSERT INTO `questions` (`id`, `exam_type`, `question`, `option1`, `option2`, `o
 
 CREATE TABLE `question_bank` (
   `id` int(11) NOT NULL,
+  `question_id` int(9) NOT NULL,
   `exam_type` varchar(50) DEFAULT NULL,
   `code` varchar(6) DEFAULT NULL,
   `question` text DEFAULT NULL,
@@ -221,67 +243,16 @@ CREATE TABLE `question_bank` (
 -- Dumping data for table `question_bank`
 --
 
-INSERT INTO `question_bank` (`id`, `exam_type`, `code`, `question`, `option1`, `option2`, `option3`, `option4`, `correct_option`) VALUES
-(1, 'Analytical', '8EGTZ7', '4. In a linear regression model, what does the coefficient of an independent variable represent?', 'A) The average value of the dependent variable', 'B) The change in the dependent variable for a one-unit change in the independent variable', 'C) The total sum of squares of the dependent variable', 'D) The intercept of the regression line', 2),
-(2, 'Analytical', '8EGTZ7', '7. Which machine learning algorithm is best suited for predicting stock prices?', 'A) K-means clustering', 'B) Linear regression', 'C) Decision trees', 'D) Apriori algorithm', 2),
-(3, 'Analytical', '8EGTZ7', '16. How do you handle missing values in a DataFrame?', 'A) df.dropna()', 'B) df.fillna()', 'C) df.replace_na()', 'D) Both A and B', 4),
-(4, 'Analytical', '8EGTZ7', '11. In financial forecasting, which method involves using historical data to predict future financial performance?', 'A) Monte Carlo Simulation', 'B) Time Series Analysis', 'C) SWOT Analysis', 'D) PEST Analysis', 2),
-(5, 'Analytical', '8EGTZ7', '2. In Python, which library is commonly used for data manipulation and analysis?', 'A) NumPy', 'B) Matplotlib', 'C) Pandas', 'D) Scikit-learn', 3),
-(6, 'Analytical', '8EGTZ7', '14. In logistic regression, what type of dependent variable is used?', 'A) Continuous', 'B) Ordinal', 'C) Binary', 'D) Nominal with more than two categories', 3),
-(7, 'Analytical', '8EGTZ7', '3. Which of these describes the Debt-to-Equity Ratio?', 'A) A measure of a company\'s profitability', 'B) A ratio comparing the company\'s total liabilities to its shareholder equity', 'C) A ratio assessing the efficiency of a company\'s operations', 'D) A measure of the company\'s market value', 2),
-(8, 'Analytical', '8EGTZ7', '6. What is the primary purpose of a confusion matrix in evaluating a classification model?', 'A) To summarize the performance of a regression model', 'B) To display the true positives, true negatives, false positives, and false negatives', 'C) To visualize the distribution of data', 'D) To calculate the mean absolute error', 2),
-(9, 'Analytical', '8EGTZ7', '9. Which type of neural network is best suited for sequential data, such as financial time series?', 'A) Convolutional Neural Network (CNN)', 'B) Recurrent Neural Network (RNN)', 'C) Feedforward Neural Network', 'D) Generative Adversarial Network (GAN)', 2),
-(10, 'Python', '5E618I', '4. What is the correct syntax to create a function in Python?', 'a) function myFunction():', 'b) def myFunction():', 'c) create myFunction():', 'd) function: myFunction()', 2),
-(11, 'Python', '5E618I', '7.What does the len() function do?', 'a) Returns the length of a string', 'b) Returns the length of a list or string', 'c) Returns the size of the memory used by an object', 'd) Counts the number of spaces in a string', 2),
-(12, 'Python', '5E618I', '1.	Which of the following is the correct extension of Python files?', 'a) .python', 'b) .py', 'c) .pyt', 'd) .pyc', 2),
-(13, 'Python', '5E618I', '5. How do you insert a comment in Python code?', 'a)// This is a comment', 'b) /* This is a comment */', 'c) # This is a comment', 'd) -- This is a comment', 3),
-(14, 'Python', '5E618I', '2. Which of the following is used to define a block of code in Python?', 'a) Curly braces {}', 'b) Parentheses ()', 'c) Indentation', 'd) Semi-colon ;', 3),
-(15, 'Python', '5E618I', '3. What will be the output of the following code?<br>print(type(2))', 'a) <class \'float\'>', 'b) <class \'int\'>', 'c) <class \'bool\'>', 'd) <class \'NoneType\'>', 2),
-(16, 'Python', '5E618I', '6. Which of the following will create a list in Python?', 'a)	[1, 2, 3]', 'b)	(1, 2, 3)', 'c)	{1, 2, 3}', 'd)	1, 2, 3', 1),
-(17, 'Python', '4QP7LK', '4. What is the correct syntax to create a function in Python?', 'a) function myFunction():', 'b) def myFunction():', 'c) create myFunction():', 'd) function: myFunction()', 2),
-(18, 'Python', '4QP7LK', '1.	Which of the following is the correct extension of Python files?', 'a) .python', 'b) .py', 'c) .pyt', 'd) .pyc', 2),
-(19, 'Python', '4QP7LK', '2. Which of the following is used to define a block of code in Python?', 'a) Curly braces {}', 'b) Parentheses ()', 'c) Indentation', 'd) Semi-colon ;', 3),
-(20, 'Python', '4QP7LK', '5. How do you insert a comment in Python code?', 'a)// This is a comment', 'b) /* This is a comment */', 'c) # This is a comment', 'd) -- This is a comment', 3),
-(21, 'Python', '4QP7LK', '3. What will be the output of the following code?<br>print(type(2))', 'a) <class \'float\'>', 'b) <class \'int\'>', 'c) <class \'bool\'>', 'd) <class \'NoneType\'>', 2),
-(22, 'Python', '4QP7LK', '6. Which of the following will create a list in Python?', 'a)	[1, 2, 3]', 'b)	(1, 2, 3)', 'c)	{1, 2, 3}', 'd)	1, 2, 3', 1),
-(23, 'Python', 'IOSE3N', '1.	Which of the following is the correct extension of Python files?', 'a) .python', 'b) .py', 'c) .pyt', 'd) .pyc', 2),
-(24, 'Python', 'IOSE3N', '7.What does the len() function do?', 'a) Returns the length of a string', 'b) Returns the length of a list or string', 'c) Returns the size of the memory used by an object', 'd) Counts the number of spaces in a string', 2),
-(25, 'Python', 'IOSE3N', '5. How do you insert a comment in Python code?', 'a)// This is a comment', 'b) /* This is a comment */', 'c) # This is a comment', 'd) -- This is a comment', 3),
-(26, 'Python', 'IOSE3N', '2. Which of the following is used to define a block of code in Python?', 'a) Curly braces {}', 'b) Parentheses ()', 'c) Indentation', 'd) Semi-colon ;', 3),
-(27, 'Python', 'IOSE3N', '6. Which of the following will create a list in Python?', 'a)	[1, 2, 3]', 'b)	(1, 2, 3)', 'c)	{1, 2, 3}', 'd)	1, 2, 3', 1),
-(28, 'Python', 'IOSE3N', '3. What will be the output of the following code?<br>print(type(2))', 'a) <class \'float\'>', 'b) <class \'int\'>', 'c) <class \'bool\'>', 'd) <class \'NoneType\'>', 2),
-(29, 'Python', '59EFBN', '7.What does the len() function do?', 'a) Returns the length of a string', 'b) Returns the length of a list or string', 'c) Returns the size of the memory used by an object', 'd) Counts the number of spaces in a string', 2),
-(30, 'Python', '59EFBN', '2. Which of the following is used to define a block of code in Python?', 'a) Curly braces {}', 'b) Parentheses ()', 'c) Indentation', 'd) Semi-colon ;', 3),
-(31, 'Python', '59EFBN', '6. Which of the following will create a list in Python?', 'a)	[1, 2, 3]', 'b)	(1, 2, 3)', 'c)	{1, 2, 3}', 'd)	1, 2, 3', 1),
-(32, 'Python', 'IOX7VZ', 'What is the correct syntax to create a function in Python?', 'a) function myFunction():', 'b) def myFunction():', 'c) create myFunction():', 'd) function: myFunction()', 2),
-(33, 'Python', 'IOX7VZ', 'What does the len() function do?', 'a) Returns the length of a string', 'b) Returns the length of a list or string', 'c) Returns the size of the memory used by an object', 'd) Counts the number of spaces in a string', 2),
-(34, 'Python', 'IOX7VZ', 'Which of the following is used to define a block of code in Python?', 'a) Curly braces {}', 'b) Parentheses ()', 'c) Indentation', 'd) Semi-colon ;', 3),
-(35, 'Python', 'IOX7VZ', 'What is the output of the following code?<br>\\r\\na = [1, 2, 3, 4, 5]<br>\\r\\nprint(a[2:4])<br>\\r\\n', 'a) [2, 3]', 'b) [3, 4]', 'c) [1, 2, 3]', 'd) [2, 3, 4]', 4),
-(36, 'Python', 'IOX7VZ', 'What will be the output of the following code?<br>print(type(2))', 'a) <class \'float\'>', 'b) <class \'int\'>', 'c) <class \'bool\'>', 'd) <class \'NoneType\'>', 2),
-(37, 'Analytical', 'GXBY7H', 'In logistic regression, what type of dependent variable is used?', 'A) Continuous', 'B) Ordinal', 'C) Binary', 'D) Nominal with more than two categories', 3),
-(38, 'Analytical', 'GXBY7H', 'In a linear regression model, what does the coefficient of an independent variable represent?', 'A) The average value of the dependent variable', 'B) The change in the dependent variable for a one-unit change in the independent variable', 'C) The total sum of squares of the dependent variable', 'D) The intercept of the regression line', 2),
-(39, 'Analytical', 'GXBY7H', 'What is the purpose of the R-squared value in regression analysis?', 'A) To measure the strength and direction of the linear relationship between two variables', 'B) To determine the significance of regression coefficients', 'C) To quantify the proportion of variation in the dependent variable explained by the independent variables', 'D) To test for the presence of multicollinearity', 3),
-(40, 'Analytical', 'GXBY7H', 'Which type of data visualization is used to show the distribution of a dataset?', 'A) Line chart', 'B) Scatter plot', 'C) Histogram', 'D) Pie chart', 3),
-(41, 'Analytical', 'GXBY7H', 'Which type of neural network is best suited for sequential data, such as financial time series?', 'A) Convolutional Neural Network (CNN)', 'B) Recurrent Neural Network (RNN)', 'C) Feedforward Neural Network', 'D) Generative Adversarial Network (GAN)', 2),
-(42, 'Analytical', 'GXBY7H', 'Which of these describes the Debt-to-Equity Ratio?', 'A) A measure of a company\'s profitability', 'B) A ratio comparing the company\'s total liabilities to its shareholder equity', 'C) A ratio assessing the efficiency of a company\'s operations', 'D) A measure of the company\'s market value', 2),
-(43, 'Analytical', '4HC619', 'Which machine learning algorithm is best suited for predicting stock prices?', 'A) K-means clustering', 'B) Linear regression', 'C) Decision trees', 'D) Apriori algorithm', 2),
-(44, 'Analytical', '4HC619', 'In financial forecasting, which method involves using historical data to predict future financial performance?', 'A) Monte Carlo Simulation', 'B) Time Series Analysis', 'C) SWOT Analysis', 'D) PEST Analysis', 2),
-(45, 'Analytical', '4HC619', 'Which function is used to compute descriptive statistics of a DataFrame in Pandas?', 'A) df.stats()', 'B) df.summary()', 'C) df.describe()', 'D) df.detail()', 3),
-(46, 'Analytical', 'XKCS4P', 'In the context of data science, what does the term \"feature\" refer to?', 'A) The target variable to be predicted', 'B) The output of the model', 'C) An individual measurable property or characteristic of a phenomenon being observed', 'D) The algorithm used for modeling', 3),
-(47, 'Analytical', 'XKCS4P', 'What is the purpose of the train-test split in machine learning?', 'A) To increase the size of the training data', 'B) To ensure the model is not overfitting', 'C) To optimize the model\\\'s hyperparameters', 'D) To validate the model on unseen data', 4),
-(48, 'Analytical', 'XKCS4P', 'What is the purpose of the R-squared value in regression analysis?', 'A) To measure the strength and direction of the linear relationship between two variables', 'B) To determine the significance of regression coefficients', 'C) To quantify the proportion of variation in the dependent variable explained by the independent variables', 'D) To test for the presence of multicollinearity', 3),
-(49, 'Analytical', 'XKCS4P', 'Which type of data visualization is used to show the distribution of a dataset?', 'A) Line chart', 'B) Scatter plot', 'C) Histogram', 'D) Pie chart', 3),
-(50, 'Analytical', 'XKCS4P', 'Which of these describes the Debt-to-Equity Ratio?', 'A) A measure of a company\'s profitability', 'B) A ratio comparing the company\'s total liabilities to its shareholder equity', 'C) A ratio assessing the efficiency of a company\'s operations', 'D) A measure of the company\'s market value', 2),
-(51, 'Analytical', 'XKCS4P', 'What does the mean() function compute in statistics?', 'A) The median of a dataset', 'B) The mode of a dataset', 'C) The average value of a dataset', 'D) The range of a dataset', 3),
-(52, 'Analytical', '3AZYF1', 'In logistic regression, what type of dependent variable is used?', 'A) Continuous', 'B) Ordinal', 'C) Binary', 'D) Nominal with more than two categories', 3),
-(53, 'Analytical', '3AZYF1', 'Which financial ratio measures a company\'s ability to meet its short-term obligations?', 'A) Return on Equity (ROE)', 'B) Current Ratio', 'C) Debt-to-Equity Ratio', 'D) Gross Profit Margin', 2),
-(54, 'Analytical', '3AZYF1', 'In the context of data science, what does the term \"feature\" refer to?', 'A) The target variable to be predicted', 'B) The output of the model', 'C) An individual measurable property or characteristic of a phenomenon being observed', 'D) The algorithm used for modeling', 3),
-(55, 'Analytical', '3AZYF1', 'What does \"over fitting\" mean in the context of machine learning?', 'A) The model performs poorly on training data but well on test data', 'B) The model performs well on training data but poorly on test data', 'C) The model uses too few features', 'D) The model is unable to make any predictions', 2),
-(56, 'Analytical', '3AZYF1', 'What is the purpose of the R-squared value in regression analysis?', 'A) To measure the strength and direction of the linear relationship between two variables', 'B) To determine the significance of regression coefficients', 'C) To quantify the proportion of variation in the dependent variable explained by the independent variables', 'D) To test for the presence of multicollinearity', 3),
-(57, 'Analytical', '3AZYF1', 'In financial forecasting, which method involves using historical data to predict future financial performance?', 'A) Monte Carlo Simulation', 'B) Time Series Analysis', 'C) SWOT Analysis', 'D) PEST Analysis', 2),
-(58, 'Analytical', '3AZYF1', 'Which function is used to compute descriptive statistics of a DataFrame in Pandas?', 'A) df.stats()', 'B) df.summary()', 'C) df.describe()', 'D) df.detail()', 3),
-(59, 'Analytical', '3AZYF1', 'What is the primary purpose of a confusion matrix in evaluating a classification model?', 'A) To summarize the performance of a regression model', 'B) To display the true positives, true negatives, false positives, and false negatives', 'C) To visualize the distribution of data', 'D) To calculate the mean absolute error', 2),
-(60, 'Analytical', '3AZYF1', 'Which of these describes the Debt-to-Equity Ratio?', 'A) A measure of a company\'s profitability', 'B) A ratio comparing the company\'s total liabilities to its shareholder equity', 'C) A ratio assessing the efficiency of a company\'s operations', 'D) A measure of the company\'s market value', 2);
+INSERT INTO `question_bank` (`id`, `question_id`, `exam_type`, `code`, `question`, `option1`, `option2`, `option3`, `option4`, `correct_option`) VALUES
+(85, 16, 'Analytical', 'MUQX10', 'How do you handle missing values in a DataFrame?', 'A) df.dropna()', 'B) df.fillna()', 'C) df.replace_na()', 'D) Both A and B', 4),
+(86, 14, 'Analytical', 'MUQX10', 'In logistic regression, what type of dependent variable is used?', 'A) Continuous', 'B) Ordinal', 'C) Binary', 'D) Nominal with more than two categories', 3),
+(87, 3, 'Analytical', 'MUQX10', 'Which of these describes the Debt-to-Equity Ratio?', 'A) A measure of a company\'s profitability', 'B) A ratio comparing the company\'s total liabilities to its shareholder equity', 'C) A ratio assessing the efficiency of a company\'s operations', 'D) A measure of the company\'s market value', 2),
+(88, 21, 'Aptitude', 'H2KB5R', 'Which of the following is the correct extension of Python files?', 'a) .python', 'b) .py', 'c) .pyt', 'd) .pyc', 2),
+(89, 29, 'Aptitude', 'H2KB5R', 'Which keyword is used to define a variable in Python?', 'a) var', 'b) def', 'c) int', 'd) No keyword is required', 4),
+(90, 23, 'Aptitude', 'H2KB5R', 'What will be the output of the following code?<br>print(type(2))', 'a) <class \'float\'>', 'b) <class \'int\'>', 'c) <class \'bool\'>', 'd) <class \'NoneType\'>', 2),
+(91, 16, 'Aptitude', 'H2KB5R', 'How do you handle missing values in a DataFrame?', 'A) df.dropna()', 'B) df.fillna()', 'C) df.replace_na()', 'D) Both A and B', 4),
+(92, 5, 'Aptitude', 'H2KB5R', 'What is the purpose of the R-squared value in regression analysis?', 'A) To measure the strength and direction of the linear relationship between two variables', 'B) To determine the significance of regression coefficients', 'C) To quantify the proportion of variation in the dependent variable explained by the independent variables', 'D) To test for the presence of multicollinearity', 3),
+(93, 6, 'Aptitude', 'H2KB5R', 'What is the primary purpose of a confusion matrix in evaluating a classification model?', 'A) To summarize the performance of a regression model', 'B) To display the true positives, true negatives, false positives, and false negatives', 'C) To visualize the distribution of data', 'D) To calculate the mean absolute error', 2);
 
 -- --------------------------------------------------------
 
@@ -306,15 +277,9 @@ CREATE TABLE `question_results` (
 --
 
 INSERT INTO `question_results` (`id`, `candidate_id`, `exam_type`, `question_id`, `question`, `user_answer`, `correct_option`, `status`, `created_at`) VALUES
-(52, 9, 'Python', 29, '7.What does the len() function do?', 2, 2, 'Correct', '2025-01-21 02:24:35'),
-(53, 9, 'Python', 30, '2. Which of the following is used to define a block of code in Python?', 2, 3, 'Incorrect', '2025-01-21 02:24:35'),
-(54, 9, 'Python', 31, '6. Which of the following will create a list in Python?', 1, 1, 'Correct', '2025-01-21 02:24:35'),
-(55, 17, 'Python', 23, '1.	Which of the following is the correct extension of Python files?', 2, 2, 'Correct', '2025-01-21 09:31:55'),
-(56, 17, 'Python', 24, '7.What does the len() function do?', 2, 2, 'Correct', '2025-01-21 09:31:55'),
-(57, 17, 'Python', 25, '5. How do you insert a comment in Python code?', 3, 3, 'Correct', '2025-01-21 09:31:55'),
-(58, 17, 'Python', 26, '2. Which of the following is used to define a block of code in Python?', 3, 3, 'Correct', '2025-01-21 09:31:55'),
-(59, 17, 'Python', 27, '6. Which of the following will create a list in Python?', 3, 1, 'Incorrect', '2025-01-21 09:31:55'),
-(60, 17, 'Python', 28, '3. What will be the output of the following code?<br>print(type(2))', 3, 2, 'Incorrect', '2025-01-21 09:31:55');
+(55, 9, 'Python', 85, 'How do you handle missing values in a DataFrame?', 2, 4, 'Incorrect', '2025-01-30 15:20:30'),
+(56, 9, 'Python', 86, 'In logistic regression, what type of dependent variable is used?', 2, 3, 'Incorrect', '2025-01-30 15:20:30'),
+(57, 9, 'Python', 87, 'Which of these describes the Debt-to-Equity Ratio?', 2, 2, 'Correct', '2025-01-30 15:20:30');
 
 -- --------------------------------------------------------
 
@@ -334,8 +299,7 @@ CREATE TABLE `results` (
 --
 
 INSERT INTO `results` (`id`, `candidate_id`, `exam_type`, `marks_obtained`) VALUES
-(14, 9, 'Python', 2),
-(15, 17, 'Python', 4);
+(15, 9, 'Python', 1);
 
 --
 -- Indexes for dumped tables
@@ -353,6 +317,13 @@ ALTER TABLE `admins`
 --
 ALTER TABLE `candidates`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `candidate_personal_details`
+--
+ALTER TABLE `candidate_personal_details`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `candidate_id` (`candidate_id`);
 
 --
 -- Indexes for table `exam_type_menu`
@@ -412,19 +383,25 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `candidates`
 --
 ALTER TABLE `candidates`
-  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT for table `candidate_personal_details`
+--
+ALTER TABLE `candidate_personal_details`
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `exam_type_menu`
 --
 ALTER TABLE `exam_type_menu`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `header`
 --
 ALTER TABLE `header`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `mcq_questions`
@@ -442,13 +419,13 @@ ALTER TABLE `questions`
 -- AUTO_INCREMENT for table `question_bank`
 --
 ALTER TABLE `question_bank`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
 
 --
 -- AUTO_INCREMENT for table `question_results`
 --
 ALTER TABLE `question_results`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT for table `results`
@@ -459,6 +436,12 @@ ALTER TABLE `results`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `candidate_personal_details`
+--
+ALTER TABLE `candidate_personal_details`
+  ADD CONSTRAINT `candidate_personal_details_ibfk_1` FOREIGN KEY (`candidate_id`) REFERENCES `candidates` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `header`
