@@ -30,15 +30,15 @@ $candidates = $searchResults ?: $conn->query("SELECT * FROM candidates");
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">Nevaeh Technology</a>
+        <a class="navbar-brand" href="#">Examination Portal</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
             <li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="question_bank.php">Create Single Question</a></li>
-                <li class="nav-item"><a class="nav-link" href="question_bank.php">Create Multiple Question</a></li>
+                <li class="nav-item"><a class="nav-link" href="single_question_bank.php">Create Single Question</a></li>
+                <li class="nav-item"><a class="nav-link" href="multiple_question_bank.php">Create Multiple Question</a></li>
                 <li class="nav-item"><a class="nav-link" href="show_question.php">Show Questions</a></li>
                 <li class="nav-item"><a class="nav-link" href="add_question.php">Add Questions</a></li>
                 <li class="nav-item"><a class="nav-link" href="show_exam_type.php">Show Exam Type</a></li>
@@ -49,6 +49,7 @@ $candidates = $searchResults ?: $conn->query("SELECT * FROM candidates");
 
 <div class="container mt-5">
     <h2 class="text-center">Candidate Details</h2>
+    <a style="color: blue;" class="nav-link" href="candidate_personal_details.php">Click Here For Enter Personal Details </a>
     
     <!-- Search Form -->
     <form method="POST" class="mb-3">
@@ -84,11 +85,13 @@ $candidates = $searchResults ?: $conn->query("SELECT * FROM candidates");
                     <td><?php echo htmlspecialchars($row['total_marks']); ?></td>
                     <td><?php echo htmlspecialchars($row['status']); ?></td>
                     <td>
-                        <a href="show_result_details.php?id=<?php echo $row['id']; ?>" class="btn btn-warning btn-sm">Check Answer</a>
-                        <a href="edit_candidate.php?id=<?php echo $row['id']; ?>" class="btn btn-info btn-sm">Edit</a>
-                        <a href="delete_candidate.php?delete=<?php echo $row['id']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this record?');">Delete</a>
-                        <a href="show_question_set.php?candidate_id=<?php echo $row['id']; ?>" class="btn btn-primary btn-sm">Set Code</a>
-                    </td>
+    <a href="show_result_details.php?id=<?php echo $row['id']; ?>" class="btn btn-warning btn-sm">Check Answer</a>
+    <a href="edit_candidate.php?id=<?php echo $row['id']; ?>" class="btn btn-info btn-sm">Edit</a>
+    <a href="delete_candidate.php?delete=<?php echo $row['id']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this record?');">Delete</a>
+    <a href="show_question_set.php?candidate_id=<?php echo $row['id']; ?>" class="btn btn-primary btn-sm">Set Code</a>
+    <!-- New Edit Personal Details Button -->
+    <a href="edit_candidate_details.php?id=<?php echo $row['id']; ?>" class="btn btn-success btn-sm">Edit Personal Details</a>
+</td>
                 </tr>
             <?php } ?>
         </tbody>

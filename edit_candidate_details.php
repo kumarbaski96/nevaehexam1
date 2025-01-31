@@ -1,9 +1,12 @@
+<?php
+$id=$_GET['id'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Personal Details</title>
+    <title>Edit Personal Details</title> 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     
     <script>
@@ -73,7 +76,7 @@
         <div class="mb-3">
             <label class="form-label">Search Candidate ID</label>
             <div class="input-group">
-                <input type="number" id="search_candidate_id" class="form-control" placeholder="Enter Candidate ID">
+                <input type="number" id="search_candidate_id" value="<?php echo $id?>" class="form-control" placeholder="Enter Candidate ID">
                 <button class="btn btn-primary" onclick="fetchCandidateDetails()">Search</button>
             </div>
         </div>

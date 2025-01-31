@@ -17,7 +17,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bind_param("sssssssi", $dob, $gender, $nationality, $address, $city, $state, $zip_code, $candidate_id);
 
     if ($stmt->execute()) {
+        
         echo json_encode(["success" => "Details updated successfully"]);
+        //header("Location: show_candidate.php");
     } else {
         echo json_encode(["error" => "Failed to update details"]);
     }

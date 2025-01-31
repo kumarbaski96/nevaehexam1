@@ -148,7 +148,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_exam'])) {
             Time Remaining: <?php echo gmdate("H:i:s", $exam_duration); ?>
         </div>
         <h2 class="text-center">Hello, <?php echo htmlspecialchars($name); ?>!</h2>
-        <h3 class="text-center">Exam Code: <?php echo htmlspecialchars($exam_code); ?></h3>
+        <h3 class="text-center">Exam Type: <?php echo htmlspecialchars($exam_type); ?></h3>
 
         <form method="POST">
             <input type="hidden" name="exam_code" value="<?php echo htmlspecialchars($exam_code); ?>">
