@@ -59,6 +59,7 @@ $conn->close();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
 </head>
 <body>
+<?php include 'header2.php';?>
 <div class="container mt-5">
     <h2 class="text-center">Add MCQ Question</h2>
     <form method="POST">

@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt->bind_param("isssssss", $candidate_id, $dob, $gender, $nationality, $address, $city, $state, $zip_code);
     
     if ($stmt->execute()) {
-        echo "<script>alert('Personal details added successfully!'); window.location.href='personal_details_form.html';</script>";
+        echo "<script>alert('Personal details added successfully!'); window.location.href='show_candidate.php';</script>";
     } else {
         echo "Error: " . $stmt->error;
     }

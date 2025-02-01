@@ -125,6 +125,7 @@ $conn->close();
     </script>
 </head>
 <body>
+<?php include 'header2.php';?>
     <div class="container mt-5">
         <h2 class="text-center">Manage Single Question Bank</h2>
 

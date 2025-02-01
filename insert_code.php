@@ -69,6 +69,7 @@ $exam_code = isset($_POST['exam_code']) ? $_POST['exam_code'] : '';
     </style>
 </head>
 <body>
+
     <div class="container">
         <h2>Start Examination</h2>
         <form action="quiz.php" method="POST">

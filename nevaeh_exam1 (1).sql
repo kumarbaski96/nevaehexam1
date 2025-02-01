@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 31, 2025 at 03:48 PM
+-- Generation Time: Feb 01, 2025 at 02:11 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -66,9 +66,7 @@ CREATE TABLE `candidates` (
 --
 
 INSERT INTO `candidates` (`id`, `name`, `mobile`, `email`, `password`, `exam_type`, `designation`, `total_marks`, `sec_code`, `exam_duration`, `status`, `is_exam_completed`) VALUES
-(9, 'Baski Kumar Saw', '7488162756', 'baski12.kumar@gmail.com', '$2y$10$ky2GiDxS6vFvb9StyK00S.CEXnjXwxii0cXGm024Smi0934mUXLU.', 'Python', 'Software engineer', 6, '1T6VA4', '3600', 'Completed', 1),
-(14, 'Deepak', '6393424013', 'deepak.kedia@nevaehtech.com', '$2y$10$EKbQNf0b5jkFpem00Q.2EO4OeE4IVkLmGtSyyZzDcL7g6///nPYzC', 'Analytical', 'President', 7, '8EGTZ7', '3600', 'Completed', 1),
-(15, 'Manoj', '8765432345', 'manoj@gmail.com', '$2y$10$C3qMfYeT185qakruEBrLH.H5g8UxymCRAJL0GAY8MvQgJXPpuG8Mm', 'Analytical', 'Data Analysis', 3, '8EGTZ7', '', 'Completed', 1);
+(16, 'Baski Saw', '7488162756', 'baski12.kumar@gmail.com', '$2y$10$LRCnEWS/rcbayy2JJHTIJuEhrBVQ9OTYqYr.2UlapYyjN6kg/yxKi', 'Python', 'Software Developer', 4, 'CVB45Y', '1800', 'Completed', 1);
 
 -- --------------------------------------------------------
 
@@ -94,7 +92,8 @@ CREATE TABLE `candidate_personal_details` (
 --
 
 INSERT INTO `candidate_personal_details` (`id`, `candidate_id`, `dob`, `gender`, `nationality`, `address`, `city`, `state`, `zip_code`, `created_at`) VALUES
-(1, 9, '2025-01-07', 'Male', 'Indian', 'Dhaiya ,Dhanbad', 'Dhanbad', 'Jharkhand', '826004', '2025-01-31 05:48:25');
+(2, 16, '1992-09-07', 'Male', 'Indian', 'Dhaiya ,Dhanbad', 'Dhanbad', 'Jharkhand', '826004', '2025-02-01 04:32:23'),
+(3, 16, '1992-09-07', 'Male', 'Indian', 'Meddle School Road,Dhaiya ,Dhanbad', 'Dhanbad', 'Jharkhand', '826004', '2025-02-01 04:34:34');
 
 -- --------------------------------------------------------
 
@@ -252,7 +251,7 @@ INSERT INTO `questions` (`id`, `exam_type`, `question`, `option1`, `option2`, `o
 (32, 'Python', 'Which of the following is not a valid data type in Python?', 'a)	int', 'b)	float', 'c)	real', 'd)	str', 3, 1, 1),
 (33, 'Python', 'What is the output of the following code?<br>\\r\\na = [1, 2, 3, 4, 5]<br>\\r\\nprint(a[2:4])<br>\\r\\n', 'a) [2, 3]', 'b) [3, 4]', 'c) [1, 2, 3]', 'd) [2, 3, 4]', 4, 2, 1),
 (34, 'Python', 'How do you add an element to the end of a list in Python?', 'a) list.add()', 'b) list.append()', 'c) list.push()', 'd) list.insert()', 2, 3, 1),
-(35, 'Java', 'Which of the following is not a Java keyword?', 'static', 'void', 'main', 'final', 3, 1, 1),
+(35, 'Java', 'Which of the following is not a Java keyword?', 'a) static', 'a) void', 'c) main', 'd) final', 3, 1, 0),
 (36, 'Java', 'Which of the following is used to compile a Java program?', 'java', 'javac', 'jvm', 'jre', 2, 2, 1),
 (37, 'Java', 'What will be the output of System.out.println(10/3); in Java?', '3', '3.33', '3.0', '10/3', 1, 3, 1),
 (38, 'Java', 'What is the size of the char data type in Java?', '1 byte', '2 bytes', '4 bytes', '8 bytes', 2, 1, 1),
@@ -355,7 +354,39 @@ INSERT INTO `question_bank` (`id`, `question_id`, `exam_type`, `code`, `question
 (102, 25, 'Aptitude', '1T6VA4', 'How do you insert a comment in Python code?', 'a)// This is a comment', 'b) /* This is a comment */', 'c) # This is a comment', 'd) -- This is a comment', 3),
 (103, 29, 'Aptitude', '1T6VA4', 'Which keyword is used to define a variable in Python?', 'a) var', 'b) def', 'c) int', 'd) No keyword is required', 4),
 (104, 26, 'Aptitude', '1T6VA4', 'Which of the following will create a list in Python?', 'a)	[1, 2, 3]', 'b)	(1, 2, 3)', 'c)	{1, 2, 3}', 'd)	1, 2, 3', 1),
-(105, 34, 'Aptitude', '1T6VA4', 'How do you add an element to the end of a list in Python?', 'a) list.add()', 'b) list.append()', 'c) list.push()', 'd) list.insert()', 2);
+(105, 34, 'Aptitude', '1T6VA4', 'How do you add an element to the end of a list in Python?', 'a) list.add()', 'b) list.append()', 'c) list.push()', 'd) list.insert()', 2),
+(106, 4, 'Aptitude', 'BW3KYR', 'In a linear regression model, what does the coefficient of an independent variable represent?', 'A) The average value of the dependent variable', 'B) The change in the dependent variable for a one-unit change in the independent variable', 'C) The total sum of squares of the dependent variable', 'D) The intercept of the regression line', 2),
+(107, 19, 'Aptitude', 'BW3KYR', 'In the context of data science, what does the term \"feature\" refer to?', 'A) The target variable to be predicted', 'B) The output of the model', 'C) An individual measurable property or characteristic of a phenomenon being observed', 'D) The algorithm used for modeling', 3),
+(108, 8, 'Aptitude', 'BW3KYR', 'What does \"over fitting\" mean in the context of machine learning?', 'A) The model performs poorly on training data but well on test data', 'B) The model performs well on training data but poorly on test data', 'C) The model uses too few features', 'D) The model is unable to make any predictions', 2),
+(109, 5, 'Aptitude', 'BW3KYR', 'What is the purpose of the R-squared value in regression analysis?', 'A) To measure the strength and direction of the linear relationship between two variables', 'B) To determine the significance of regression coefficients', 'C) To quantify the proportion of variation in the dependent variable explained by the independent variables', 'D) To test for the presence of multicollinearity', 3),
+(110, 6, 'Aptitude', 'BW3KYR', 'What is the primary purpose of a confusion matrix in evaluating a classification model?', 'A) To summarize the performance of a regression model', 'B) To display the true positives, true negatives, false positives, and false negatives', 'C) To visualize the distribution of data', 'D) To calculate the mean absolute error', 2),
+(111, 9, 'Aptitude', 'BW3KYR', 'Which type of neural network is best suited for sequential data, such as financial time series?', 'A) Convolutional Neural Network (CNN)', 'B) Recurrent Neural Network (RNN)', 'C) Feedforward Neural Network', 'D) Generative Adversarial Network (GAN)', 2),
+(112, 32, 'Aptitude', 'BW3KYR', 'Which of the following is not a valid data type in Python?', 'a)	int', 'b)	float', 'c)	real', 'd)	str', 3),
+(113, 21, 'Aptitude', 'BW3KYR', 'Which of the following is the correct extension of Python files?', 'a) .python', 'b) .py', 'c) .pyt', 'd) .pyc', 2),
+(114, 22, 'Aptitude', 'BW3KYR', 'Which of the following is used to define a block of code in Python?', 'a) Curly braces {}', 'b) Parentheses ()', 'c) Indentation', 'd) Semi-colon ;', 3),
+(115, 25, 'Aptitude', 'BW3KYR', 'How do you insert a comment in Python code?', 'a)// This is a comment', 'b) /* This is a comment */', 'c) # This is a comment', 'd) -- This is a comment', 3),
+(116, 33, 'Aptitude', 'BW3KYR', 'What is the output of the following code?<br>\\r\\na = [1, 2, 3, 4, 5]<br>\\r\\nprint(a[2:4])<br>\\r\\n', 'a) [2, 3]', 'b) [3, 4]', 'c) [1, 2, 3]', 'd) [2, 3, 4]', 4),
+(117, 23, 'Aptitude', 'BW3KYR', 'What will be the output of the following code?<br>print(type(2))', 'a) <class \'float\'>', 'b) <class \'int\'>', 'c) <class \'bool\'>', 'd) <class \'NoneType\'>', 2),
+(118, 34, 'Aptitude', 'BW3KYR', 'How do you add an element to the end of a list in Python?', 'a) list.add()', 'b) list.append()', 'c) list.push()', 'd) list.insert()', 2),
+(119, 31, 'Aptitude', 'BW3KYR', 'What will be the output of the following code?<br>\\r\\nx = 5.0<br>\\r\\nprint(x == 5)<br>\\r\\n', 'a) True', 'b) False', 'c) 5', '4) Error', 1),
+(120, 1, 'Analytical', 'Z1PKDN', 'Which financial ratio measures a company\'s ability to meet its short-term obligations?', 'A) Return on Equity (ROE)', 'B) Current Ratio', 'C) Debt-to-Equity Ratio', 'D) Gross Profit Margin', 2),
+(121, 4, 'Analytical', 'Z1PKDN', 'In a linear regression model, what does the coefficient of an independent variable represent?', 'A) The average value of the dependent variable', 'B) The change in the dependent variable for a one-unit change in the independent variable', 'C) The total sum of squares of the dependent variable', 'D) The intercept of the regression line', 2),
+(122, 19, 'Analytical', 'Z1PKDN', 'In the context of data science, what does the term \"feature\" refer to?', 'A) The target variable to be predicted', 'B) The output of the model', 'C) An individual measurable property or characteristic of a phenomenon being observed', 'D) The algorithm used for modeling', 3),
+(123, 7, 'Analytical', 'Z1PKDN', 'Which machine learning algorithm is best suited for predicting stock prices?', 'A) K-means clustering', 'B) Linear regression', 'C) Decision trees', 'D) Apriori algorithm', 2),
+(124, 20, 'Analytical', 'Z1PKDN', 'Which type of data visualization is used to show the distribution of a dataset?', 'A) Line chart', 'B) Scatter plot', 'C) Histogram', 'D) Pie chart', 3),
+(125, 14, 'Analytical', 'Z1PKDN', 'In logistic regression, what type of dependent variable is used?', 'A) Continuous', 'B) Ordinal', 'C) Binary', 'D) Nominal with more than two categories', 3),
+(126, 8, 'Analytical', 'Z1PKDN', 'What does \"over fitting\" mean in the context of machine learning?', 'A) The model performs poorly on training data but well on test data', 'B) The model performs well on training data but poorly on test data', 'C) The model uses too few features', 'D) The model is unable to make any predictions', 2),
+(127, 12, 'Analytical', 'Z1PKDN', 'What does the term \"Big Data\" refer to in the context of financial analysis?', 'A) Large volumes of structured and unstructured data that can be analyzed for insights', 'B) Small, manageable sets of data used for daily operations', 'C) Data stored in traditional databases', 'D) Data primarily used for marketing purposes', 1),
+(128, 9, 'Analytical', 'Z1PKDN', 'Which type of neural network is best suited for sequential data, such as financial time series?', 'A) Convolutional Neural Network (CNN)', 'B) Recurrent Neural Network (RNN)', 'C) Feedforward Neural Network', 'D) Generative Adversarial Network (GAN)', 2),
+(129, 18, 'Analytical', 'Z1PKDN', 'What does the mean() function compute in statistics?', 'A) The median of a dataset', 'B) The mode of a dataset', 'C) The average value of a dataset', 'D) The range of a dataset', 3),
+(130, 24, 'Python', 'CVB45Y', 'What is the correct syntax to create a function in Python?', 'a) function myFunction():', 'b) def myFunction():', 'c) create myFunction():', 'd) function: myFunction()', 2),
+(131, 21, 'Python', 'CVB45Y', 'Which of the following is the correct extension of Python files?', 'a) .python', 'b) .py', 'c) .pyt', 'd) .pyc', 2),
+(132, 27, 'Python', 'CVB45Y', 'What does the len() function do?', 'a) Returns the length of a string', 'b) Returns the length of a list or string', 'c) Returns the size of the memory used by an object', 'd) Counts the number of spaces in a string', 2),
+(133, 29, 'Python', 'CVB45Y', 'Which keyword is used to define a variable in Python?', 'a) var', 'b) def', 'c) int', 'd) No keyword is required', 4),
+(134, 25, 'Python', 'CVB45Y', 'How do you insert a comment in Python code?', 'a)// This is a comment', 'b) /* This is a comment */', 'c) # This is a comment', 'd) -- This is a comment', 3),
+(135, 33, 'Python', 'CVB45Y', 'What is the output of the following code?<br>\\r\\na = [1, 2, 3, 4, 5]<br>\\r\\nprint(a[2:4])<br>\\r\\n', 'a) [2, 3]', 'b) [3, 4]', 'c) [1, 2, 3]', 'd) [2, 3, 4]', 4),
+(136, 23, 'Python', 'CVB45Y', 'What will be the output of the following code?<br>print(type(2))', 'a) <class \'float\'>', 'b) <class \'int\'>', 'c) <class \'bool\'>', 'd) <class \'NoneType\'>', 2),
+(137, 31, 'Python', 'CVB45Y', 'What will be the output of the following code?<br>\\r\\nx = 5.0<br>\\r\\nprint(x == 5)<br>\\r\\n', 'a) True', 'b) False', 'c) 5', '4) Error', 1);
 
 -- --------------------------------------------------------
 
@@ -380,18 +411,14 @@ CREATE TABLE `question_results` (
 --
 
 INSERT INTO `question_results` (`id`, `candidate_id`, `exam_type`, `question_id`, `question`, `user_answer`, `correct_option`, `status`, `created_at`) VALUES
-(70, 9, 'Python', 94, 'In a linear regression model, what does the coefficient of an independent variable represent?', 2, 2, 'Correct', '2025-01-31 13:44:14'),
-(71, 9, 'Python', 95, 'Which machine learning algorithm is best suited for predicting stock prices?', 2, 2, 'Correct', '2025-01-31 13:44:14'),
-(72, 9, 'Python', 96, 'What is the purpose of the R-squared value in regression analysis?', 2, 3, 'Incorrect', '2025-01-31 13:44:14'),
-(73, 9, 'Python', 97, 'Which type of data visualization is used to show the distribution of a dataset?', 2, 3, 'Incorrect', '2025-01-31 13:44:14'),
-(74, 9, 'Python', 98, 'What does the term \\\"Big Data\\\" refer to in the context of financial analysis?', 3, 1, 'Incorrect', '2025-01-31 13:44:14'),
-(75, 9, 'Python', 99, 'Which type of neural network is best suited for sequential data, such as financial time series?', 3, 2, 'Incorrect', '2025-01-31 13:44:14'),
-(76, 9, 'Python', 100, 'What is the correct syntax to create a function in Python?', 3, 2, 'Incorrect', '2025-01-31 13:44:14'),
-(77, 9, 'Python', 101, 'Which of the following is the correct extension of Python files?', 2, 2, 'Correct', '2025-01-31 13:44:14'),
-(78, 9, 'Python', 102, 'How do you insert a comment in Python code?', 3, 3, 'Correct', '2025-01-31 13:44:14'),
-(79, 9, 'Python', 103, 'Which keyword is used to define a variable in Python?', 2, 4, 'Incorrect', '2025-01-31 13:44:14'),
-(80, 9, 'Python', 104, 'Which of the following will create a list in Python?', 1, 1, 'Correct', '2025-01-31 13:44:14'),
-(81, 9, 'Python', 105, 'How do you add an element to the end of a list in Python?', 2, 2, 'Correct', '2025-01-31 13:44:14');
+(11, 16, 'Python', 130, 'What is the correct syntax to create a function in Python?', 2, 2, 'Correct', '2025-02-01 04:37:03'),
+(12, 16, 'Python', 131, 'Which of the following is the correct extension of Python files?', 2, 2, 'Correct', '2025-02-01 04:37:03'),
+(13, 16, 'Python', 132, 'What does the len() function do?', 1, 2, 'Incorrect', '2025-02-01 04:37:03'),
+(14, 16, 'Python', 133, 'Which keyword is used to define a variable in Python?', 2, 4, 'Incorrect', '2025-02-01 04:37:03'),
+(15, 16, 'Python', 134, 'How do you insert a comment in Python code?', 3, 3, 'Correct', '2025-02-01 04:37:03'),
+(16, 16, 'Python', 135, 'What is the output of the following code?<br>\\\\r\\\\na = [1, 2, 3, 4, 5]<br>\\\\r\\\\nprint(a[2:4])<br>\\\\r\\\\n', 1, 4, 'Incorrect', '2025-02-01 04:37:03'),
+(17, 16, 'Python', 136, 'What will be the output of the following code?<br>print(type(2))', 1, 2, 'Incorrect', '2025-02-01 04:37:03'),
+(18, 16, 'Python', 137, 'What will be the output of the following code?<br>\\\\r\\\\nx = 5.0<br>\\\\r\\\\nprint(x == 5)<br>\\\\r\\\\n', 1, 1, 'Correct', '2025-02-01 04:37:03');
 
 -- --------------------------------------------------------
 
@@ -411,7 +438,7 @@ CREATE TABLE `results` (
 --
 
 INSERT INTO `results` (`id`, `candidate_id`, `exam_type`, `marks_obtained`) VALUES
-(17, 9, 'Python', 6);
+(2, 16, 'Python', 4);
 
 -- --------------------------------------------------------
 
@@ -529,13 +556,13 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `candidates`
 --
 ALTER TABLE `candidates`
-  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `candidate_personal_details`
 --
 ALTER TABLE `candidate_personal_details`
-  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `exam_type_menu`
@@ -571,19 +598,19 @@ ALTER TABLE `questions`
 -- AUTO_INCREMENT for table `question_bank`
 --
 ALTER TABLE `question_bank`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=138;
 
 --
 -- AUTO_INCREMENT for table `question_results`
 --
 ALTER TABLE `question_results`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `results`
 --
 ALTER TABLE `results`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `submenus`

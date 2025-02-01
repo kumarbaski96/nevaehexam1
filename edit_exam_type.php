@@ -30,6 +30,8 @@ if (isset($_GET['id'])) {
     <title>Edit Exam Type</title>
 </head>
 <body>
+<?php include 'header2.php';?>
+
     <h2>Edit Exam Type</h2>
     <form method="POST">
         <label for="examType">Exam Type</label>

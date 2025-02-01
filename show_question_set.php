@@ -73,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_exam'])) {
     </style>
 </head>
 <body>
-
+<?php include 'header2.php';?>
 <div class="container">
     <h2 class="text-center">Select Exam and Question Set</h2>
 

@@ -73,6 +73,7 @@ $conn->close();
     </style>
 </head>
 <body>
+<?php include 'header2.php';?>
 
 <div class="container">
     <h2 class="text-center mb-4">Bulk Upload Questions</h2>

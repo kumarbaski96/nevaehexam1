@@ -69,6 +69,7 @@ $id=$_GET['id'];
     </script>
 </head>
 <body>
+<?php include 'header2.php';?>
     <div class="container mt-5">
         <h2 class="text-center">Edit Personal Details</h2>
 

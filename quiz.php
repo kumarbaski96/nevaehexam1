@@ -142,6 +142,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_exam'])) {
     </style>
 </head>
 <body>
+    
     <div class="container mt-5">
         <!-- Timer Display -->
         <div id="timer" class="alert alert-primary">

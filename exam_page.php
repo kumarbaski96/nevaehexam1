@@ -33,6 +33,7 @@ $questions = $conn->query("SELECT * FROM questions WHERE exam_type='$exam_type'"
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
 </head>
 <body>
+<?php include 'header2.php';?>
 <div class="container mt-5">
     <h2 class="text-center">Exam: <?php echo $exam_type; ?></h2>
     <form method="POST">

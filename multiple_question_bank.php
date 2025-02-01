@@ -127,6 +127,8 @@ $conn->close();
     </script>
 </head>
 <body>
+    <?php include 'header2.php';?>
+
     <div class="container mt-5">
         <h2 class="text-center">Manage Multiple Question Bank</h2>
 
@@ -145,7 +147,7 @@ $conn->close();
                     <div class="col-md-2">
                         <label>Level 1 Quantity:</label>
                         <input type="number" name="quantity1[]" class="form-control" min="1" max="50" value="1">
-                    </div>
+                 </div>
                     <div class="col-md-2">
                         <label>Level 2 Quantity:</label>
                         <input type="number" name="quantity2[]" class="form-control" min="1" max="50" value="1">
