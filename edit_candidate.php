@@ -54,11 +54,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 <body>
 <?php include 'header2.php';?>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">Nevaeh Technology</a>
-    </div>
-</nav>
 
 <div class="container mt-5">
     <h2 class="text-center">Edit Candidate Details</h2>
