@@ -1,0 +1,51 @@
+Java,question,option1,option2,option3,option4,correct_option,level,status
+Java,What is the default value of an instance variable in Java?,null,0,Depends on type,Not assigned,2,1,1
+Java,Which keyword is used to define a constant variable in Java?,static,final,const,immutable,2,1,1
+Java,What is the size of an int variable in Java?,2 bytes,4 bytes,8 bytes,Depends on OS,2,1,1
+Java,Which method is called when an object is garbage collected?,finalize(),destroy(),clean(),remove(),1,1,1
+Java,Which of these is not a Java feature?,Object-Oriented,Platform Dependent,Portable,Robust,2,1,1
+Java,Which data type is used to store decimal numbers in Java?,int,double,char,boolean,2,1,1
+Java,Which of these is a valid declaration of a main method in Java?,public static int main(),public void main(),public static void main(),void main(),3,1,1
+Java,What is the superclass of all classes in Java?,Object,Main,Super,Parent,1,1,1
+Java,Which of these access modifiers allows visibility only within the same package?,public,private,protected,default,4,1,1
+Java,Which loop is used when the number of iterations is known?,while,do-while,for,switch,3,1,1
+Java,Which Java feature allows methods to have the same name but different parameters?,Polymorphism,Encapsulation,Inheritance,Abstraction,1,2,1
+Java,Which exception is thrown when dividing by zero?,NullPointerException,ArithmeticException,ArrayIndexOutOfBoundsException,IOException,2,2,1
+Java,Which of these collections stores key-value pairs?,ArrayList,LinkedList,HashMap,Vector,3,2,1
+Java,Which Java keyword is used to create an interface?,interface,class,implements,abstract,1,2,1
+Java,What will happen if you try to compile a Java class without a main method?,It will run normally,It will compile but not run,It will not compile,It will throw an error,2,2,1
+Java,Which design pattern ensures only one instance of a class?,Factory,Singleton,Adapter,Decorator,2,3,1
+Java,Which of these allows dynamic method binding?,Method Overloading,Method Overriding,Encapsulation,Abstraction,2,3,1
+Java,Which Java API is used for parallel execution of tasks?,Collections,ExecutorService,Stream API,Reflection,2,3,1
+Java,Which statement is true about Java Reflection API?,Used for memory management,Used for runtime object modification,Improves performance,Only for debugging,2,3,1
+Java,Which class is used for reading data from files?,FileWriter,FileReader,BufferedReader,Scanner,3,3,1
+Java,Sample Java MCQ Question 21?,Option A,Option B,Option C,Option D,2,1,1
+Java,Sample Java MCQ Question 22?,Option A,Option B,Option C,Option D,3,2,1
+Java,Sample Java MCQ Question 23?,Option A,Option B,Option C,Option D,4,3,1
+Java,Sample Java MCQ Question 24?,Option A,Option B,Option C,Option D,1,1,1
+Java,Sample Java MCQ Question 25?,Option A,Option B,Option C,Option D,2,2,1
+Java,Sample Java MCQ Question 26?,Option A,Option B,Option C,Option D,3,3,1
+Java,Sample Java MCQ Question 27?,Option A,Option B,Option C,Option D,4,1,1
+Java,Sample Java MCQ Question 28?,Option A,Option B,Option C,Option D,1,2,1
+Java,Sample Java MCQ Question 29?,Option A,Option B,Option C,Option D,2,3,1
+Java,Sample Java MCQ Question 30?,Option A,Option B,Option C,Option D,3,1,1
+Java,Sample Java MCQ Question 31?,Option A,Option B,Option C,Option D,4,2,1
+Java,Sample Java MCQ Question 32?,Option A,Option B,Option C,Option D,1,3,1
+Java,Sample Java MCQ Question 33?,Option A,Option B,Option C,Option D,2,1,1
+Java,Sample Java MCQ Question 34?,Option A,Option B,Option C,Option D,3,2,1
+Java,Sample Java MCQ Question 35?,Option A,Option B,Option C,Option D,4,3,1
+Java,Sample Java MCQ Question 36?,Option A,Option B,Option C,Option D,1,1,1
+Java,Sample Java MCQ Question 37?,Option A,Option B,Option C,Option D,2,2,1
+Java,Sample Java MCQ Question 38?,Option A,Option B,Option C,Option D,3,3,1
+Java,Sample Java MCQ Question 39?,Option A,Option B,Option C,Option D,4,1,1
+Java,Sample Java MCQ Question 40?,Option A,Option B,Option C,Option D,1,2,1
+Java,Sample Java MCQ Question 41?,Option A,Option B,Option C,Option D,2,3,1
+Java,Sample Java MCQ Question 42?,Option A,Option B,Option C,Option D,3,1,1
+Java,Sample Java MCQ Question 43?,Option A,Option B,Option C,Option D,4,2,1
+Java,Sample Java MCQ Question 44?,Option A,Option B,Option C,Option D,1,3,1
+Java,Sample Java MCQ Question 45?,Option A,Option B,Option C,Option D,2,1,1
+Java,Sample Java MCQ Question 46?,Option A,Option B,Option C,Option D,3,2,1
+Java,Sample Java MCQ Question 47?,Option A,Option B,Option C,Option D,4,3,1
+Java,Sample Java MCQ Question 48?,Option A,Option B,Option C,Option D,1,1,1
+Java,Sample Java MCQ Question 49?,Option A,Option B,Option C,Option D,2,2,1
+Java,Sample Java MCQ Question 50?,Option A,Option B,Option C,Option D,3,3,1

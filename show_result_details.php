@@ -1,6 +1,8 @@
 <?php
+
 // Start session or initialize environment
 session_start();
+include 'conn.php';
 
 // Check if 'id' is passed in the URL
 if (!isset($_GET['id']) || empty($_GET['id'])) {
@@ -12,7 +14,7 @@ if (!isset($_GET['id']) || empty($_GET['id'])) {
 $candidate_id = intval($_GET['id']);
 
 // Database connection
-include 'conn.php';
+
 //$conn = new mysqli("localhost", "root", "", "nevaeh_exam");
 
 // Check connection
@@ -21,7 +23,7 @@ if ($conn->connect_error) {
 }
 
 // Fetch candidate's name and exam type from the `candidates` table
-$candidate_sql = "SELECT name, exam_type FROM candidates WHERE id = $candidate_id";
+$candidate_sql = "SELECT * FROM candidates WHERE id = $candidate_id";
 $candidate_result = $conn->query($candidate_sql);
 
 if ($candidate_result->num_rows === 0) {
@@ -46,8 +48,10 @@ $results = $conn->query($results_sql);
 <div class="container mt-5">
     <h2 class="text-center">Candidate Exam Results</h2>
     <div class="mb-4">
-        <p><strong>Name:</strong> <?php echo htmlspecialchars($candidate['name']); ?></p>
+        <p><strong>Candidate Name:</strong> <?php echo htmlspecialchars($candidate['name']); ?></p>
         <p><strong>Exam Type:</strong> <?php echo htmlspecialchars($candidate['exam_type']); ?></p>
+        <p><strong>Total Question:</strong> <?php echo htmlspecialchars($candidate['total_questions']); ?></p>
+        <p><strong>Scored Marks:</strong> <?php echo htmlspecialchars($candidate['total_marks']); ?></p>
     </div>
 
     <?php if ($results->num_rows > 0) { ?>

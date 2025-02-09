@@ -110,6 +110,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_exam'])) {
         }
     }
 
+$total_questions = $questions_result->num_rows;
+// Update the candidate's total_questions count
+$update_questions_stmt = $conn->prepare("UPDATE candidates SET total_questions = ? WHERE id = ?");
+$update_questions_stmt->bind_param("ii", $total_questions, $candidate_id);
+$update_questions_stmt->execute();
+
     // Insert the overall result
     $insert_result_stmt = $conn->prepare("INSERT INTO results (candidate_id, exam_type, marks_obtained) VALUES (?, ?, ?)");
     $insert_result_stmt->bind_param("isi", $candidate_id, $exam_type, $score);
@@ -161,10 +167,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_exam'])) {
             while ($question = $questions_result->fetch_assoc()) { ?>
                 <div class="mb-3">
                     <p><strong>Q<?php echo $question_number++; ?>.</strong><?php echo htmlspecialchars($question['question']); ?></p>
-                    <input type="radio" name="<?php echo $question['id']; ?>" value="1" required> <?php echo htmlspecialchars($question['option1']); ?><br>
-                    <input type="radio" name="<?php echo $question['id']; ?>" value="2"> <?php echo htmlspecialchars($question['option2']); ?><br>
-                    <input type="radio" name="<?php echo $question['id']; ?>" value="3"> <?php echo htmlspecialchars($question['option3']); ?><br>
-                    <input type="radio" name="<?php echo $question['id']; ?>" value="4"> <?php echo htmlspecialchars($question['option4']); ?><br>
+                    <input type="radio" name="<?php echo $question['id']; ?>" value="1" required> a)<?php echo htmlspecialchars($question['option1']); ?><br>
+                    <input type="radio" name="<?php echo $question['id']; ?>" value="2"> b)<?php echo htmlspecialchars($question['option2']); ?><br>
+                    <input type="radio" name="<?php echo $question['id']; ?>" value="3"> c)<?php echo htmlspecialchars($question['option3']); ?><br>
+                    <input type="radio" name="<?php echo $question['id']; ?>" value="4"> d)<?php echo htmlspecialchars($question['option4']); ?><br>
                 </div>
             <?php } ?>
 

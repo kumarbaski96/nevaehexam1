@@ -1,30 +1,48 @@
-exam_type,question,option1,option2,option3,option4,correct_option,level
-Java,Which keyword is used to define a constant in Java?,final,static,const,constant,1,1
-Java,What is the superclass of all Java classes?,Object,Class,Base,Super,1,1
-Java,Which of these is not a valid Java identifier?,_valid,2invalid,$valid,validName,2,1
-Java,Which package is automatically imported in every Java program?,java.util,java.io,java.lang,javax.swing,3,1
-Java,Which of these data types can store fractional values?,int,boolean,float,byte,3,1
-Java,Which keyword is used for exception handling in Java?,try,catch,throw,All of the above,4,1
-Java,What will be the output of System.out.println(3 + 5 * 2)?,16,13,10,11,2,1
-Java,Which of these is used to take user input in Java?,Scanner,BufferedReader,InputStream,All of the above,4,1
-Java,Which operator is used to allocate memory for an object?,new,alloc,malloc,create,1,1
-Java,What will be the output of System.out.println(10 == 10)?,true,false,Error,10,1,1
-Java,Which of these is not a primitive data type?,char,byte,enum,double,3,2
-Java,Which method must be implemented by a Java class that implements Runnable?,run(),start(),execute(),process(),1,2
-Java,Which keyword is used to inherit a class in Java?,extends,implements,super,this,1,2
-Java,Which of the following is not an access modifier?,private,protected,internal,public,3,2
-Java,Which method is called when an object is destroyed?,finalize(),destroy(),exit(),terminate(),1,2
-Java,Which loop executes at least once in Java?,for,while,do-while,foreach,3,2
-Java,Which exception is thrown when an array index is out of bounds?,IOException,NullPointerException,ArrayIndexOutOfBoundsException,NumberFormatException,3,2
-Java,Which keyword is used to stop a loop immediately?,break,continue,exit,return,1,2
-Java,What is the default size of an int in Java?,2 bytes,4 bytes,8 bytes,16 bytes,2,2
-Java,Which operator is used for bitwise AND in Java?,&,|,^,&&,1,2
-Java,Which of these is not a type of constructor in Java?,Default,Parameterized,Static,Copy,3,2
-Java,What will be the output of System.out.println(5 | 3)?,2,8,7,5,3,2
-Java,Which of these is a marker interface in Java?,Cloneable,Serializable,Runnable,Both 1 and 2,4,3
-Java,Which collection does not allow duplicate values?,List,Set,Map,Queue,2,3
-Java,Which method is used to get the length of an array in Java?,length(),size(),length,capacity(),3,3
-Java,Which of these allows method overloading?,Different return types,Same parameter types,Same method names but different parameters,None of the above,3,3
-Java,Which class is used to generate random numbers in Java?,Random,Math,SecureRandom,NumberGenerator,1,3
-Java,What is the default value of an uninitialized String in Java?,null,"",Undefined,0,1,3
-Java,Which method is used to compare two strings in Java?,equals(),==,compareTo(),Both 1 and 3,4,3
+Python,What is the output of print(2 ** 3)?,6,8,9,16,2,1,1
+Python,Which of the following is a mutable data type in Python?,Tuple,String,List,Set,3,1,1
+Python,What keyword is used to define a function in Python?,func,define,def,lambda,3,1,1
+Python,What will be the output of print(type([]))?,List,<class 'list'>,Tuple,<class 'tuple'>,2,1,1
+Python,Which method is used to add an item to a list?,append(),add(),insert(),extend(),1,1,1
+Python,What will be the result of 10 // 3?,3.33,3,4,Error,2,1,1
+Python,Which statement is used to exit a loop?,return,exit,break,stop,3,1,1
+Python,How do you start a comment in Python?,//,#,--,/*,2,1,1
+Python,What is the output of bool([])?,True,False,Error,None,2,1,1
+Python,Which module is used for regular expressions in Python?,re,regex,pyre,regexp,1,1,1
+Python,What is the output of len('Python')?,5,6,7,Error,2,1,1
+Python,Which of these is used for reading input in Python?,cin,scanf,input(),read(),3,1,1
+Python,Which of the following is NOT a valid variable name in Python?,my_var,2var,_var,varName,2,1,1
+Python,What will be the output of 'Hello' + 'World'?,'Hello World','HelloWorld',Hello+World,Error,2,1,1
+Python,What data type does the expression 5 / 2 return in Python 3?,int,float,double,Error,2,1,1
+Python,Which of the following is used to create an empty set?,{},set(),[],(),2,1,1
+Python,What does the 'in' keyword do?,Checks membership,Performs bitwise operation,Compares values,None of the above,1,1,1
+Python,How do you define a block of code in Python?,Using {},Using indentation,Using brackets,Using 'begin' and 'end',2,1,1
+Python,Which function is used to convert a string to an integer?,str(),int(),float(),toInt(),2,1,1
+Python,What is the default return type of input()?,int,string,float,bool,2,1,1
+Python,What does the 'is' operator check?,Value equality,Identity equality,Both,None,2,1,1
+Python,Which module is used for handling dates and times in Python?,time,datetime,date,calendar,2,1,1
+Python,What is the output of print(3 * 'abc')?,'abcabcabc','abc*abc*abc','abcabc',Error,1,1,1
+Python,Which method is used to remove an item from a dictionary?,remove(),del,discard(),pop(),4,1,1
+Python,What does range(5) return?,1,2,3,4,5,0,1,2,3,4,0,1,2,3,4,5,Error,2,1,1
+Python,Which of the following is used to check if a key exists in a dictionary?,exists(),in,has_key(),find(),2,1,1
+Python,Which symbol is used for single-line comments in Python?,#,//,--,/*,1,1,1
+Python,Which data type is immutable?,List,Dictionary,Tuple,Set,3,1,1
+Python,What is the correct way to open a file for reading in Python?,open('file.txt', 'r'),open('file.txt', 'w'),open('file.txt', 'rw'),open('file.txt'),1,1,1
+Python,What is the purpose of the 'finally' block in exception handling?,To define the exception,To execute code regardless of exceptions,To catch all exceptions,None of the above,2,1,1
+Python,What does the 'pass' keyword do?,Terminates the loop,Skips the current iteration,Does nothing,Raises an error,3,1,1
+Python,Which method converts all characters of a string to lowercase?,toLower(),lower(),tolowercase(),casefold(),2,1,1
+Python,Which of the following statements is correct about Python?,It is compiled only,It is interpreted only,It is both compiled and interpreted,None,3,1,1
+Python,How do you create a dictionary?,{1,2,3},{key: value},[key:value],(key,value),2,1,1
+Python,Which of the following is used to handle exceptions in Python?,try-except,catch-throw,handle(),error-catch,1,1,1
+Python,Which function is used to get the length of a list?,count(),size(),length(),len(),4,1,1
+Python,What is the purpose of the 'with' statement?,To handle file operations,To define loops,To declare functions,To handle lists,1,1,1
+Python,Which keyword is used to create a class in Python?,class,Class,define,object,1,1,1
+Python,What is the output of print(3 == 3.0)?,True,False,Error,None,1,1,1
+Python,Which of the following creates a tuple?,[],{},(),<>,3,1,1
+Python,Which of the following is an assignment operator?,==,=,===,=>,2,1,1
+Python,What will be the result of bool('False')?,True,False,Error,None,1,1,1
+Python,What will be the result of 'Hello'.find('e')?,1,2,3,-1,2,1,1
+Python,Which function is used to get a substring from a string?,substr(),slice(),substring(),split(),2,1,1
+Python,Which module is used to generate random numbers in Python?,random,rand,math,numbers,1,1,1
+Python,How do you create a set?,{1,2,3},[1,2,3],(1,2,3),<1,2,3>,1,1,1
+Python,Which function converts an integer to a string?,str(),string(),toString(),convert(),1,1,1
+Python,What is the result of type(10) in Python?,<class 'int'>,int,integer,<type 'int'>,1,1,1
