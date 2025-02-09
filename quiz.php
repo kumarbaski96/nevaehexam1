@@ -116,19 +116,19 @@ $update_questions_stmt = $conn->prepare("UPDATE candidates SET total_questions =
 $update_questions_stmt->bind_param("ii", $total_questions, $candidate_id);
 $update_questions_stmt->execute();
 
-    // Insert the overall result
-    $insert_result_stmt = $conn->prepare("INSERT INTO results (candidate_id, exam_type, marks_obtained) VALUES (?, ?, ?)");
-    $insert_result_stmt->bind_param("isi", $candidate_id, $exam_type, $score);
-    $insert_result_stmt->execute();
+// Insert the overall result
+$insert_result_stmt = $conn->prepare("INSERT INTO results (candidate_id, exam_type, marks_obtained) VALUES (?, ?, ?)");
+$insert_result_stmt->bind_param("isi", $candidate_id, $exam_type, $score);
+$insert_result_stmt->execute();
 
-    // Update candidate status and total marks
-    $update_stmt = $conn->prepare("UPDATE candidates SET total_marks = ?, status = 'Completed', is_exam_completed = 1 WHERE id = ?");
-    $update_stmt->bind_param("ii", $score, $candidate_id);
-    $update_stmt->execute();
+// Update candidate status and total marks
+$update_stmt = $conn->prepare("UPDATE candidates SET total_marks = ?, status = 'Completed', is_exam_completed = 1 WHERE id = ?");
+$update_stmt->bind_param("ii", $score, $candidate_id);
+$update_stmt->execute();
 
-    // Notify the user and redirect
-    echo "<script>alert('Exam Completed. Your Score: $score'); window.location='index.php';</script>";
-    exit;
+// Notify the user and redirect
+echo "<script>alert('Exam Completed. Your Score: $score'); window.location='index.php';</script>";
+exit;
 }
 ?>
 <!DOCTYPE html>
@@ -167,10 +167,10 @@ $update_questions_stmt->execute();
             while ($question = $questions_result->fetch_assoc()) { ?>
                 <div class="mb-3">
                     <p><strong>Q<?php echo $question_number++; ?>.</strong><?php echo htmlspecialchars($question['question']); ?></p>
-                    <input type="radio" name="<?php echo $question['id']; ?>" value="1" required> a)<?php echo htmlspecialchars($question['option1']); ?><br>
-                    <input type="radio" name="<?php echo $question['id']; ?>" value="2"> b)<?php echo htmlspecialchars($question['option2']); ?><br>
-                    <input type="radio" name="<?php echo $question['id']; ?>" value="3"> c)<?php echo htmlspecialchars($question['option3']); ?><br>
-                    <input type="radio" name="<?php echo $question['id']; ?>" value="4"> d)<?php echo htmlspecialchars($question['option4']); ?><br>
+                    <input type="radio" name="<?php echo $question['id']; ?>" value="1" required> A)<?php echo htmlspecialchars($question['option1']); ?><br>
+                    <input type="radio" name="<?php echo $question['id']; ?>" value="2"> B)<?php echo htmlspecialchars($question['option2']); ?><br>
+                    <input type="radio" name="<?php echo $question['id']; ?>" value="3"> C)<?php echo htmlspecialchars($question['option3']); ?><br>
+                    <input type="radio" name="<?php echo $question['id']; ?>" value="4"> D)<?php echo htmlspecialchars($question['option4']); ?><br>
                 </div>
             <?php } ?>
 
