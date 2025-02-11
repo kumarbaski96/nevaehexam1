@@ -1,84 +1,40 @@
-
 <?php
-include 'conn.php';
-require 'vendor/autoload.php';
+// Import PHPMailer classes into the global namespace
 use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;  // <-- ADD THIS LINE
 use PHPMailer\PHPMailer\Exception;
 
-require __DIR__ . '/PHPMailer/src/Exception.php';
-require __DIR__ . '/PHPMailer/src/PHPMailer.php';
-require __DIR__ . '/PHPMailer/src/SMTP.php';
 
-echo "PHPMailer loaded successfully!";
-// Ensure database connection exists
-if (!isset($conn)) {
-    die("Database connection not found.");
+require 'PHPMailer/src/Exception.php';
+require 'PHPMailer/src/PHPMailer.php';
+require 'PHPMailer/src/SMTP.php';
+
+
+// Create an instance; passing `true` enables exceptions
+$mail = new PHPMailer(true);
+
+try {
+    // Server settings
+    $mail->SMTPDebug = SMTP::DEBUG_SERVER; // Enable verbose debug output
+    $mail->isSMTP(); // Send using SMTP
+    $mail->Host       = 'smtp.gmail.com'; // Set the SMTP server to send through
+    $mail->SMTPAuth   = true; // Enable SMTP authentication
+    $mail->Username   = 'baski12.kumar@gmail.com'; // SMTP username
+    $mail->Password   = 'byqptwrieivhrmbx'; // SMTP password
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS; // Enable implicit TLS encryption
+    $mail->Port       = 465; // TCP port to connect to
+
+    // Recipients
+    $mail->setFrom('baski12.kumar@gmail.com', 'Mailer');
+    $mail->addAddress('kumarbaski96@gmail.com', 'Joe User'); // Add a recipient
+
+    // Content
+    $mail->isHTML(true); // Set email format to HTML
+    $mail->Subject = 'Here is the subject';
+    $mail->Body    = 'This is the HTML message body <b>in bold!</b>';
+
+    $mail->send();
+    echo 'Message has been sent';
+} catch (Exception $e) {
+    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
 }
-
-// Fetch candidate's email
-$candidateQuery = $conn->prepare("SELECT email FROM candidates WHERE id = ?");
-$candidateQuery->bind_param("i", $candidate_id);
-$candidateQuery->execute();
-$result = $candidateQuery->get_result();
-
-if ($result->num_rows > 0) {
-    $candidateData = $result->fetch_assoc();
-    $candidateEmail = $candidateData['email'];
-
-    // Email subject and HTML body
-    $subject = "Your Exam Results - $exam_type";
-    $message = "
-        <html>
-        <head>
-            <title>Your Exam Results</title>
-        </head>
-        <body>
-            <p>Dear <strong>$name</strong>,</p>
-            <p>Your exam has been successfully completed.</p>
-            <p><strong>Exam Type:</strong> $exam_type</p>
-            <p><strong>Marks Obtained:</strong> $score / $total_questions</p>
-            <p>Thank you for participating.</p>
-            <p>Best regards,<br>Exam Portal Team</p>
-        </body>
-        </html>
-    ";
-
-    // Initialize PHPMailer
-    $mail = new PHPMailer(true);
-
-    try {
-        // SMTP Server Configuration
-        $mail->isSMTP();
-        $mail->Host = 'smtp.gmail.com'; // Replace with your SMTP host
-        $mail->SMTPAuth = true;
-        $mail->Username = 'baski12.kumar@gmailcom';   // Your SMTP username
-        $mail->Password = 'jtmh hlzb vold mpin';     // Your SMTP password
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-        $mail->Port = 587;
-
-        // Email Sender & Recipient
-        $mail->setFrom('no-reply@gmail.com', 'Exam Portal');
-        $mail->addAddress($candidateEmail, $name);
-        $mail->isHTML(true);
-
-        // Email Content
-        $mail->Subject = $subject;
-        $mail->Body    = $message;
-        $mail->AltBody = strip_tags($message); // Plain text alternative
-
-        // Send Email
-        if ($mail->send()) {
-            error_log("Email sent successfully to $candidateEmail");
-        } else {
-            error_log("Email failed to send: " . $mail->ErrorInfo);
-        }
-    } catch (Exception $e) {
-        error_log("Email could not be sent. Error: " . $mail->ErrorInfo);
-    }
-} else {
-    error_log("Error: Candidate email not found.");
-}
-?>
-
-      
-       

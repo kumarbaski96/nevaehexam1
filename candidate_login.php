@@ -1,35 +1,6 @@
 <?php
 include 'conn.php';
 
-// Candidate Registration
-// if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register'])) {
-//     $name = $_POST['name'];
-//     $mobile = $_POST['mobile'];
-//     $email = $_POST['email'];
-//     $password = $_POST['password'];
-//     $confirm_password = $_POST['confirm_password'];
-//     $exam_type = $_POST['exam_type'];
-//     $designation = $_POST['designation'];
-
-//     // Check if the email is already registered
-//     $check_email_query = "SELECT * FROM candidates WHERE email = '$email'";
-//     $check_email_result = $conn->query($check_email_query);
-
-//     if ($check_email_result->num_rows > 0) {
-//         echo "<script>alert('Email is already registered. Please login or use a different email.');</script>";
-//     }
-//     elseif ($password !== $confirm_password) {
-//         echo "<script>alert('Passwords do not match!');</script>";
-//     } else {
-//         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-//         $sql = "INSERT INTO candidates (name, mobile, email, password, exam_type, designation) VALUES ('$name', '$mobile', '$email', '$hashed_password', '$exam_type', '$designation')";
-//         if ($conn->query($sql) === TRUE) {
-//             echo "<script>alert('Registration Successful');</script>";
-//         } else {
-//             echo "Error: " . $sql . "<br>" . $conn->error;
-//         }
-//     }
-// }
 
 // Candidate Login
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
