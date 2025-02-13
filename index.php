@@ -22,7 +22,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register'])) {
         echo "<script>alert('Passwords do not match!');</script>";
     } else {
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-        $sql = "INSERT INTO candidates (name, mobile, email, password, exam_type, designation) VALUES ('$name', '$mobile', '$email', '$hashed_password', '$exam_type', '$designation')";
+        $sql = "INSERT INTO candidates (name, mobile, email, password, exam_type, designation, exam_duration) 
+        VALUES ('$name', '$mobile', '$email', '$hashed_password', '$exam_type', '$designation', 3600)";
+
+        //$sql = "INSERT INTO candidates (name, mobile, email, password, exam_type, designation) VALUES ('$name', '$mobile', '$email', '$hashed_password', '$exam_type', '$designation')";
         if ($conn->query($sql) === TRUE) {
             echo "<script>alert('Registration Successful');</script>";
         } else {
@@ -50,10 +53,36 @@ if (!$exam_types) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
     <style>
         body {
-            background-color: #f8f9fa;
+            background-color: #f4f6f9;
+            font-family: 'Arial', sans-serif;
         }
         .container {
-            margin-top: 50px; 
+            margin-top: 50px;
+            max-width: 450px;
+        }
+        .card {
+            border-radius: 12px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+            background: white;
+            padding: 20px;
+        }
+        .btn-primary {
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            border: none;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+        .btn-primary:hover {
+            background: linear-gradient(to right, #2575fc, #6a11cb);
+        }
+        .form-label {
+            font-weight: bold;
+            color: #333;
+        }
+        .form-control {
+            border-radius: 6px;
+            border: 1px solid #ccc;
         }
     </style>
 </head>
@@ -214,6 +243,12 @@ if (!$exam_types) {
             }
         });
     });
+</script>
+<script>
+    history.pushState(null, null, location.href);
+    window.onpopstate = function () {
+        history.go(1);
+    };
 </script>
 </body>
 </html>

@@ -66,11 +66,15 @@ $exam_code = isset($_POST['exam_code']) ? $_POST['exam_code'] : '';
         button:hover {
             background: #564b93;
         }
+        p{
+            color: red;
+        }
     </style>
 </head>
 <body>
 
     <div class="container">
+        <p>This is for one time login perpose after login you have to finish the exam other wise you cant login again. </p> 
         <h2>Start Examination</h2>
         <form action="quiz.php" method="POST">
             <label for="examCode">Please enter your Exam code</label>

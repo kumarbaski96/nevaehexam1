@@ -45,100 +45,108 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exam Portal</title>
+    <title>Candidate Login - Exam Portal</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
     <style>
         body {
-            background-color: #f8f9fa;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Poppins', sans-serif;
         }
-        .container {
-            margin-top: 50px;
+        .login-container {
+            background: #fff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+        .login-container h2 {
+            color: #6a11cb;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        .form-control {
+            border-radius: 8px;
+            padding: 12px;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+        .form-control:focus {
+            border-color: #6a11cb;
+            box-shadow: 0 0 10px rgba(106, 17, 203, 0.2);
+        }
+        .btn-custom {
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: #fff;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 18px;
+            transition: 0.3s;
+            width: 100%;
+        }
+        .btn-custom:hover {
+            opacity: 0.9;
+        }
+        .btn-secondary {
+            border-radius: 8px;
+            padding: 12px;
+            width: 100%;
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1 class="text-center">Welcome Candidate Login Page</h1>
-
-        <!-- Registration Form -->
-       
-
-        <!-- Login Form -->
-        <div class="card">
-            <div class="card-header">Candidate Login</div>
-            <div class="card-body">
-            <form method="POST" onsubmit="return validateForm()">
-    <div class="mb-3">
-        <label for="email" class="form-label">Email</label>
-        <input type="email" 
-               class="form-control" 
-               id="email" 
-               name="email" 
-               placeholder="Enter your email (e.g., example@domain.com)" 
-               required>
-        <small id="emailError" class="text-danger"></small>
-    </div>
-    <div class="mb-3">
-        <label for="password" class="form-label">Password</label>
-        <input type="password" 
-               class="form-control" 
-               id="password" 
-               name="password" 
-               placeholder="Password must include one uppercase letter, one digit, and one special character" 
-               required>
-        <small id="passwordError" class="text-danger"></small>
-    </div>
-    <button type="submit" name="login" class="btn btn-success">Login</button>
-    <a href="javascript:void(0);" class="btn btn-secondary" onclick="window.location.href='index.php';">Go Back</a>
-</form>
+    <div class="login-container">
+        <h2>Candidate Login</h2>
+        <form method="POST" onsubmit="return validateForm()">
+            <div class="mb-3">
+                <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
+                <small id="emailError" class="text-danger"></small>
             </div>
-        </div>
+            <div class="mb-3">
+                <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
+                <small id="passwordError" class="text-danger"></small>
+            </div>
+            <button type="submit" name="login" class="btn btn-custom">Login</button>
+            <a href="index.php" class="btn btn-secondary">Go Back</a>
+        </form>
     </div>
+
     <script>
-    // Real-time validation for email and password
-    const emailField = document.getElementById('email');
-    const passwordField = document.getElementById('password');
-    const emailError = document.getElementById('emailError');
-    const passwordError = document.getElementById('passwordError');
+        const emailField = document.getElementById('email');
+        const passwordField = document.getElementById('password');
+        const emailError = document.getElementById('emailError');
+        const passwordError = document.getElementById('passwordError');
 
-    emailField.addEventListener('input', () => {
-        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Ensures '@' and '.' are present
-        if (!emailPattern.test(emailField.value)) {
-            emailError.textContent = "Please enter a valid email address (e.g., example@domain.com).";
-        } else {
-            emailError.textContent = "";
+        emailField.addEventListener('input', () => {
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            emailError.textContent = emailPattern.test(emailField.value) ? "" : "Invalid email format.";
+        });
+
+        passwordField.addEventListener('input', () => {
+            const passwordPattern = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
+            passwordError.textContent = passwordPattern.test(passwordField.value) ? "" : "Invalid password format.";
+        });
+
+        function validateForm() {
+            if (!emailField.value.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+                alert("Invalid email format.");
+                emailField.focus();
+                return false;
+            }
+            if (!passwordField.value.match(/^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/)) {
+                alert("Invalid password format.");
+                passwordField.focus();
+                return false;
+            }
+            return true;
         }
-    });
-
-    passwordField.addEventListener('input', () => {
-        const passwordPattern = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
-        if (!passwordPattern.test(passwordField.value)) {
-            passwordError.textContent = "Password must be at least 8 characters long, include one uppercase letter, one digit, and one special character.";
-        } else {
-            passwordError.textContent = "";
-        }
-    });
-
-    // Form submission validation
-    function validateForm() {
-        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        const passwordPattern = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
-
-        if (!emailPattern.test(emailField.value)) {
-            alert("Invalid email format. Please enter a valid email address.");
-            emailField.focus();
-            return false;
-        }
-
-        if (!passwordPattern.test(passwordField.value)) {
-            alert("Invalid password. Password must be at least 8 characters long, include one uppercase letter, one digit, and one special character.");
-            passwordField.focus();
-            return false;
-        }
-
-        return true;
-    }
-</script>
-    
+    </script>
 </body>
 </html>

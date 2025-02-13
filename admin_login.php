@@ -46,101 +46,91 @@ $conn->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exam Portal</title>
+    <title>Admin Login | Exam Portal</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
     <style>
         body {
-            background-color: #f8f9fa;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-        .container {
-            margin-top: 50px;
+        .login-container {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            width: 100%;
+            color: white;
+        }
+        .form-control {
+            border-radius: 8px;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+        }
+        .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        .btn-custom {
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: #fff;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            transition: 0.3s;
+            width: 100%;
+        }
+        .btn-custom:hover {
+            opacity: 0.9;
+        }
+        .text-danger {
+            font-size: 0.9em;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1 class="text-center">Admin Login Page</h1>
-
-        <!-- Registration Form -->
-       
-
-        <!-- Login Form -->
-        <div class="card">
-            <div class="card-header">Admin Login</div>
-            <div class="card-body">
-            <form method="POST" onsubmit="return validateForm()">
-    <div class="mb-3">
-        <label for="email" class="form-label">Email</label>
-        <input type="email" 
-               class="form-control" 
-               id="email" 
-               name="email" 
-               placeholder="Enter your email (e.g., example@domain.com)" 
-               required>
-        <small id="emailError" class="text-danger"></small>
-    </div>
-    <div class="mb-3">
-        <label for="password" class="form-label">Password</label>
-        <input type="password" 
-               class="form-control" 
-               id="password" 
-               name="password" 
-               placeholder="Password must include one uppercase letter, one digit, and one special character" 
-               required>
-        <small id="passwordError" class="text-danger"></small>
-    </div>
-    <button type="submit" name="login" class="btn btn-success">Login</button>
-    <a href="javascript:void(0);" class="btn btn-secondary" onclick="window.location.href='index.php';">Go Back</a>
-</form>
-                
+    <div class="login-container">
+        <h2 class="text-center">Admin Login</h2>
+        <form method="POST" onsubmit="return validateForm()">
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
+                <small id="emailError" class="text-danger"></small>
             </div>
-        </div>
-        
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
+                <small id="passwordError" class="text-danger"></small>
+            </div>
+            <button type="submit" name="login" class="btn btn-custom">Login</button>
+        </form>
     </div>
+    
     <script>
-    // Real-time validation for email and password
-    const emailField = document.getElementById('email');
-    const passwordField = document.getElementById('password');
-    const emailError = document.getElementById('emailError');
-    const passwordError = document.getElementById('passwordError');
+        const emailField = document.getElementById('email');
+        const passwordField = document.getElementById('password');
+        const emailError = document.getElementById('emailError');
+        const passwordError = document.getElementById('passwordError');
 
-    emailField.addEventListener('input', () => {
-        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Ensures '@' and '.' are present
-        if (!emailPattern.test(emailField.value)) {
-            emailError.textContent = "Please enter a valid email address (e.g., example@domain.com).";
-        } else {
-            emailError.textContent = "";
+        emailField.addEventListener('input', () => {
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            emailError.textContent = emailPattern.test(emailField.value) ? "" : "Invalid email format.";
+        });
+
+        passwordField.addEventListener('input', () => {
+            const passwordPattern = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
+            passwordError.textContent = passwordPattern.test(passwordField.value) ? "" : "Password must be 8+ chars, 1 uppercase, 1 number, 1 special char.";
+        });
+
+        function validateForm() {
+            return emailError.textContent === "" && passwordError.textContent === "";
         }
-    });
-
-    passwordField.addEventListener('input', () => {
-        const passwordPattern = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
-        if (!passwordPattern.test(passwordField.value)) {
-            passwordError.textContent = "Password must be at least 8 characters long, include one uppercase letter, one digit, and one special character.";
-        } else {
-            passwordError.textContent = "";
-        }
-    });
-
-    // Form submission validation
-    function validateForm() {
-        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        const passwordPattern = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
-
-        if (!emailPattern.test(emailField.value)) {
-            alert("Invalid email format. Please enter a valid email address.");
-            emailField.focus();
-            return false;
-        }
-
-        if (!passwordPattern.test(passwordField.value)) {
-            alert("Invalid password. Password must be at least 8 characters long, include one uppercase letter, one digit, and one special character.");
-            passwordField.focus();
-            return false;
-        }
-
-        return true;
-    }
-</script>
+    </script>
 </body>
 </html>
+
