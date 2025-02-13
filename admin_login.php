@@ -1,4 +1,3 @@
-
 <?php
 // Include the database connection file
 include 'conn.php';
@@ -10,24 +9,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
     $password = $_POST['password'];
 
     // Prepared statement to fetch admin credentials
-    $query = "SELECT * FROM admins WHERE email = ? AND password = ?";
+    $query = "SELECT * FROM admins WHERE email = ?";
     $stmt = $conn->prepare($query);
-
+    
     if ($stmt) {
-        $stmt->bind_param("ss", $email, $password);
+        $stmt->bind_param("s", $email);
         $stmt->execute();
         $result = $stmt->get_result();
 
         if ($result->num_rows > 0) {
             $admin = $result->fetch_assoc();
 
-            // Set session variables for the admin
-            $_SESSION['admin_id'] = $admin['id'];
-            $_SESSION['admin_email'] = $admin['email'];
+            // Verify the hashed password
+            if (password_verify($password, $admin['password'])) {
+                // Set session variables for the admin
+                $_SESSION['admin_id'] = $admin['id'];
+                $_SESSION['admin_email'] = $admin['email'];
 
-            // Redirect to the candidates page
-            header("Location: show_candidate.php");
-            exit();
+                // Redirect to the candidates page
+                header("Location: show_candidate.php");
+                exit();
+            } else {
+                echo "<script>alert('Invalid email or password. Please try again.');</script>";
+            }
         } else {
             echo "<script>alert('Invalid email or password. Please try again.');</script>";
         }
@@ -109,9 +113,9 @@ $conn->close();
             </div>
             <button type="submit" name="login" class="btn btn-custom">Login</button>
             <p class="text-center mt-3">
-    <a href="update_admin_email.php">Forgot Email?</a> |
-    <a href="update_admin_password.php">Forgot Password?</a>
-</p>
+                <a href="update_admin_email.php">Update Email?</a> |
+                <a href="update_admin_password.php">Forgot Password?</a>
+            </p>
         </form>
     </div>
     
@@ -137,4 +141,3 @@ $conn->close();
     </script>
 </body>
 </html>
-

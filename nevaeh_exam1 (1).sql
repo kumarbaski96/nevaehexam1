@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 09, 2025 at 04:49 PM
+-- Generation Time: Feb 13, 2025 at 07:21 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -38,7 +38,7 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id`, `email`, `password`) VALUES
-(1, 'admin@example.com', 'Admin@123');
+(1, 'info@admin.com', '$2y$10$pISRXxGrnxpgbJ0oiuspe.UlRHkotTAoXVKYDnfFsFLJG5kQgrfLS');
 
 -- --------------------------------------------------------
 
@@ -67,9 +67,12 @@ CREATE TABLE `candidates` (
 --
 
 INSERT INTO `candidates` (`id`, `name`, `mobile`, `email`, `password`, `exam_type`, `designation`, `total_questions`, `total_marks`, `sec_code`, `exam_duration`, `status`, `is_exam_completed`) VALUES
-(16, 'Baski Saw', '7488162756', 'baski12.kumar@gmail.com', '$2y$10$LRCnEWS/rcbayy2JJHTIJuEhrBVQ9OTYqYr.2UlapYyjN6kg/yxKi', 'Python', 'Software Developer', 16, 4, '2GPIY6', '1800', 'Completed', 1),
+(16, 'Baski Saw', '7488162756', 'baski12.kumar@gmail.com', '$2y$10$C2O4hR8VUrZnuARMBmg4xeknABfvhzKzB0.DqG6.bHlVEY9JYN1bS', 'Python', 'Software Developer', 10, 6, 'R9V6Y2', '3600', 'Completed', 1),
 (17, 'Manoj Kumar', '9876567898', 'manoj@gmail.com', '$2y$10$Q3LiK4rGm7ORDJi6ob9myuAojt9ziSFwwOQy0BM21e.uUtZAl5RLq', 'Python', 'Software Developer', 0, 6, 'GDEMQT', '3600', 'Completed', 1),
-(18, 'Krishna Kumar', '8977652356', 'krishna@gmail.com', '$2y$10$FnSRCQU.0sABcqmGwAYl4e5ocRp3TroQ7IBCMKNg/pYGidGR6L8eS', 'Python', 'Software Developer', 0, 5, 'LHB64U', '3600', 'Completed', 1);
+(18, 'Krishna Kumar', '8977652356', 'krishna@gmail.com', '$2y$10$FnSRCQU.0sABcqmGwAYl4e5ocRp3TroQ7IBCMKNg/pYGidGR6L8eS', 'Python', 'Software Developer', 0, 5, 'LHB64U', '3600', 'Completed', 1),
+(19, 'Basanti Kumari Mandal', '7250126243', 'basanti@gmail.com', '$2y$10$NIl1eVD.7tGUEnfR15nJZ.RUZp6JUXjSTajC24ZnrsM.qDsoovSLq', 'Python', 'Software Developer', 8, 3, 'CVB45Y', '3600', 'Completed', 1),
+(20, 'Manoj Kumar', '8809815253', 'manojaarav685@gmail.com', '$2y$10$PJv9MZeRIV7n8lszmaVi3eHtxNvTzEWrwIiuz4pVuhBac1LkEAoe6', 'Python', 'Software Developer', 8, 7, 'CVB45Y', '3600', 'Completed', 1),
+(21, 'Anshu', '9876789876', 'anshu@gmail.com', '$2y$10$s9n3Np6yMgFWGmRkhWGdGOPeWmFhV0fdiMxuM2MrjSaXEr1shUAdS', 'Java', 'Software Developer', 0, 0, '', '3600', '', 0);
 
 -- --------------------------------------------------------
 
@@ -97,7 +100,8 @@ CREATE TABLE `candidate_personal_details` (
 INSERT INTO `candidate_personal_details` (`id`, `candidate_id`, `dob`, `gender`, `nationality`, `address`, `city`, `state`, `zip_code`, `created_at`) VALUES
 (2, 16, '1992-09-07', 'Male', 'Indian', 'Dhaiya ,Dhanbad', 'Dhanbad', 'Jharkhand', '826004', '2025-02-01 04:32:23'),
 (3, 16, '1992-09-07', 'Male', 'Indian', 'Meddle School Road,Dhaiya ,Dhanbad', 'Dhanbad', 'Jharkhand', '826004', '2025-02-01 04:34:34'),
-(4, 18, '2025-02-04', 'Male', 'Indian', 'Dhaiya ,Dhanbad', 'Dhanbad', 'Jharkhand', '826004', '2025-02-06 11:17:34');
+(4, 18, '2025-02-04', 'Male', 'Indian', 'Dhaiya ,Dhanbad', 'Dhanbad', 'Jharkhand', '826004', '2025-02-06 11:17:34'),
+(5, 20, '1989-10-05', 'Male', 'Indian', 'Middle School Road ,Dhaiya ,Dhanbad', 'Dhanbad', 'Jharkhand', '826004', '2025-02-11 17:29:27');
 
 -- --------------------------------------------------------
 
@@ -122,7 +126,8 @@ INSERT INTO `exam_type_menu` (`id`, `exam_type`, `status`) VALUES
 (6, 'Aptitude', 1),
 (7, 'Java', 1),
 (8, 'C', 1),
-(9, 'PHP', 1);
+(9, 'PHP', 1),
+(10, 'HTML', 1);
 
 -- --------------------------------------------------------
 
@@ -301,7 +306,57 @@ INSERT INTO `questions` (`id`, `exam_type`, `question`, `option1`, `option2`, `o
 (374, 'Python', 'Which module is used to generate random numbers in Python?', 'random', 'rand', 'math', 'numbers', 1, 1, 1),
 (375, 'Python', 'How do you create a set?', '{1', '2', '3}', '[1', 2, 2, 1),
 (376, 'Python', 'Which function converts an integer to a string?', 'str()', 'string()', 'toString()', 'convert()', 1, 3, 1),
-(377, 'Python', 'What is the result of type(10) in Python?', '<class \'int\'>', 'int', 'integer', '<type \'int\'>', 1, 1, 1);
+(377, 'Python', 'What is the result of type(10) in Python?', '<class \'int\'>', 'int', 'integer', '<type \'int\'>', 1, 1, 1),
+(378, 'Java', 'What is the answer to question 1?', 'Option 1 for Q1', 'Option 2 for Q1', 'Option 3 for Q1', 'Option 4 for Q1', 1, 3, 1),
+(379, 'Java', 'What is the answer to question 2?', 'Option 1 for Q2', 'Option 2 for Q2', 'Option 3 for Q2', 'Option 4 for Q2', 4, 3, 1),
+(380, 'Java', 'What is the answer to question 3?', 'Option 1 for Q3', 'Option 2 for Q3', 'Option 3 for Q3', 'Option 4 for Q3', 2, 2, 1),
+(381, 'Java', 'What is the answer to question 4?', 'Option 1 for Q4', 'Option 2 for Q4', 'Option 3 for Q4', 'Option 4 for Q4', 4, 2, 1),
+(382, 'Java', 'What is the answer to question 5?', 'Option 1 for Q5', 'Option 2 for Q5', 'Option 3 for Q5', 'Option 4 for Q5', 3, 3, 1),
+(383, 'Java', 'What is the answer to question 6?', 'Option 1 for Q6', 'Option 2 for Q6', 'Option 3 for Q6', 'Option 4 for Q6', 3, 1, 1),
+(384, 'Java', 'What is the answer to question 7?', 'Option 1 for Q7', 'Option 2 for Q7', 'Option 3 for Q7', 'Option 4 for Q7', 2, 2, 1),
+(385, 'Java', 'What is the answer to question 8?', 'Option 1 for Q8', 'Option 2 for Q8', 'Option 3 for Q8', 'Option 4 for Q8', 1, 3, 1),
+(386, 'Java', 'What is the answer to question 9?', 'Option 1 for Q9', 'Option 2 for Q9', 'Option 3 for Q9', 'Option 4 for Q9', 4, 3, 1),
+(387, 'Java', 'What is the answer to question 10?', 'Option 1 for Q10', 'Option 2 for Q10', 'Option 3 for Q10', 'Option 4 for Q10', 4, 2, 1),
+(388, 'Java', 'What is the answer to question 11?', 'Option 1 for Q11', 'Option 2 for Q11', 'Option 3 for Q11', 'Option 4 for Q11', 2, 2, 1),
+(389, 'Java', 'What is the answer to question 12?', 'Option 1 for Q12', 'Option 2 for Q12', 'Option 3 for Q12', 'Option 4 for Q12', 3, 1, 1),
+(390, 'Java', 'What is the answer to question 13?', 'Option 1 for Q13', 'Option 2 for Q13', 'Option 3 for Q13', 'Option 4 for Q13', 3, 2, 1),
+(391, 'Java', 'What is the answer to question 14?', 'Option 1 for Q14', 'Option 2 for Q14', 'Option 3 for Q14', 'Option 4 for Q14', 3, 2, 1),
+(392, 'Java', 'What is the answer to question 15?', 'Option 1 for Q15', 'Option 2 for Q15', 'Option 3 for Q15', 'Option 4 for Q15', 1, 3, 1),
+(393, 'Java', 'What is the answer to question 16?', 'Option 1 for Q16', 'Option 2 for Q16', 'Option 3 for Q16', 'Option 4 for Q16', 1, 1, 1),
+(394, 'Java', 'What is the answer to question 17?', 'Option 1 for Q17', 'Option 2 for Q17', 'Option 3 for Q17', 'Option 4 for Q17', 4, 1, 1),
+(395, 'Java', 'What is the answer to question 18?', 'Option 1 for Q18', 'Option 2 for Q18', 'Option 3 for Q18', 'Option 4 for Q18', 2, 2, 1),
+(396, 'Java', 'What is the answer to question 19?', 'Option 1 for Q19', 'Option 2 for Q19', 'Option 3 for Q19', 'Option 4 for Q19', 1, 1, 1),
+(397, 'Java', 'What is the answer to question 20?', 'Option 1 for Q20', 'Option 2 for Q20', 'Option 3 for Q20', 'Option 4 for Q20', 4, 2, 1),
+(398, 'Java', 'What is the answer to question 21?', 'Option 1 for Q21', 'Option 2 for Q21', 'Option 3 for Q21', 'Option 4 for Q21', 3, 3, 1),
+(399, 'Java', 'What is the answer to question 22?', 'Option 1 for Q22', 'Option 2 for Q22', 'Option 3 for Q22', 'Option 4 for Q22', 3, 3, 1),
+(400, 'Java', 'What is the answer to question 23?', 'Option 1 for Q23', 'Option 2 for Q23', 'Option 3 for Q23', 'Option 4 for Q23', 4, 3, 1),
+(401, 'Java', 'What is the answer to question 24?', 'Option 1 for Q24', 'Option 2 for Q24', 'Option 3 for Q24', 'Option 4 for Q24', 3, 2, 1),
+(402, 'Java', 'What is the answer to question 25?', 'Option 1 for Q25', 'Option 2 for Q25', 'Option 3 for Q25', 'Option 4 for Q25', 1, 3, 1),
+(403, 'Java', 'What is the answer to question 26?', 'Option 1 for Q26', 'Option 2 for Q26', 'Option 3 for Q26', 'Option 4 for Q26', 4, 3, 1),
+(404, 'Java', 'What is the answer to question 27?', 'Option 1 for Q27', 'Option 2 for Q27', 'Option 3 for Q27', 'Option 4 for Q27', 1, 3, 1),
+(405, 'Java', 'What is the answer to question 28?', 'Option 1 for Q28', 'Option 2 for Q28', 'Option 3 for Q28', 'Option 4 for Q28', 3, 3, 1),
+(406, 'Java', 'What is the answer to question 29?', 'Option 1 for Q29', 'Option 2 for Q29', 'Option 3 for Q29', 'Option 4 for Q29', 3, 3, 1),
+(407, 'Java', 'What is the answer to question 30?', 'Option 1 for Q30', 'Option 2 for Q30', 'Option 3 for Q30', 'Option 4 for Q30', 3, 1, 1),
+(408, 'Java', 'What is the answer to question 31?', 'Option 1 for Q31', 'Option 2 for Q31', 'Option 3 for Q31', 'Option 4 for Q31', 2, 3, 1),
+(409, 'Java', 'What is the answer to question 32?', 'Option 1 for Q32', 'Option 2 for Q32', 'Option 3 for Q32', 'Option 4 for Q32', 2, 3, 1),
+(410, 'Java', 'What is the answer to question 33?', 'Option 1 for Q33', 'Option 2 for Q33', 'Option 3 for Q33', 'Option 4 for Q33', 4, 2, 1),
+(411, 'Java', 'What is the answer to question 34?', 'Option 1 for Q34', 'Option 2 for Q34', 'Option 3 for Q34', 'Option 4 for Q34', 3, 1, 1),
+(412, 'Java', 'What is the answer to question 35?', 'Option 1 for Q35', 'Option 2 for Q35', 'Option 3 for Q35', 'Option 4 for Q35', 2, 3, 1),
+(413, 'Java', 'What is the answer to question 36?', 'Option 1 for Q36', 'Option 2 for Q36', 'Option 3 for Q36', 'Option 4 for Q36', 3, 1, 1),
+(414, 'Java', 'What is the answer to question 37?', 'Option 1 for Q37', 'Option 2 for Q37', 'Option 3 for Q37', 'Option 4 for Q37', 3, 3, 1),
+(415, 'Java', 'What is the answer to question 38?', 'Option 1 for Q38', 'Option 2 for Q38', 'Option 3 for Q38', 'Option 4 for Q38', 2, 3, 1),
+(416, 'Java', 'What is the answer to question 39?', 'Option 1 for Q39', 'Option 2 for Q39', 'Option 3 for Q39', 'Option 4 for Q39', 2, 1, 1),
+(417, 'Java', 'What is the answer to question 40?', 'Option 1 for Q40', 'Option 2 for Q40', 'Option 3 for Q40', 'Option 4 for Q40', 1, 2, 1),
+(418, 'Java', 'What is the answer to question 41?', 'Option 1 for Q41', 'Option 2 for Q41', 'Option 3 for Q41', 'Option 4 for Q41', 4, 2, 1),
+(419, 'Java', 'What is the answer to question 42?', 'Option 1 for Q42', 'Option 2 for Q42', 'Option 3 for Q42', 'Option 4 for Q42', 1, 1, 1),
+(420, 'Java', 'What is the answer to question 43?', 'Option 1 for Q43', 'Option 2 for Q43', 'Option 3 for Q43', 'Option 4 for Q43', 1, 2, 1),
+(421, 'Java', 'What is the answer to question 44?', 'Option 1 for Q44', 'Option 2 for Q44', 'Option 3 for Q44', 'Option 4 for Q44', 3, 2, 1),
+(422, 'Java', 'What is the answer to question 45?', 'Option 1 for Q45', 'Option 2 for Q45', 'Option 3 for Q45', 'Option 4 for Q45', 4, 1, 1),
+(423, 'Java', 'What is the answer to question 46?', 'Option 1 for Q46', 'Option 2 for Q46', 'Option 3 for Q46', 'Option 4 for Q46', 1, 3, 1),
+(424, 'Java', 'What is the answer to question 47?', 'Option 1 for Q47', 'Option 2 for Q47', 'Option 3 for Q47', 'Option 4 for Q47', 4, 2, 1),
+(425, 'Java', 'What is the answer to question 48?', 'Option 1 for Q48', 'Option 2 for Q48', 'Option 3 for Q48', 'Option 4 for Q48', 4, 2, 1),
+(426, 'Java', 'What is the answer to question 49?', 'Option 1 for Q49', 'Option 2 for Q49', 'Option 3 for Q49', 'Option 4 for Q49', 4, 3, 1),
+(427, 'Java', 'What is the answer to question 50?', 'Option 1 for Q50', 'Option 2 for Q50', 'Option 3 for Q50', 'Option 4 for Q50', 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -327,137 +382,16 @@ CREATE TABLE `question_bank` (
 --
 
 INSERT INTO `question_bank` (`id`, `question_id`, `exam_type`, `code`, `question`, `option1`, `option2`, `option3`, `option4`, `correct_option`) VALUES
-(85, 16, 'Analytical', 'MUQX10', 'How do you handle missing values in a DataFrame?', 'A) df.dropna()', 'B) df.fillna()', 'C) df.replace_na()', 'D) Both A and B', 4),
-(86, 14, 'Analytical', 'MUQX10', 'In logistic regression, what type of dependent variable is used?', 'A) Continuous', 'B) Ordinal', 'C) Binary', 'D) Nominal with more than two categories', 3),
-(87, 3, 'Analytical', 'MUQX10', 'Which of these describes the Debt-to-Equity Ratio?', 'A) A measure of a company\'s profitability', 'B) A ratio comparing the company\'s total liabilities to its shareholder equity', 'C) A ratio assessing the efficiency of a company\'s operations', 'D) A measure of the company\'s market value', 2),
-(88, 21, 'Aptitude', 'H2KB5R', 'Which of the following is the correct extension of Python files?', 'a) .python', 'b) .py', 'c) .pyt', 'd) .pyc', 2),
-(89, 29, 'Aptitude', 'H2KB5R', 'Which keyword is used to define a variable in Python?', 'a) var', 'b) def', 'c) int', 'd) No keyword is required', 4),
-(90, 23, 'Aptitude', 'H2KB5R', 'What will be the output of the following code?<br>print(type(2))', 'a) <class \'float\'>', 'b) <class \'int\'>', 'c) <class \'bool\'>', 'd) <class \'NoneType\'>', 2),
-(91, 16, 'Aptitude', 'H2KB5R', 'How do you handle missing values in a DataFrame?', 'A) df.dropna()', 'B) df.fillna()', 'C) df.replace_na()', 'D) Both A and B', 4),
-(92, 5, 'Aptitude', 'H2KB5R', 'What is the purpose of the R-squared value in regression analysis?', 'A) To measure the strength and direction of the linear relationship between two variables', 'B) To determine the significance of regression coefficients', 'C) To quantify the proportion of variation in the dependent variable explained by the independent variables', 'D) To test for the presence of multicollinearity', 3),
-(93, 6, 'Aptitude', 'H2KB5R', 'What is the primary purpose of a confusion matrix in evaluating a classification model?', 'A) To summarize the performance of a regression model', 'B) To display the true positives, true negatives, false positives, and false negatives', 'C) To visualize the distribution of data', 'D) To calculate the mean absolute error', 2),
-(94, 4, 'Aptitude', '1T6VA4', 'In a linear regression model, what does the coefficient of an independent variable represent?', 'A) The average value of the dependent variable', 'B) The change in the dependent variable for a one-unit change in the independent variable', 'C) The total sum of squares of the dependent variable', 'D) The intercept of the regression line', 2),
-(95, 7, 'Aptitude', '1T6VA4', 'Which machine learning algorithm is best suited for predicting stock prices?', 'A) K-means clustering', 'B) Linear regression', 'C) Decision trees', 'D) Apriori algorithm', 2),
-(96, 5, 'Aptitude', '1T6VA4', 'What is the purpose of the R-squared value in regression analysis?', 'A) To measure the strength and direction of the linear relationship between two variables', 'B) To determine the significance of regression coefficients', 'C) To quantify the proportion of variation in the dependent variable explained by the independent variables', 'D) To test for the presence of multicollinearity', 3),
-(97, 20, 'Aptitude', '1T6VA4', 'Which type of data visualization is used to show the distribution of a dataset?', 'A) Line chart', 'B) Scatter plot', 'C) Histogram', 'D) Pie chart', 3),
-(98, 12, 'Aptitude', '1T6VA4', 'What does the term \"Big Data\" refer to in the context of financial analysis?', 'A) Large volumes of structured and unstructured data that can be analyzed for insights', 'B) Small, manageable sets of data used for daily operations', 'C) Data stored in traditional databases', 'D) Data primarily used for marketing purposes', 1),
-(99, 9, 'Aptitude', '1T6VA4', 'Which type of neural network is best suited for sequential data, such as financial time series?', 'A) Convolutional Neural Network (CNN)', 'B) Recurrent Neural Network (RNN)', 'C) Feedforward Neural Network', 'D) Generative Adversarial Network (GAN)', 2),
-(100, 24, 'Aptitude', '1T6VA4', 'What is the correct syntax to create a function in Python?', 'a) function myFunction():', 'b) def myFunction():', 'c) create myFunction():', 'd) function: myFunction()', 2),
-(101, 21, 'Aptitude', '1T6VA4', 'Which of the following is the correct extension of Python files?', 'a) .python', 'b) .py', 'c) .pyt', 'd) .pyc', 2),
-(102, 25, 'Aptitude', '1T6VA4', 'How do you insert a comment in Python code?', 'a)// This is a comment', 'b) /* This is a comment */', 'c) # This is a comment', 'd) -- This is a comment', 3),
-(103, 29, 'Aptitude', '1T6VA4', 'Which keyword is used to define a variable in Python?', 'a) var', 'b) def', 'c) int', 'd) No keyword is required', 4),
-(104, 26, 'Aptitude', '1T6VA4', 'Which of the following will create a list in Python?', 'a)	[1, 2, 3]', 'b)	(1, 2, 3)', 'c)	{1, 2, 3}', 'd)	1, 2, 3', 1),
-(105, 34, 'Aptitude', '1T6VA4', 'How do you add an element to the end of a list in Python?', 'a) list.add()', 'b) list.append()', 'c) list.push()', 'd) list.insert()', 2),
-(106, 4, 'Aptitude', 'BW3KYR', 'In a linear regression model, what does the coefficient of an independent variable represent?', 'A) The average value of the dependent variable', 'B) The change in the dependent variable for a one-unit change in the independent variable', 'C) The total sum of squares of the dependent variable', 'D) The intercept of the regression line', 2),
-(107, 19, 'Aptitude', 'BW3KYR', 'In the context of data science, what does the term \"feature\" refer to?', 'A) The target variable to be predicted', 'B) The output of the model', 'C) An individual measurable property or characteristic of a phenomenon being observed', 'D) The algorithm used for modeling', 3),
-(108, 8, 'Aptitude', 'BW3KYR', 'What does \"over fitting\" mean in the context of machine learning?', 'A) The model performs poorly on training data but well on test data', 'B) The model performs well on training data but poorly on test data', 'C) The model uses too few features', 'D) The model is unable to make any predictions', 2),
-(109, 5, 'Aptitude', 'BW3KYR', 'What is the purpose of the R-squared value in regression analysis?', 'A) To measure the strength and direction of the linear relationship between two variables', 'B) To determine the significance of regression coefficients', 'C) To quantify the proportion of variation in the dependent variable explained by the independent variables', 'D) To test for the presence of multicollinearity', 3),
-(110, 6, 'Aptitude', 'BW3KYR', 'What is the primary purpose of a confusion matrix in evaluating a classification model?', 'A) To summarize the performance of a regression model', 'B) To display the true positives, true negatives, false positives, and false negatives', 'C) To visualize the distribution of data', 'D) To calculate the mean absolute error', 2),
-(111, 9, 'Aptitude', 'BW3KYR', 'Which type of neural network is best suited for sequential data, such as financial time series?', 'A) Convolutional Neural Network (CNN)', 'B) Recurrent Neural Network (RNN)', 'C) Feedforward Neural Network', 'D) Generative Adversarial Network (GAN)', 2),
-(112, 32, 'Aptitude', 'BW3KYR', 'Which of the following is not a valid data type in Python?', 'a)	int', 'b)	float', 'c)	real', 'd)	str', 3),
-(113, 21, 'Aptitude', 'BW3KYR', 'Which of the following is the correct extension of Python files?', 'a) .python', 'b) .py', 'c) .pyt', 'd) .pyc', 2),
-(114, 22, 'Aptitude', 'BW3KYR', 'Which of the following is used to define a block of code in Python?', 'a) Curly braces {}', 'b) Parentheses ()', 'c) Indentation', 'd) Semi-colon ;', 3),
-(115, 25, 'Aptitude', 'BW3KYR', 'How do you insert a comment in Python code?', 'a)// This is a comment', 'b) /* This is a comment */', 'c) # This is a comment', 'd) -- This is a comment', 3),
-(116, 33, 'Aptitude', 'BW3KYR', 'What is the output of the following code?<br>\\r\\na = [1, 2, 3, 4, 5]<br>\\r\\nprint(a[2:4])<br>\\r\\n', 'a) [2, 3]', 'b) [3, 4]', 'c) [1, 2, 3]', 'd) [2, 3, 4]', 4),
-(117, 23, 'Aptitude', 'BW3KYR', 'What will be the output of the following code?<br>print(type(2))', 'a) <class \'float\'>', 'b) <class \'int\'>', 'c) <class \'bool\'>', 'd) <class \'NoneType\'>', 2),
-(118, 34, 'Aptitude', 'BW3KYR', 'How do you add an element to the end of a list in Python?', 'a) list.add()', 'b) list.append()', 'c) list.push()', 'd) list.insert()', 2),
-(119, 31, 'Aptitude', 'BW3KYR', 'What will be the output of the following code?<br>\\r\\nx = 5.0<br>\\r\\nprint(x == 5)<br>\\r\\n', 'a) True', 'b) False', 'c) 5', '4) Error', 1),
-(120, 1, 'Analytical', 'Z1PKDN', 'Which financial ratio measures a company\'s ability to meet its short-term obligations?', 'A) Return on Equity (ROE)', 'B) Current Ratio', 'C) Debt-to-Equity Ratio', 'D) Gross Profit Margin', 2),
-(121, 4, 'Analytical', 'Z1PKDN', 'In a linear regression model, what does the coefficient of an independent variable represent?', 'A) The average value of the dependent variable', 'B) The change in the dependent variable for a one-unit change in the independent variable', 'C) The total sum of squares of the dependent variable', 'D) The intercept of the regression line', 2),
-(122, 19, 'Analytical', 'Z1PKDN', 'In the context of data science, what does the term \"feature\" refer to?', 'A) The target variable to be predicted', 'B) The output of the model', 'C) An individual measurable property or characteristic of a phenomenon being observed', 'D) The algorithm used for modeling', 3),
-(123, 7, 'Analytical', 'Z1PKDN', 'Which machine learning algorithm is best suited for predicting stock prices?', 'A) K-means clustering', 'B) Linear regression', 'C) Decision trees', 'D) Apriori algorithm', 2),
-(124, 20, 'Analytical', 'Z1PKDN', 'Which type of data visualization is used to show the distribution of a dataset?', 'A) Line chart', 'B) Scatter plot', 'C) Histogram', 'D) Pie chart', 3),
-(125, 14, 'Analytical', 'Z1PKDN', 'In logistic regression, what type of dependent variable is used?', 'A) Continuous', 'B) Ordinal', 'C) Binary', 'D) Nominal with more than two categories', 3),
-(126, 8, 'Analytical', 'Z1PKDN', 'What does \"over fitting\" mean in the context of machine learning?', 'A) The model performs poorly on training data but well on test data', 'B) The model performs well on training data but poorly on test data', 'C) The model uses too few features', 'D) The model is unable to make any predictions', 2),
-(127, 12, 'Analytical', 'Z1PKDN', 'What does the term \"Big Data\" refer to in the context of financial analysis?', 'A) Large volumes of structured and unstructured data that can be analyzed for insights', 'B) Small, manageable sets of data used for daily operations', 'C) Data stored in traditional databases', 'D) Data primarily used for marketing purposes', 1),
-(128, 9, 'Analytical', 'Z1PKDN', 'Which type of neural network is best suited for sequential data, such as financial time series?', 'A) Convolutional Neural Network (CNN)', 'B) Recurrent Neural Network (RNN)', 'C) Feedforward Neural Network', 'D) Generative Adversarial Network (GAN)', 2),
-(129, 18, 'Analytical', 'Z1PKDN', 'What does the mean() function compute in statistics?', 'A) The median of a dataset', 'B) The mode of a dataset', 'C) The average value of a dataset', 'D) The range of a dataset', 3),
-(130, 24, 'Python', 'CVB45Y', 'What is the correct syntax to create a function in Python?', 'a) function myFunction():', 'b) def myFunction():', 'c) create myFunction():', 'd) function: myFunction()', 2),
-(131, 21, 'Python', 'CVB45Y', 'Which of the following is the correct extension of Python files?', 'a) .python', 'b) .py', 'c) .pyt', 'd) .pyc', 2),
-(132, 27, 'Python', 'CVB45Y', 'What does the len() function do?', 'a) Returns the length of a string', 'b) Returns the length of a list or string', 'c) Returns the size of the memory used by an object', 'd) Counts the number of spaces in a string', 2),
-(133, 29, 'Python', 'CVB45Y', 'Which keyword is used to define a variable in Python?', 'a) var', 'b) def', 'c) int', 'd) No keyword is required', 4),
-(134, 25, 'Python', 'CVB45Y', 'How do you insert a comment in Python code?', 'a)// This is a comment', 'b) /* This is a comment */', 'c) # This is a comment', 'd) -- This is a comment', 3),
-(135, 33, 'Python', 'CVB45Y', 'What is the output of the following code?<br>\\r\\na = [1, 2, 3, 4, 5]<br>\\r\\nprint(a[2:4])<br>\\r\\n', 'a) [2, 3]', 'b) [3, 4]', 'c) [1, 2, 3]', 'd) [2, 3, 4]', 4),
-(136, 23, 'Python', 'CVB45Y', 'What will be the output of the following code?<br>print(type(2))', 'a) <class \'float\'>', 'b) <class \'int\'>', 'c) <class \'bool\'>', 'd) <class \'NoneType\'>', 2),
-(137, 31, 'Python', 'CVB45Y', 'What will be the output of the following code?<br>\\r\\nx = 5.0<br>\\r\\nprint(x == 5)<br>\\r\\n', 'a) True', 'b) False', 'c) 5', '4) Error', 1),
-(138, 135, 'java', 'OEZ25F', 'In Java', ' which of the following is a wrapper class for `int`?', ' a) Integer', ' b) IntWrapper', ' c) IntegerWrapper', 0),
-(139, 142, 'java', 'OEZ25F', 'Which of the following will compile correctly in Java?', ' a) String[] arr = new String[10];', ' b) String arr[] = new String[10];', ' c) Both a and b', ' d) None of the above', 3),
-(140, 161, 'Java', 'OEZ25F', 'In Java', ' which of the following is a wrapper class for `int`?', ' a) Integer', ' b) IntWrapper', ' c) IntegerWrapper', 0),
-(141, 164, 'Java', 'OEZ25F', 'In Java', ' which method is used to compare two strings?', ' a) compareTo()', ' b) equals()', ' c) compare()', 0),
-(142, 132, 'java', 'OEZ25F', 'Which of the following is used to define a method in Java?', ' a) function', ' b) method', ' c) def', ' d) void', 4),
-(143, 96, 'java', 'OEZ25F', 'In Java', ' which of the following will throw an exception?', ' a) int x = 10 / 0;', ' b) int x = 10 / 2;', ' c) int x = 10 % 2;', 0),
-(144, 157, 'Java', 'OEZ25F', 'Which of the following keywords is used to create a class in Java?', ' a) class', ' b) object', ' c) def', ' d) function', 1),
-(145, 129, 'java', 'OEZ25F', 'What is the size of a `long` data type in Java?', ' a) 32 bits', ' b) 64 bits', ' c) 16 bits', ' d) 128 bits', 2),
-(146, 177, 'Java', 'OEZ25F', 'What does the `this` keyword refer to in Java?', ' a) The current class', ' b) The current object', ' c) The parent class', ' d) None of the above', 2),
-(147, 106, 'java', 'OEZ25F', 'Which of the following is used to define a method in Java?', ' a) function', ' b) method', ' c) def', ' d) void', 4),
-(148, 155, 'Java', 'OEZ25F', 'What is the size of a `long` data type in Java?', ' a) 32 bits', ' b) 64 bits', ' c) 16 bits', ' d) 128 bits', 2),
-(149, 152, 'Java', 'OEZ25F', 'What is the correct syntax for creating a new object of the \'String\' class in Java?', ' a) String str = new String();', ' b) String str = \'new String\';', ' c) String str = \'String\';', ' d) String str = new String(\'Hello\');', 1),
-(150, 109, 'java', 'OEZ25F', 'In Java', ' which of the following is a wrapper class for `int`?', ' a) Integer', ' b) IntWrapper', ' c) IntegerWrapper', 0),
-(151, 94, 'java', 'OEZ25F', 'What does the \'final\' keyword do in Java?', ' a) It makes the variable constant', ' b) It makes the method final and cannot be overridden', ' c) It prevents inheritance of a class', ' d) All of the above', 4),
-(152, 118, 'java', 'OEZ25F', 'What does the `super()` keyword do in Java?', ' a) Calls the constructor of the parent class', ' b) Calls the method of the parent class', ' c) It refers to the current class', ' d) None of the above', 1),
-(153, 165, 'Java', 'OEZ25F', 'Which of the following is true about the `ArrayList` class in Java?', ' a) It is a part of the Java collection framework', ' b) It allows duplicate elements', ' c) It resizes dynamically', ' d) All of the above', 4),
-(154, 175, 'Java', 'OEZ25F', 'What is the default value of a reference variable in Java?', ' a) null', ' b) 0', ' c) false', ' d) Undefined', 1),
-(155, 101, 'java', 'OEZ25F', 'Which method is used to find the length of a string in Java?', ' a) length()', ' b) size()', ' c) getSize()', ' d) getLength()', 1),
-(156, 134, 'java', 'OEZ25F', 'Which of the following is true about the `String` class in Java?', ' a) It is mutable', ' b) It is immutable', ' c) It is thread-unsafe', ' d) It is an abstract class', 2),
-(157, 159, 'Java', 'OEZ25F', 'Which exception does the code `Thread.sleep(-1000);` throw in Java?', ' a) IllegalArgumentException', ' b) InterruptedException', ' c) ArithmeticException', ' d) NullPointerException', 1),
-(158, 113, 'java', 'OEZ25F', 'Which of the following is true about the `ArrayList` class in Java?', ' a) It is a part of the Java collection framework', ' b) It allows duplicate elements', ' c) It resizes dynamically', ' d) All of the above', 4),
-(159, 153, 'Java', 'OEZ25F', 'Which method is used to find the length of a string in Java?', ' a) length()', ' b) size()', ' c) getSize()', ' d) getLength()', 1),
-(160, 138, 'java', 'OEZ25F', 'In Java', ' which method is used to compare two strings?', ' a) compareTo()', ' b) equals()', ' c) compare()', 0),
-(161, 163, 'Java', 'OEZ25F', 'What is the default value of an instance variable in Java?', ' a) null', ' b) 0', ' c) false', ' d) Depends on the type', 4),
-(162, 21, 'Python', 'GDEMQT', 'Which of the following is the correct extension of Python files?', 'a) .python', 'b) .py', 'c) .pyt', 'd) .pyc', 2),
-(163, 27, 'Python', 'GDEMQT', 'What does the len() function do?', 'a) Returns the length of a string', 'b) Returns the length of a list or string', 'c) Returns the size of the memory used by an object', 'd) Counts the number of spaces in a string', 2),
-(164, 32, 'Python', 'GDEMQT', 'Which of the following is not a valid data type in Python?', 'a)	int', 'b)	float', 'c)	real', 'd)	str', 3),
-(165, 33, 'Python', 'GDEMQT', 'What is the output of the following code?<br>\\r\\na = [1, 2, 3, 4, 5]<br>\\r\\nprint(a[2:4])<br>\\r\\n', 'a) [2, 3]', 'b) [3, 4]', 'c) [1, 2, 3]', 'd) [2, 3, 4]', 4),
-(166, 25, 'Python', 'GDEMQT', 'How do you insert a comment in Python code?', 'a)// This is a comment', 'b) /* This is a comment */', 'c) # This is a comment', 'd) -- This is a comment', 3),
-(167, 22, 'Python', 'GDEMQT', 'Which of the following is used to define a block of code in Python?', 'a) Curly braces {}', 'b) Parentheses ()', 'c) Indentation', 'd) Semi-colon ;', 3),
-(168, 26, 'Python', 'GDEMQT', 'Which of the following will create a list in Python?', 'a)	[1, 2, 3]', 'b)	(1, 2, 3)', 'c)	{1, 2, 3}', 'd)	1, 2, 3', 1),
-(169, 34, 'Python', 'GDEMQT', 'How do you add an element to the end of a list in Python?', 'a) list.add()', 'b) list.append()', 'c) list.push()', 'd) list.insert()', 2),
-(170, 31, 'Python', 'GDEMQT', 'What will be the output of the following code?<br>\\r\\nx = 5.0<br>\\r\\nprint(x == 5)<br>\\r\\n', 'a) True', 'b) False', 'c) 5', '4) Error', 1),
-(171, 23, 'Python', 'GDEMQT', 'What will be the output of the following code?<br>print(type(2))', 'a) <class \'float\'>', 'b) <class \'int\'>', 'c) <class \'bool\'>', 'd) <class \'NoneType\'>', 2),
-(172, 10, 'Aptitude', 'DXOEZJ', 'What is the purpose of the train-test split in machine learning?', 'A) To increase the size of the training data', 'B) To ensure the model is not overfitting', 'C) To optimize the model\\\'s hyperparameters', 'D) To validate the model on unseen data', 4),
-(173, 14, 'Aptitude', 'DXOEZJ', 'In logistic regression, what type of dependent variable is used?', 'A) Continuous', 'B) Ordinal', 'C) Binary', 'D) Nominal with more than two categories', 3),
-(174, 12, 'Aptitude', 'DXOEZJ', 'What does the term \"Big Data\" refer to in the context of financial analysis?', 'A) Large volumes of structured and unstructured data that can be analyzed for insights', 'B) Small, manageable sets of data used for daily operations', 'C) Data stored in traditional databases', 'D) Data primarily used for marketing purposes', 1),
-(175, 32, 'Aptitude', 'DXOEZJ', 'Which of the following is not a valid data type in Python?', 'a)	int', 'b)	float', 'c)	real', 'd)	str', 3),
-(176, 33, 'Aptitude', 'DXOEZJ', 'What is the output of the following code?<br>\\r\\na = [1, 2, 3, 4, 5]<br>\\r\\nprint(a[2:4])<br>\\r\\n', 'a) [2, 3]', 'b) [3, 4]', 'c) [1, 2, 3]', 'd) [2, 3, 4]', 4),
-(177, 23, 'Aptitude', 'DXOEZJ', 'What will be the output of the following code?<br>print(type(2))', 'a) <class \'float\'>', 'b) <class \'int\'>', 'c) <class \'bool\'>', 'd) <class \'NoneType\'>', 2),
-(178, 21, 'Python', 'LHB64U', 'Which of the following is the correct extension of Python files?', 'a) .python', 'b) .py', 'c) .pyt', 'd) .pyc', 2),
-(179, 24, 'Python', 'LHB64U', 'What is the correct syntax to create a function in Python?', 'a) function myFunction():', 'b) def myFunction():', 'c) create myFunction():', 'd) function: myFunction()', 2),
-(180, 27, 'Python', 'LHB64U', 'What does the len() function do?', 'a) Returns the length of a string', 'b) Returns the length of a list or string', 'c) Returns the size of the memory used by an object', 'd) Counts the number of spaces in a string', 2),
-(181, 33, 'Python', 'LHB64U', 'What is the output of the following code?<br>\\r\\na = [1, 2, 3, 4, 5]<br>\\r\\nprint(a[2:4])<br>\\r\\n', 'a) [2, 3]', 'b) [3, 4]', 'c) [1, 2, 3]', 'd) [2, 3, 4]', 4),
-(182, 29, 'Python', 'LHB64U', 'Which keyword is used to define a variable in Python?', 'a) var', 'b) def', 'c) int', 'd) No keyword is required', 4),
-(183, 25, 'Python', 'LHB64U', 'How do you insert a comment in Python code?', 'a)// This is a comment', 'b) /* This is a comment */', 'c) # This is a comment', 'd) -- This is a comment', 3),
-(184, 23, 'Python', 'LHB64U', 'What will be the output of the following code?<br>print(type(2))', 'a) <class \'float\'>', 'b) <class \'int\'>', 'c) <class \'bool\'>', 'd) <class \'NoneType\'>', 2),
-(185, 31, 'Python', 'LHB64U', 'What will be the output of the following code?<br>\\r\\nx = 5.0<br>\\r\\nprint(x == 5)<br>\\r\\n', 'a) True', 'b) False', 'c) 5', '4) Error', 1),
-(186, 26, 'Python', 'LHB64U', 'Which of the following will create a list in Python?', 'a)	[1, 2, 3]', 'b)	(1, 2, 3)', 'c)	{1, 2, 3}', 'd)	1, 2, 3', 1),
-(187, 34, 'Python', 'LHB64U', 'How do you add an element to the end of a list in Python?', 'a) list.add()', 'b) list.append()', 'c) list.push()', 'd) list.insert()', 2),
-(188, 7, 'Aptitude', 'AKJMUI', 'Which machine learning algorithm is best suited for predicting stock prices?', 'A) K-means clustering', 'B) Linear regression', 'C) Decision trees', 'D) Apriori algorithm', 2),
-(189, 1, 'Aptitude', 'AKJMUI', 'Which financial ratio measures a company\'s ability to meet its short-term obligations?', 'A) Return on Equity (ROE)', 'B) Current Ratio', 'C) Debt-to-Equity Ratio', 'D) Gross Profit Margin', 2),
-(190, 20, 'Aptitude', 'AKJMUI', 'Which type of data visualization is used to show the distribution of a dataset?', 'A) Line chart', 'B) Scatter plot', 'C) Histogram', 'D) Pie chart', 3),
-(191, 2, 'Aptitude', 'AKJMUI', 'In Python, which library is commonly used for data manipulation and analysis?', 'A) NumPy', 'B) Matplotlib', 'C) Pandas', 'D) Scikit-learn', 3),
-(192, 6, 'Aptitude', 'AKJMUI', 'What is the primary purpose of a confusion matrix in evaluating a classification model?', 'A) To summarize the performance of a regression model', 'B) To display the true positives, true negatives, false positives, and false negatives', 'C) To visualize the distribution of data', 'D) To calculate the mean absolute error', 2),
-(193, 12, 'Aptitude', 'AKJMUI', 'What does the term \"Big Data\" refer to in the context of financial analysis?', 'A) Large volumes of structured and unstructured data that can be analyzed for insights', 'B) Small, manageable sets of data used for daily operations', 'C) Data stored in traditional databases', 'D) Data primarily used for marketing purposes', 1),
-(194, 27, 'Aptitude', 'AKJMUI', 'What does the len() function do?', 'a) Returns the length of a string', 'b) Returns the length of a list or string', 'c) Returns the size of the memory used by an object', 'd) Counts the number of spaces in a string', 2),
-(195, 24, 'Aptitude', 'AKJMUI', 'What is the correct syntax to create a function in Python?', 'a) function myFunction():', 'b) def myFunction():', 'c) create myFunction():', 'd) function: myFunction()', 2),
-(196, 33, 'Aptitude', 'AKJMUI', 'What is the output of the following code?<br>\\r\\na = [1, 2, 3, 4, 5]<br>\\r\\nprint(a[2:4])<br>\\r\\n', 'a) [2, 3]', 'b) [3, 4]', 'c) [1, 2, 3]', 'd) [2, 3, 4]', 4),
-(197, 25, 'Aptitude', 'AKJMUI', 'How do you insert a comment in Python code?', 'a)// This is a comment', 'b) /* This is a comment */', 'c) # This is a comment', 'd) -- This is a comment', 3),
-(198, 26, 'Aptitude', 'AKJMUI', 'Which of the following will create a list in Python?', 'a)	[1, 2, 3]', 'b)	(1, 2, 3)', 'c)	{1, 2, 3}', 'd)	1, 2, 3', 1),
-(199, 23, 'Aptitude', 'AKJMUI', 'What will be the output of the following code?<br>print(type(2))', 'a) <class \'float\'>', 'b) <class \'int\'>', 'c) <class \'bool\'>', 'd) <class \'NoneType\'>', 2),
-(200, 331, 'Python', '2GPIY6', 'Which of the following is a mutable data type in Python?', 'Tuple', 'String', 'List', 'Set', 3),
-(201, 334, 'Python', '2GPIY6', 'Which method is used to add an item to a list?', 'append()', 'add()', 'insert()', 'extend()', 1),
-(202, 364, 'Python', '2GPIY6', 'Which of the following is used to handle exceptions in Python?', 'try-except', 'catch-throw', 'handle()', 'error-catch', 1),
-(203, 32, 'Python', '2GPIY6', 'Which of the following is not a valid data type in Python?', 'int', 'float', 'real', 'str', 3),
-(204, 377, 'Python', '2GPIY6', 'What is the result of type(10) in Python?', '<class \'int\'>', 'int', 'integer', '<type \'int\'>', 1),
-(205, 355, 'Python', '2GPIY6', 'Which of the following is used to check if a key exists in a dictionary?', 'exists()', 'in', 'has_key()', 'find()', 2),
-(206, 353, 'Python', '2GPIY6', 'Which method is used to remove an item from a dictionary?', 'remove()', 'del', 'discard()', 'pop()', 4),
-(207, 33, 'Python', '2GPIY6', 'What is the output of the following code?<br>\\r\\na = [1, 2, 3, 4, 5]<br>\\r\\nprint(a[2:4])<br>\\r\\n', '[2, 3]', '[3, 4]', '[1, 2, 3]', '[2, 3, 4]', 4),
-(208, 372, 'Python', '2GPIY6', 'What will be the result of \'Hello\'.find(\'e\')?', '1', '2', '3', '-1', 2),
-(209, 29, 'Python', '2GPIY6', 'Which keyword is used to define a variable in Python?', 'var', 'def', 'int', 'No keyword is required', 4),
-(210, 25, 'Python', '2GPIY6', 'How do you insert a comment in Python code?', '// This is a comment', '/* This is a comment */', ' # This is a comment', '-- This is a comment', 3),
-(211, 370, 'Python', '2GPIY6', 'Which of the following is an assignment operator?', '==', '=', '===', '=>', 2),
-(212, 373, 'Python', '2GPIY6', 'Which function is used to get a substring from a string?', 'substr()', 'slice()', 'substring()', 'split()', 2),
-(213, 360, 'Python', '2GPIY6', 'What does the \'pass\' keyword do?', 'Terminates the loop', 'Skips the current iteration', 'Does nothing', 'Raises an error', 3),
-(214, 348, 'Python', '2GPIY6', 'Which function is used to convert a string to an integer?', 'str()', 'int()', 'float()', 'toInt()', 2),
-(215, 336, 'Python', '2GPIY6', 'Which statement is used to exit a loop?', 'return', 'exit', 'break', 'stop', 3);
+(238, 21, 'Python', 'R9V6Y2', 'Which of the following is the correct extension of Python files?', '.python', '.py', '.pyt', '.pyc', 2),
+(239, 340, 'Python', 'R9V6Y2', 'What is the output of len(\'Python\')?', '5', '6', '7', 'Error', 2),
+(240, 371, 'Python', 'R9V6Y2', 'What will be the result of bool(\'False\')?', 'True', 'False', 'Error', 'None', 1),
+(241, 372, 'Python', 'R9V6Y2', 'What will be the result of \'Hello\'.find(\'e\')?', '1', '2', '3', '-1', 2),
+(242, 353, 'Python', 'R9V6Y2', 'Which method is used to remove an item from a dictionary?', 'remove()', 'del', 'discard()', 'pop()', 4),
+(243, 25, 'Python', 'R9V6Y2', 'How do you insert a comment in Python code?', '// This is a comment', '/* This is a comment */', ' # This is a comment', '-- This is a comment', 3),
+(244, 336, 'Python', 'R9V6Y2', 'Which statement is used to exit a loop?', 'return', 'exit', 'break', 'stop', 3),
+(245, 370, 'Python', 'R9V6Y2', 'Which of the following is an assignment operator?', '==', '=', '===', '=>', 2),
+(246, 376, 'Python', 'R9V6Y2', 'Which function converts an integer to a string?', 'str()', 'string()', 'toString()', 'convert()', 1),
+(247, 348, 'Python', 'R9V6Y2', 'Which function is used to convert a string to an integer?', 'str()', 'int()', 'float()', 'toInt()', 2);
 
 -- --------------------------------------------------------
 
@@ -482,22 +416,16 @@ CREATE TABLE `question_results` (
 --
 
 INSERT INTO `question_results` (`id`, `candidate_id`, `exam_type`, `question_id`, `question`, `user_answer`, `correct_option`, `status`, `created_at`) VALUES
-(85, 16, 'Python', 200, 'Which of the following is a mutable data type in Python?', 3, 3, 'Correct', '2025-02-09 14:48:06'),
-(86, 16, 'Python', 201, 'Which method is used to add an item to a list?', 2, 1, 'Incorrect', '2025-02-09 14:48:06'),
-(87, 16, 'Python', 202, 'Which of the following is used to handle exceptions in Python?', 2, 1, 'Incorrect', '2025-02-09 14:48:06'),
-(88, 16, 'Python', 203, 'Which of the following is not a valid data type in Python?', 1, 3, 'Incorrect', '2025-02-09 14:48:06'),
-(89, 16, 'Python', 204, 'What is the result of type(10) in Python?', 2, 1, 'Incorrect', '2025-02-09 14:48:06'),
-(90, 16, 'Python', 205, 'Which of the following is used to check if a key exists in a dictionary?', 2, 2, 'Correct', '2025-02-09 14:48:06'),
-(91, 16, 'Python', 206, 'Which method is used to remove an item from a dictionary?', 3, 4, 'Incorrect', '2025-02-09 14:48:06'),
-(92, 16, 'Python', 207, 'What is the output of the following code?<br>\\\\r\\\\na = [1, 2, 3, 4, 5]<br>\\\\r\\\\nprint(a[2:4])<br>\\\\r\\\\n', 2, 4, 'Incorrect', '2025-02-09 14:48:06'),
-(93, 16, 'Python', 208, 'What will be the result of \\\'Hello\\\'.find(\\\'e\\\')?', 3, 2, 'Incorrect', '2025-02-09 14:48:06'),
-(94, 16, 'Python', 209, 'Which keyword is used to define a variable in Python?', 2, 4, 'Incorrect', '2025-02-09 14:48:06'),
-(95, 16, 'Python', 210, 'How do you insert a comment in Python code?', 3, 3, 'Correct', '2025-02-09 14:48:06'),
-(96, 16, 'Python', 211, 'Which of the following is an assignment operator?', 3, 2, 'Incorrect', '2025-02-09 14:48:06'),
-(97, 16, 'Python', 212, 'Which function is used to get a substring from a string?', 4, 2, 'Incorrect', '2025-02-09 14:48:06'),
-(98, 16, 'Python', 213, 'What does the \\\'pass\\\' keyword do?', 2, 3, 'Incorrect', '2025-02-09 14:48:06'),
-(99, 16, 'Python', 214, 'Which function is used to convert a string to an integer?', 2, 2, 'Correct', '2025-02-09 14:48:06'),
-(100, 16, 'Python', 215, 'Which statement is used to exit a loop?', 2, 3, 'Incorrect', '2025-02-09 14:48:06');
+(155, 16, 'Python', 238, 'Which of the following is the correct extension of Python files?', 2, 2, 'Correct', '2025-02-13 05:00:58'),
+(156, 16, 'Python', 239, 'What is the output of len(\\\'Python\\\')?', 2, 2, 'Correct', '2025-02-13 05:00:58'),
+(157, 16, 'Python', 240, 'What will be the result of bool(\\\'False\\\')?', 1, 1, 'Correct', '2025-02-13 05:00:58'),
+(158, 16, 'Python', 241, 'What will be the result of \\\'Hello\\\'.find(\\\'e\\\')?', 2, 2, 'Correct', '2025-02-13 05:00:58'),
+(159, 16, 'Python', 242, 'Which method is used to remove an item from a dictionary?', 2, 4, 'Incorrect', '2025-02-13 05:00:58'),
+(160, 16, 'Python', 243, 'How do you insert a comment in Python code?', 3, 3, 'Correct', '2025-02-13 05:00:58'),
+(161, 16, 'Python', 244, 'Which statement is used to exit a loop?', 3, 3, 'Correct', '2025-02-13 05:00:58'),
+(162, 16, 'Python', 245, 'Which of the following is an assignment operator?', 3, 2, 'Incorrect', '2025-02-13 05:00:58'),
+(163, 16, 'Python', 246, 'Which function converts an integer to a string?', 2, 1, 'Incorrect', '2025-02-13 05:00:58'),
+(164, 16, 'Python', 247, 'Which function is used to convert a string to an integer?', 3, 2, 'Incorrect', '2025-02-13 05:00:58');
 
 -- --------------------------------------------------------
 
@@ -517,7 +445,7 @@ CREATE TABLE `results` (
 --
 
 INSERT INTO `results` (`id`, `candidate_id`, `exam_type`, `marks_obtained`) VALUES
-(14, 16, 'Python', 4);
+(21, 16, 'Python', 6);
 
 --
 -- Indexes for dumped tables
@@ -607,19 +535,19 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `candidates`
 --
 ALTER TABLE `candidates`
-  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `candidate_personal_details`
 --
 ALTER TABLE `candidate_personal_details`
-  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `exam_type_menu`
 --
 ALTER TABLE `exam_type_menu`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `header`
@@ -643,25 +571,25 @@ ALTER TABLE `menu`
 -- AUTO_INCREMENT for table `questions`
 --
 ALTER TABLE `questions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=378;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=428;
 
 --
 -- AUTO_INCREMENT for table `question_bank`
 --
 ALTER TABLE `question_bank`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=216;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=248;
 
 --
 -- AUTO_INCREMENT for table `question_results`
 --
 ALTER TABLE `question_results`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=165;
 
 --
 -- AUTO_INCREMENT for table `results`
 --
 ALTER TABLE `results`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- Constraints for dumped tables
