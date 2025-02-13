@@ -108,6 +108,10 @@ $conn->close();
                 <small id="passwordError" class="text-danger"></small>
             </div>
             <button type="submit" name="login" class="btn btn-custom">Login</button>
+            <p class="text-center mt-3">
+    <a href="update_admin_email.php">Forgot Email?</a> |
+    <a href="update_admin_password.php">Forgot Password?</a>
+</p>
         </form>
     </div>
     
