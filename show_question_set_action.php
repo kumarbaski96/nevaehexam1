@@ -50,11 +50,29 @@ $result = mysqli_query($conn, $query);
                 document.getElementById("delete_form").submit();
             }
         }
+
+        function showQuestions(code) {
+            $.ajax({
+                url: "fetch_questions_set.php", 
+                type: "POST",
+                data: { code: code },
+                success: function(response) {
+                    $("#questionModalBody").html(response);
+                    $("#questionModal").modal("show");
+                }
+            });
+        }
     </script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
 <div class="container mt-5">
     <h2 class="text-center mb-4">Question Bank Management</h2>
+
+    <!-- Go Back Button -->
+    <a href="show_candidate.php" class="btn btn-secondary mb-3">Go Back</a>
+
     <form method="POST" id="delete_form">
         <input type="hidden" name="single_delete_code" id="single_delete_code">
         <table class="table table-bordered table-striped text-center">
@@ -76,6 +94,7 @@ $result = mysqli_query($conn, $query);
                     <td><?php echo $row['code']; ?></td>
                     <td>
                         <button type="button" class="btn btn-danger btn-sm" onclick="deleteSingle('<?php echo $row['code']; ?>')">Delete</button>
+                        <button type="button" class="btn btn-primary btn-sm" onclick="showQuestions('<?php echo $row['code']; ?>')">Show Questions</button>
                     </td>
                 </tr>
                 <?php } ?>
@@ -83,6 +102,21 @@ $result = mysqli_query($conn, $query);
         </table>
         <button type="submit" name="delete_selected" class="btn btn-danger">Delete Selected</button>
     </form>
+</div>
+
+<!-- Modal for displaying questions -->
+<div class="modal fade" id="questionModal" tabindex="-1" aria-labelledby="questionModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="questionModalLabel">Questions</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="questionModalBody">
+                <!-- Questions will be loaded here -->
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 </html>
